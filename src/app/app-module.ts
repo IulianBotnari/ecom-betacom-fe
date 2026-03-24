@@ -3,7 +3,7 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
-import { Homepage } from './component/homepage/homepage';
+import { Homepage } from './pages/homepage/homepage';
 import { Header } from './components/header/header';
 import { Footer } from './components/footer/footer';
 import { About } from './pages/about/about';

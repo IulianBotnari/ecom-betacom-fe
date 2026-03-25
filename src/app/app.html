@@ -1,5 +1,35 @@
-<app-header></app-header>
+<mat-sidenav-container class="sidenav-container" fxFlexFill autosize>
 
-<router-outlet></router-outlet> <!-- oppure il tuo contenuto -->
+  <mat-sidenav #drawer mode="over" class="sidenav">
 
-<app-footer></app-footer>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" (click)="drawer.close()">
+        Home
+      </a>
+
+      <a mat-list-item routerLink="/about" routerLinkActive="active-link" (click)="drawer.close()">
+        About
+      </a>
+
+      <a mat-list-item routerLink="/login" routerLinkActive="active-link" (click)="drawer.close()">
+        Login
+      </a>
+
+      <a mat-list-item routerLink="/signin" routerLinkActive="active-link" (click)="drawer.close()">
+        Signin
+      </a>
+
+      <a mat-list-item routerLink="/products" routerLinkActive="active-link" (click)="drawer.close()">
+        Prodotti
+      </a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-header (menuClick)="drawer.toggle()"></app-header>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

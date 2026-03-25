@@ -12,9 +12,34 @@ import { Signin } from './pages/signin/signin';
 import { Products } from './pages/products/products';
 import { UserDetails } from './pages/user-details/user-details';
 
+/* Angular Material */
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+
 @NgModule({
-  declarations: [App, Homepage, Header, Footer, About, Login, Signin, Products, UserDetails],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [
+    App,
+    Homepage,
+    Header,
+    Footer,
+    About,
+    Login,
+    Signin,
+    Products,
+    UserDetails
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatButtonModule,
+    MatListModule
+  ],
   providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
   bootstrap: [App],
 })

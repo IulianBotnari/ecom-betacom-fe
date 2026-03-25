@@ -1,4 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +10,11 @@ import { Component, signal } from '@angular/core';
 })
 export class App {
   protected readonly title = signal('ecom-betacom-fe');
+  @ViewChild('drawer') drawer!: MatSidenav;
+
+  constructor(public router: Router) {}
+
+  isActive(url: string): boolean {
+  return this.router.url === url;
+}
 }

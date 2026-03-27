@@ -1,1 +1,43 @@
-<p>homepage works!sdffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
+
+<div class="hero-section">
+  
+  <a [routerLink]="['/products']" class="banner-background-link">
+    <div class="mega-banner-img-container">
+      <img src="/images/banner.jpg" alt="Collezione Promozione di Mezza Stagione" class="mega-banner-img">
+      <div class="banner-overlay"></div>
+    </div>
+  </a>
+
+  <div class="banner-box">
+    <a [routerLink]="['/products']" class="headline-link">
+      <h1 class="banner-headline">PROMOZIONE DI MEZZA STAGIONE</h1>
+    </a>
+
+    <h2 class="banner-subheadline">Sconti fino al 50% su articoli selezionati</h2>
+
+    <a [routerLink]="['/products']" class="hero-btn-link">
+      <button class="hero-btn">SCOPRI I PRODOTTI</button>
+    </a>
+  </div>
+</div>
+
+<section class="luxury-categories-section">
+  <div class="gender-nav">
+    <button (click)="select('uomo')" [class.active]="current == 'uomo'">Uomo</button>
+    <button (click)="select('donna')" [class.active]="current == 'donna'">Donna</button>
+  </div>
+
+  <div class="luxury-grid">
+    <div class="luxury-card" *ngFor="let cat of filteredCategories">
+       <img [src]="cat.image" alt="{{cat.name}}">
+       <div class="product-details">
+         <h3 class="product-title">{{ cat.name }}</h3>
+       </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+

@@ -1,7 +1,25 @@
-<mat-toolbar color="primary">
-  <button mat-icon-button (click)="menuClick.emit()">
-    <mat-icon>menu</mat-icon>
-  </button>
+<nav class="navbar">
+  <div class="nav-left">
+    <button class="menu-trigger-with-text" (click)="menuClick.emit()">
+      <mat-icon>menu</mat-icon>
+      <span class="menu-label">MENU</span>
+    </button>
 
-  <span style="margin-left: 10px;">EcomBeta</span>
-</mat-toolbar>
+    
+        <button class="search-btn-inline" title="Cerca">
+          <mat-icon>search</mat-icon>
+          <span class="search-label">CERCA</span>    
+        </button>
+     
+  </div>
+
+  <div class="nav-logo" [routerLink]="['/']">
+    <span class="brand-text">BRAND LOGO</span>
+  </div>
+
+  <div class="nav-icons">
+    <button mat-icon-button title="Profilo"><mat-icon>person_outline</mat-icon></button>
+    <button mat-icon-button title="Preferiti"><mat-icon>favorite_border</mat-icon></button>
+    <button mat-icon-button title="Carrello"><mat-icon>shopping_bag</mat-icon></button>
+  </div>
+</nav>

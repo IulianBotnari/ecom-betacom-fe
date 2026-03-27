@@ -3,19 +3,48 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
+import { Homepage } from './pages/homepage/homepage';
+import { Header } from './components/header/header';
+import { Footer } from './components/footer/footer';
+import { About } from './pages/about/about';
+import { Login } from './pages/login/login';
+import { Signin } from './pages/signin/signin';
+import { Products } from './pages/products/products';
+import { UserDetails } from './pages/user-details/user-details';
+
+/* Angular Material */
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
+/* AGGIUNGI QUESTO IMPORT PER LE CARD */
+import { MatCardModule } from '@angular/material/card'; 
+
 
 @NgModule({
   declarations: [
-    App
+    App,
+    Header,
+    Footer,
+    About,
+    Login,
+    Signin,
+    Products,
+    UserDetails
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatButtonModule,
+    MatListModule,
+    MatCardModule,
+    Homepage
   ],
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideClientHydration(withEventReplay()),
-  ],
-  bootstrap: [App]
+  providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
+  bootstrap: [App],
 })
-export class AppModule { }
+export class AppModule {}

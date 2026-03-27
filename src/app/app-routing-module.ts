@@ -7,13 +7,15 @@ import { Signin } from './pages/signin/signin';
 import { UserDetails } from './pages/user-details/user-details';
 import { Products } from './pages/products/products';
 
+
+
 const routes: Routes = [
   {path: '', component: Homepage},
   {path: 'about', component: About},
   {path: 'login', component: Login},
   {path: 'signin', component: Signin},
   {path: 'userDetails', component: UserDetails},
-  {path: 'products', component: Products}
+  {path: 'products', component: Products},
 ];
 
 @NgModule({

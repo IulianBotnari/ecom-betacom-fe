@@ -16,10 +16,11 @@ import { UserDetails } from './pages/user-details/user-details';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
-/* AGGIUNGI QUESTO IMPORT PER LE CARD */
 import { MatCardModule } from '@angular/material/card'; 
+import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router'; 
+import { CommonModule } from '@angular/common'; 
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MatCardModule } from '@angular/material/card';
     Login,
     Signin,
     Products,
-    UserDetails
+    UserDetails,
+    Homepage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatListModule,
     MatCardModule,
-    Homepage
+    RouterModule,
+    CommonModule
   ],
   providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
   bootstrap: [App],

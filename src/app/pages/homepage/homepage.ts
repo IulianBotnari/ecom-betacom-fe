@@ -2,15 +2,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router'; 
-import { CommonModule } from '@angular/common'; // <--- AGGIUNGI QUESTO IMPORT
+import { CommonModule } from '@angular/common'; 
 
 @Component({
   selector: 'app-homepage',
   templateUrl: 'homepage.html',
   styleUrl: 'homepage.css',
-  standalone: true,
-  // AGGIUNGI CommonModule nell'array qui sotto
-  imports: [MatCardModule, MatButtonModule, RouterModule, CommonModule], 
+  standalone: false,
+  
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Homepage {

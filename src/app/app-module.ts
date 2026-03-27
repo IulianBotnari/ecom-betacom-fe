@@ -18,11 +18,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
+/* AGGIUNGI QUESTO IMPORT PER LE CARD */
+import { MatCardModule } from '@angular/material/card'; 
+
 
 @NgModule({
   declarations: [
     App,
-    Homepage,
     Header,
     Footer,
     About,
@@ -38,7 +40,9 @@ import { MatListModule } from '@angular/material/list';
     MatSidenavModule,
     MatIconModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    MatCardModule,
+    Homepage
   ],
   providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
   bootstrap: [App],

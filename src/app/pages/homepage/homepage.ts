@@ -1,5 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product-service';
+
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { RouterModule } from '@angular/router'; 
+import { CommonModule } from '@angular/common'; // <--- AGGIUNGI QUESTO IMPORT
 
 @Component({
   selector: 'app-homepage',
@@ -7,19 +11,4 @@ import { ProductService } from '../../services/product-service';
   templateUrl: './homepage.html',
   styleUrl: './homepage.css',
 })
-export class Homepage implements OnInit {
-
-
-  private productService = inject(ProductService)
-
-  private products = this.productService.products()
-  private messageError = this.productService.messageError()
-
-  ngOnInit(): void {
-    this.productService.listAll()
-  }
-
-
-
-
-}
+export class Homepage {}

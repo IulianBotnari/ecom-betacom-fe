@@ -1,0 +1,25 @@
+<<<<<<< HEAD
+=======
+<div class="login-container">
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" name="email" placeholder="introdurre Email" ngModel required>
+    <mat-icon matSuffix>mail</mat-icon>
+    <mat-hint>Inserisci una email valida</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" name="password" placeholder="introdurre password" ngModel required>
+    <mat-icon matSuffix>lock</mat-icon>
+    <mat-hint>Minimo 8 caratteri</mat-hint>
+  </mat-form-field>
+
+  <div class="button-container">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Sign in</button>
+    <button mat-stroked-button color="accent" type="button">Sign up</button>
+  </div>
+  </form>
+</div>
+>>>>>>> 1d05ce5501f00f51cac8e127aa8e7e76ce28f28a

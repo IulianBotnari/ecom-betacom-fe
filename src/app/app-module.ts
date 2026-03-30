@@ -12,6 +12,9 @@ import { Signin } from './pages/signin/signin';
 import { Products } from './pages/products/products';
 import { UserDetails } from './pages/user-details/user-details';
 
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router'; 
+import { CommonModule } from '@angular/common'; 
 /* Angular Material */
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -19,8 +22,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card'; 
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router'; 
-import { CommonModule } from '@angular/common'; 
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -45,7 +48,10 @@ import { CommonModule } from '@angular/common';
     MatListModule,
     MatCardModule,
     RouterModule,
-    CommonModule
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
   bootstrap: [App],

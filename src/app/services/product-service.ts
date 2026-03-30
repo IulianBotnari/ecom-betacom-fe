@@ -8,7 +8,7 @@ import { tap } from 'rxjs';
 })
 export class ProductService {
 
-  private url = 'http://localhost:8080/rest/product'
+  private url = 'http://localhost:9090/rest/product/'
   private http = inject(HttpClient)
 
   products = signal<any[]>([])
@@ -29,15 +29,13 @@ export class ProductService {
 
     listAll () {
       this.messageError.set(null);
-      return this.http.get(this.url + "listAll").subscribe(
-        {
-          next: (response: any) => {this.products.set(response)},
-          error: (response:any) => {
-            console.log(response)
-            this.messageError.set(response)
-          }
-        }
-      );
+      return this.http.get<any[]>(this.url + "listAll");
+    }
+
+    multiFilter(filters: {}) {
+      return this.http.get<any[]>(this.url + "multiFilter", {
+        params: filters
+      });
     }
 
     getById (id: number) {

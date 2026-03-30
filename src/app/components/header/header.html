@@ -14,12 +14,16 @@
   </div>
 
   <div class="nav-logo" [routerLink]="['/']">
-    <span class="brand-text">BRAND LOGO</span>
-  </div>
+  <img src="/images/logo_vante.jpg" alt="Logo Aziendale"  class="logo-img">
+</div>
 
-  <div class="nav-icons">
-    <button mat-icon-button title="Profilo"><mat-icon>person_outline</mat-icon></button>
-    <button mat-icon-button title="Preferiti"><mat-icon>favorite_border</mat-icon></button>
-    <button mat-icon-button title="Carrello"><mat-icon>shopping_bag</mat-icon></button>
-  </div>
+ <div class="nav-icons">
+  <button mat-icon-button title="Accedi" [routerLink]="['/login']">
+    <mat-icon>person_outline</mat-icon>
+  </button>
+  
+  <button mat-icon-button title="Preferiti"><mat-icon>favorite_border</mat-icon></button>
+  
+  <button mat-icon-button title="Carrello"><mat-icon>shopping_bag</mat-icon></button>
+</div>
 </nav>

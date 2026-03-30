@@ -20,24 +20,24 @@
   padding: 0 2% 0 1%; 
   background: var(--white);
   height: 80px;
-  border-bottom: 8px solid var(--gold-accent);
+  border-bottom: 4px solid var(--gold-accent); /* Ridotto leggermente per eleganza */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* I TRE PILASTRI */
+/* I TRE PILASTRI (SINISTRA, CENTRO, DESTRA) */
 .nav-left, .nav-logo, .nav-icons {
   flex: 1;
   display: flex;
   align-items: center;
 }
 
-/* SINISTRA (MENU + CERCA) */
+/* --- SINISTRA (MENU + CERCA) --- */
 .nav-left {
   justify-content: flex-start;
-  gap: 12px; /* Spazio tra i due badge */
+  gap: 12px; 
 }
 
-/* --- STILE UNIFICATO PER I BADGE (MENU E CERCA) --- */
+/* STILE UNIFICATO PER I BADGE */
 .menu-trigger-with-text, 
 .search-btn-inline {
   background-color: var(--badge-bg);
@@ -46,7 +46,7 @@
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  border-radius: 50px; /* Forma a pillola */
+  border-radius: 50px;
   cursor: pointer;
   color: var(--text-headline);
   transition: all 0.3s ease;
@@ -69,7 +69,7 @@
   text-transform: uppercase;
 }
 
-/* --- EFFETTO HOVER SUI BADGE --- */
+/* EFFETTO HOVER SUI BADGE */
 .menu-trigger-with-text:hover, 
 .search-btn-inline:hover {
   background-color: var(--badge-bg-hover);
@@ -87,14 +87,32 @@
 .nav-logo {
   justify-content: center;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* L'immagine del logo */
+.nav-logo img {
+  height: 65px;          /* Altezza bilanciata per navbar da 80px */
+  width: auto;           /* Mantiene le proporzioni */
+  max-width: 220px;      /* Evita che diventi troppo largo */
+  object-fit: contain;
+}
+
+/* Testo opzionale sotto o sopra il logo (se vuoi nasconderlo usa display: none) */
 .brand-text {
-  font-size: 24px;
+  display: none; 
+  font-size: 10px;
   font-weight: 900;
-  letter-spacing: 5px;
+  letter-spacing: 3px;
   color: var(--text-headline);
   text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.nav-logo:hover img {
+  transform: scale(1.05); /* Effetto interattivo al passaggio del mouse */
 }
 
 /* --- DESTRA (ICONE) --- */
@@ -107,6 +125,7 @@
   background: none;
   border: none;
   cursor: pointer;
+  padding: 8px;
 }
 
 .nav-icons mat-icon {
@@ -122,9 +141,14 @@
 /* --- RESPONSIVE --- */
 @media (max-width: 950px) {
   .menu-label, .search-label {
-    display: none; /* Nasconde i testi su schermi piccoli per non affollare */
+    display: none; 
   }
+  
   .menu-trigger-with-text, .search-btn-inline {
     padding: 10px;
+  }
+  
+  .nav-logo img {
+    height: 40px; /* Logo leggermente più piccolo su schermi ridotti */
   }
 }

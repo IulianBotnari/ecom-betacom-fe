@@ -1,39 +1,78 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { RouterModule } from '@angular/router'; 
-import { CommonModule } from '@angular/common'; 
+import { Component, OnInit, signal, computed } from '@angular/core';
+import { CategorieService } from '../../services/category.service';
 
 @Component({
   selector: 'app-homepage',
   templateUrl: 'homepage.html',
   styleUrl: 'homepage.css',
-  standalone: false,
-  
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class Homepage {
+  standalone: false
+})  
+export class Homepage implements OnInit {
+  // Signal per gestire il genere (donna di default)
+  genereSelezionato = signal<string>('donna'); 
 
-current: string = 'donna'; 
+  constructor(private catService: CategorieService) { }
 
-  // 2. Database delle categorie con immagini (Cambia i percorsi con i tuoi)
-  categoriesData = [
-    { name: 'Borse', image_donna: '/images/prova.jpg', image_uomo: '/images/banner.jpg' },
-    { name: 'Accessori', image_donna: '/images/prova.jpg', image_uomo: '/images/banner.jpg' },
-    { name: 'Scarpe', image_donna: '/images/prova.jpg', image_uomo: '/images/banner.jpg' },
-    { name: 'Abbigliamento', image_donna: '/images/prova.jpg', image_uomo: '/images/banner.jpg' }
-  ];
-
-  // 3. Funzione 'select' che viene chiamata al click del bottone
-  select(genere: string) {
-    this.current = genere;
+  ngOnInit(): void {
+    // Carica le categorie dal database tramite il service
+    this.catService.list();
   }
 
-  // 4. Logica per filtrare le categorie e mostrare l'immagine corretta
-  get filteredCategories() {
-    return this.categoriesData.map(cat => ({
-      name: cat.name,
-      image: this.current === 'donna' ? cat.image_donna : cat.image_uomo
-    }));
+  /**
+   * Computed: Crea la lista di categorie iniettando i percorsi immagine.
+   * REGOLE PER IL FUNZIONAMENTO:
+   * 1. Prende il nome dal DB (es: "Camicie")
+   * 2. Lo trasforma in minuscolo (es: "camicie")
+   * 3. Cerca il file in: images/donna/camicie/main.jpg
+   */
+  categorieFiltrate = computed(() => {
+    const genere = this.genereSelezionato();
+    const categorieView = this.catService.categorie().filter((cat)=>cat.isView);
+
+
+
+    return categorieView.map(cat => {
+      // Trasforma il nome del DB in minuscolo senza spazi (es: "Magliette " -> "magliette")
+      const nomeStandard = cat.category.toLowerCase().trim();
+
+      return {
+        ...cat,
+        // Percorso dinamico basato sul nome esatto della categoria
+        immagineDinamica: `images/${genere}/${nomeStandard}/main.jpg`
+      };
+    });
+  });
+
+  // Metodo per cambiare il genere dai bottoni
+  cambiaGenere(nuovoGenere: string) {
+    this.genereSelezionato.set(nuovoGenere);
+  }
+
+  /**
+   * Gestore errori immagini:
+   * Se 'main.jpg' non esiste nella cartella specifica, carica il placeholder generico.
+   */
+  updateToPlaceholder(event: any) {
+    const imgElement = event.target;
+    
+    // Se l'immagine che ha fallito non è già il placeholder, proviamo a caricarlo
+    if (!imgElement.src.includes('placeholder.jpg')) {
+      imgElement.src = 'images/placeholder.jpg';
+    } else {
+      // Se manca anche il placeholder, nascondiamo l'immagine per non mostrare l'icona "rotta"
+      imgElement.style.display = 'none';
+      console.warn("Immagine non trovata e placeholder mancante in images/placeholder.jpg");
+    }
+  }
+
+  /**
+   * Metodo di Debug:
+   * Controlla i percorsi generati nella console del browser (F12)
+   */
+  metodo() {
+    console.log("--- DEBUG CATEGORIE ---");
+    this.categorieFiltrate().forEach(c => {
+      console.log(`Categoria: ${c.category} -> Percorso atteso: ${c.immagineDinamica}`);
+    });
   }
 }

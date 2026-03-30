@@ -1,54 +1,50 @@
-/* --- FOOTER COMPLETO (STILE COORDINATO NAVBAR) --- */
+
 .footer {
-  background-color: var(--white); 
-  color: var(--text-body); 
+  background-color: #ffffff; /* Sostituisci con var(--white) se presente */
+  color: #555555;            /* Sostituisci con var(--text-body) */
   padding: 80px 5% 40px;
   margin-top: 100px;
-
-  /* REPLICA NAVBAR: Riga oro in basso e ombra che punta verso l'alto */
-  border-bottom: 4px solid var(--gold-accent); 
+  border-bottom: 4px solid #d4af37; /* Gold accent */
   box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
-  position: relative;
 }
 
 .footer-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
   max-width: 1300px;
   margin: 0 auto;
 }
 
-/* TITOLI DELLE SEZIONI CON LINEA GRIGIA SOTTILE */
+.footer-section {
+  flex: 1;
+  min-width: 0;
+}
+
+/* TITOLI */
 .footer-section h3 {
-  color: var(--text-headline);
+  color: #1a1a1a;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 20px;
-  
-  /* Riga grigia sottile (stile Homepage) */
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid #eeeeee;
   padding-bottom: 10px;
   display: inline-block;
-  min-width: 60px;
 }
 
-/* TESTI E DESCRIZIONI */
 .footer-section p {
   font-size: 14px;
   line-height: 1.8;
-  color: var(--text-body);
-  margin-top: 15px;
   margin-bottom: 20px;
 }
 
-/* LISTE DI LINK */
+/* LISTE */
 .footer-section ul {
   list-style: none;
   padding: 0;
-  margin: 15px 0 0 0;
 }
 
 .footer-section ul li {
@@ -56,38 +52,74 @@
 }
 
 .footer-section ul li a {
-  color: var(--text-body);
+  color: #555555;
   text-decoration: none;
   font-size: 14px;
   transition: all 0.3s ease;
 }
 
 .footer-section ul li a:hover {
-  color: var(--gold-accent); 
-  padding-left: 5px; /* Piccolo scivolamento all'hover */
+  color: #d4af37;
+  padding-left: 5px;
 }
 
-/* LOGO NEL FOOTER */
+/* LOGO */
 .footer-logo {
-  height: 60px;
+  height: 50px; /* Ridotto leggermente per eleganza */
   width: auto;
   margin-bottom: 20px;
   display: block;
 }
 
+/* --- SOCIAL ICONS (Dimensioni Differenti) --- */
+.social-icons {
+  display: flex;
+  align-items: center; 
+  gap: 15px; /* Spazio tra Facebook e Instagram */
+  margin-top: 25px;
+}
+
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* -- DIMENSIONI SPECIFICHE -- */
+
+.fb-icon {
+  width: 30px !important;  
+  height: 30px !important;
+  object-fit: contain;
+  display: block;
+}
+
+
+.ig-icon {
+  width: 20px !important;  
+  height: 20px !important;
+  object-fit: contain;
+  display: block;
+}
+
+/* Effetto Hover */
+.social-icons a:hover {
+  transform: translateY(-3px);
+  opacity: 0.7;
+}
+
 /* NEWSLETTER */
 .newsletter-input {
   display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--border-color);
-  padding: 10px 0;
+  border-bottom: 1px solid #eeeeee;
+  padding: 5px 0;
   margin-top: 20px;
 }
 
 .newsletter-input input {
   background: transparent;
   border: none;
-  color: var(--text-headline);
   flex: 1;
   font-size: 14px;
   outline: none;
@@ -96,59 +128,34 @@
 .newsletter-input button {
   background: none;
   border: none;
-  color: var(--gold-accent);
+  color: #d4af37;
   cursor: pointer;
   font-weight: 700;
-  text-transform: uppercase;
 }
 
-/* --- RIGA ORO DI SEPARAZIONE SOPRA IL COPYRIGHT --- */
+/* COPYRIGHT */
 .footer-bottom {
-  margin-top: 80px;
-  padding-top: 40px;
-  /* Riga oro orizzontale che divide i link dal copyright */
-  border-top: 4px solid var(--gold-accent); 
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid #eeeeee;
   text-align: center;
 }
 
 .footer-bottom p {
   font-size: 11px;
-  letter-spacing: 1px;
-  color: var(--text-body);
   text-transform: uppercase;
-  opacity: 0.8;
+  letter-spacing: 1px;
+  opacity: 0.7;
 }
 
-/* SOCIAL ICONS */
-.social-icons {
-  display: flex;
-  gap: 15px;
-  margin-top: 25px;
-}
-
-.social-icons a {
-  color: var(--text-headline);
-  transition: all 0.3s;
-}
-
-.social-icons a:hover {
-  color: var(--gold-accent);
-  transform: translateY(-3px);
-}
-
-/* RESPONSIVE (Ottimizzazione per cellulari) */
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  .footer { 
-    padding: 60px 10% 30px; 
-    text-align: center; 
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
-  .footer-section h3 { 
-    display: table; 
-    margin: 0 auto 20px; 
+  .newsletter-input, .social-icons {
+    justify-content: center;
   }
-  .newsletter-input, .social-icons { 
-    justify-content: center; 
-  }
-
-  
 }

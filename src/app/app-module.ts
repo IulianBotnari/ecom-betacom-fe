@@ -25,6 +25,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Signup } from './components/pages/signup/signup';
+import { Admin } from './pages/admin/admin';
+import { ListaUtenti } from './component/lista-utenti/lista-utenti';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { Signup } from './components/pages/signup/signup';
     UserDetails,
     Homepage,
     Signup,
+    Admin,
+    ListaUtenti,
   ],
   imports: [
     BrowserModule,

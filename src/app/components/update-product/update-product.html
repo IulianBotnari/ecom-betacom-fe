@@ -28,24 +28,16 @@
       <div class="col">
         <label>Categoria</label>
         <select formControlName="categoryId" class="form-control">
-          <option value="" disabled>Scegli...</option>
+          <option [value]="null" disabled>Scegli...</option>
           @for (cat of categoryList(); track cat) {
             <option [value]="cat.id">{{ cat.category }}</option>
           }
         </select>
       </div>
     </div>
+<!--
+        <div class="row">
 
-    <div class="row">
-      <div class="col">
-        <label>Taglia</label>
-        <select formControlName="size" class="form-control">
-          <option value="" disabled>Scegli...</option>
-          @for (s of availableSizes; track s) {
-            <option [value]="s">{{ s }}</option>
-          }
-        </select>
-      </div>
       <div class="col">
         <label>Quantità</label>
         <input type="number" formControlName="quantity" class="form-control" />
@@ -54,6 +46,10 @@
         }
       </div>
     </div>
+
+
+-->
+
 
     <div class="form-group">
       <label>Genere</label>
@@ -88,10 +84,5 @@
       Crea Prodotto
     </button>
   </form>
-  @if (error()) {
-    <p class="message_error">{{ messageError() }}</p>
-  }
-    @if (okMessage() != null) {
-    <p class="ok_message">{{ okMessage() }}</p>
-  }
+
 </div>

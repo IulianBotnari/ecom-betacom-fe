@@ -28,13 +28,14 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
-
 import { Admin } from './pages/admin/admin';
 import { ListaUtenti } from './components/lista-utenti/lista-utenti';
 import { ListaProdotti } from './components/lista-prodotti/lista-prodotti';
 import { OrderDetails } from './components/order-details/order-details';
 import { CreateProduct } from './components/create-product/create-product';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateProduct } from './components/update-product/update-product';
+import { ListaTaglie } from './components/lista-taglie/lista-taglie';
 
 @NgModule({
   declarations: [
@@ -47,13 +48,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     Products,
     UserDetails,
     Homepage,
-   
+
     Admin,
     ListaUtenti,
     ListaProdotti,
     OrderDetails,
     CreateProduct,
-    Homepage
+    Homepage,
+    UpdateProduct,
+    ListaTaglie,
   ],
   imports: [
     BrowserModule,
@@ -71,9 +74,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     MatOptionModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [provideHttpClient(withFetch()), provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
+  providers: [
+    provideHttpClient(withFetch()),
+    provideBrowserGlobalErrorListeners(),
+    provideClientHydration(withEventReplay()),
+  ],
   bootstrap: [App],
 })
 export class AppModule {}

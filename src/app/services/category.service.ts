@@ -3,7 +3,6 @@ import { Injectable, signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class CategorieService {
-  // Questo è l'URL che hai confermato dallo Swagger
   private url = "http://localhost:9090/rest/category/listAll"; 
   
  categorie = signal<any[]>([]);

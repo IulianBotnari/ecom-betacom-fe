@@ -55,24 +55,11 @@ export class Homepage implements OnInit {
   updateToPlaceholder(event: any) {
     const imgElement = event.target;
     
-    // Se l'immagine che ha fallito non è già il placeholder, proviamo a caricarlo
-    if (!imgElement.src.includes('placeholder.jpg')) {
-      imgElement.src = 'images/placeholder.jpg';
-    } else {
       // Se manca anche il placeholder, nascondiamo l'immagine per non mostrare l'icona "rotta"
       imgElement.style.display = 'none';
       console.warn("Immagine non trovata e placeholder mancante in images/placeholder.jpg");
     }
   }
 
-  /**
-   * Metodo di Debug:
-   * Controlla i percorsi generati nella console del browser (F12)
-   */
-  metodo() {
-    console.log("--- DEBUG CATEGORIE ---");
-    this.categorieFiltrate().forEach(c => {
-      console.log(`Categoria: ${c.category} -> Percorso atteso: ${c.immagineDinamica}`);
-    });
-  }
-}
+ 
+ 

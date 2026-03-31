@@ -14,6 +14,9 @@
       <div class="col">
         <label>Prezzo</label>
         <input type="number" formControlName="price" class="form-control" />
+        @if (productForm.get('price')?.invalid && productForm.get('price')?.touched) {
+          <small class="text-danger"> Campo prezzp non può essere vuoto </small>
+        }
       </div>
       <div class="col">
         <label>ID Categoria</label>
@@ -34,6 +37,9 @@
       <div class="col">
         <label>Quantità iniziale</label>
         <input type="number" formControlName="quantity" class="form-control" />
+        @if (productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched) {
+          <small class="text-danger"> Campo quantità non può essere vuoto </small>
+        }
       </div>
     </div>
 
@@ -49,6 +55,9 @@
     <div class="form-group">
       <label>Descrizione</label>
       <textarea formControlName="description" class="form-control"></textarea>
+      @if (productForm.get('description')?.invalid && productForm.get('description')?.touched) {
+        <small class="text-danger"> Campo descrizione non può essere vuoto </small>
+      }
     </div>
 
     <div class="form-group">
@@ -59,6 +68,9 @@
     <div class="form-group">
       <label>Materiale</label>
       <input type="text" formControlName="material" class="form-control" />
+      @if (productForm.get('material')?.invalid && productForm.get('material')?.touched) {
+        <small class="text-danger"> Campo materiale non può essere vuoto </small>
+      }
     </div>
 
     <button type="submit" [disabled]="productForm.invalid" class="btn btn-primary mt-3">

@@ -44,6 +44,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserDetails,
     Homepage,
    
+    Admin,
+    ListaUtenti,
+    ListaProdotti,
+    OrderDetails,
+    CreateProduct,
   ],
   imports: [
     BrowserModule,

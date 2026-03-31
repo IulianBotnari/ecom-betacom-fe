@@ -28,6 +28,9 @@ import { Signup } from './components/pages/signup/signup';
 import { Admin } from './pages/admin/admin';
 import { ListaUtenti } from './components/lista-utenti/lista-utenti';
 import { ListaProdotti } from './components/lista-prodotti/lista-prodotti';
+import { OrderDetails } from './components/order-details/order-details';
+import { CreateProduct } from './components/create-product/create-product';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,8 @@ import { ListaProdotti } from './components/lista-prodotti/lista-prodotti';
     Admin,
     ListaUtenti,
     ListaProdotti,
+    OrderDetails,
+    CreateProduct,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +64,7 @@ import { ListaProdotti } from './components/lista-prodotti/lista-prodotti';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
   bootstrap: [App],

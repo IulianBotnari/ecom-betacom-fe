@@ -19,7 +19,7 @@ export class ProductService {
     }
 
     update (body: {}) {
-      return this.http.put(this.url + "update", body)
+      return this.http.put(this.url + "update", body, { responseType: 'text' })
     }
 
     listAll () {

@@ -41,8 +41,7 @@ export class UpdateProduct implements OnInit {
       categoryId: [null, Validators.required],
       gender: ['', Validators.required],
       image: ['', Validators.required],
-      material: ['', Validators.required],
-      quantity: [1, [Validators.required, Validators.min(1)]],
+      material: ['', Validators.required]
     });
 
     this.productService.getById(this.productId()).subscribe({
@@ -57,5 +56,28 @@ export class UpdateProduct implements OnInit {
     });
   }
 
-  onSubmit() {}
+  onSubmit() {
+    if (this.productForm.valid) {
+      
+      const body = {
+        id: this.productId(), 
+        ...this.productForm.value
+      };
+
+      console.log('Dati che sto inviando:', body);
+
+      this.productService.update(body).subscribe({
+        next: (res: any) => {
+          console.log('Prodotto aggiornato con successo!', res);
+      
+        },
+        error: (err: any) => {
+          console.error("Errore durante l'aggiornamento:", err.error);
+        },
+      });
+    } else {
+     
+      this.productForm.markAllAsTouched();
+    }
+  }
 }

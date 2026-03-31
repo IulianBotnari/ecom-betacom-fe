@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product-service';
 
 @Component({
@@ -7,7 +7,7 @@ import { ProductService } from '../../services/product-service';
   styleUrl: './products.css',
   standalone: false
 })
-export class Products {
+export class Products implements OnInit {
 
   products: any[] = [];
 
@@ -19,6 +19,10 @@ export class Products {
   };
 
   constructor(private productService: ProductService, private cdr: ChangeDetectorRef) {
+    
+  }
+
+  ngOnInit(): void {
     this.productService.listAll().subscribe({
       next: (res) => this.products = res,
       error: (err) => console.error(err)

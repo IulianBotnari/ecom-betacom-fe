@@ -1,29 +1,49 @@
 <form class="filter-box" (ngSubmit)="onFilter()">
 
-  <input type="text" name="name" [(ngModel)]="filters.name" placeholder="🔍 Cerca prodotto">
+  <div class="filters">
 
-  <select name="gender" [(ngModel)]="filters.gender">
-    <option value=""></option>
-    <option value="MALE">Uomo</option>
-    <option value="FEMALE">Donna</option>
-    <option value="UNISEX">Unisex</option>
-  </select>
+    <mat-form-field appearance="outline">
+      <mat-label>🔍 Cerca prodotto</mat-label>
+      <input matInput name="name" [(ngModel)]="filters.name">
+    </mat-form-field>
 
-  <input type="text" name="material" [(ngModel)]="filters.material" placeholder="Materiale">
+    <mat-form-field appearance="outline">
+      <mat-label>Genere</mat-label>
+      <mat-select name="gender" [(ngModel)]="filters.gender">
+        <mat-option value="">Tutti</mat-option>
+        <mat-option value="MALE">Uomo</mat-option>
+        <mat-option value="FEMALE">Donna</mat-option>
+        <mat-option value="UNISEX">Unisex</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <input type="number" step="0.01" name="price" [(ngModel)]="filters.price" placeholder="Prezzo max">
+    <mat-form-field appearance="outline">
+      <mat-label>Materiale</mat-label>
+      <input matInput name="material" [(ngModel)]="filters.material">
+    </mat-form-field>
 
-  <button type="submit">Filtra</button>
+    <mat-form-field appearance="outline">
+      <mat-label>Prezzo max (€)</mat-label>
+      <input matInput type="number" step="0.01" name="price" [(ngModel)]="filters.price">
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" type="submit" class="filter-btn">
+      Filtra
+    </button>
+
+  </div>
 
 </form>
 
 <div class="grid">
-  <div class="card" *ngFor="let p of products">
-    <div class="card-body">
+  @for (p of products; track p) {
+  <mat-card class="product-card">
+    <mat-card-content>
       <h3>{{ p.name }}</h3>
       <p class="price">{{ p.price }}€</p>
       <p class="info">{{ p.material }}</p>
       <p class="info">{{ p.gender }}</p>
-    </div>
-  </div>
+    </mat-card-content>
+  </mat-card>
+}
 </div>

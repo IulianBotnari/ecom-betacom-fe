@@ -28,7 +28,7 @@
           <td>{{ u.birthday }}</td>
           <td>{{ u.role }}</td>
           <td>{{ u.createDate }}</td>
-          <td><button>Modifica</button>><button>Elimina</button>></td>
+          <td><button>Modifica</button>><button (click)="deleteUser(u.id)">Elimina</button>></td>
         </tr>
       }
     </tbody>

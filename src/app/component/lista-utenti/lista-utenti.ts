@@ -14,14 +14,25 @@ export class ListaUtenti implements OnInit{
 
   utenti = signal<any[]>([])
 
-  ngOnInit(): void {
-    this.userService.listAll().subscribe({
-      next: (res: any) => {
-       this.utenti.set(res)
-        console.log("Utenti caricati " + res);
+  loadUsers() {
+  this.userService.listAll().subscribe({
+    next: (res: any) => this.utenti.set(res),
+    error: (res: any) => console.error(res)
+  });
+}
+
+ngOnInit(): void {
+  this.loadUsers();
+}
+
+  deleteUser(id: number){
+    this.userService.delete(id).subscribe({
+      next: (res: any) =>{
+        console.log(res);
+        this.loadUsers();
         
       },
-      error: (res:any) => {
+      error: (res:any) =>{
         console.log(res);
         
       }

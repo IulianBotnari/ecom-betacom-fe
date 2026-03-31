@@ -35,6 +35,7 @@ import { OrderDetails } from './components/order-details/order-details';
 import { CreateProduct } from './components/create-product/create-product';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateProduct } from './components/update-product/update-product';
+import { ListaTaglie } from './components/lista-taglie/lista-taglie';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { UpdateProduct } from './components/update-product/update-product';
     CreateProduct,
     Homepage,
     UpdateProduct,
+    ListaTaglie,
   ],
   imports: [
     BrowserModule,

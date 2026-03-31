@@ -11,6 +11,7 @@ export class ListaProdotti implements OnInit {
   private productService = inject(ProductService);
   products = signal<any[]>([]);
   selectedProductId = signal<number | null>(null);
+  selectedProductTaglie = signal<number | null>(null);
 
   loadProducts() {
     this.productService.listAll().subscribe({
@@ -44,6 +45,14 @@ export class ListaProdotti implements OnInit {
       this.selectedProductId.set(null);
     } else {
       this.selectedProductId.set(id);
+    }
+  }
+
+    openTaglie(id: number) {
+    if (this.selectedProductId() === id) {
+      this.selectedProductTaglie.set(null);
+    } else {
+      this.selectedProductTaglie.set(id);
     }
   }
 }

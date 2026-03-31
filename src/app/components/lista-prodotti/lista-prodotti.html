@@ -28,13 +28,18 @@
           <td>
             <button (click)="open(p.id)">Modifica</button>>
             <button (click)="deleteProduct(p.id)">Elimina</button>
-            <button>Lista Taglie</button>
+            <button (click)="openTaglie(p.id)">Lista Taglie</button>
             <button>Lista Review</button>
           </td>
         </tr>
         @if (selectedProductId() === p.id) {
           <tr>
             <td colspan="10"><app-update-product [productId]="p.id"></app-update-product></td>
+          </tr>
+        }
+        @if (selectedProductTaglie() === p.id) {
+          <tr>
+            <td colspan="10"><app-lista-taglie [productId]="p.id"></app-lista-taglie></td>
           </tr>
         }
       }

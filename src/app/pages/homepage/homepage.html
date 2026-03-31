@@ -22,22 +22,29 @@
 </div>
 
 <section class="luxury-categories-section">
+  
   <div class="gender-nav">
-    <button (click)="select('uomo')" [class.active]="current == 'uomo'">Uomo</button>
-    <button (click)="select('donna')" [class.active]="current == 'donna'">Donna</button>
+    <button (click)="cambiaGenere('uomo')" [class.active]="genereSelezionato() === 'uomo'">Uomo</button>
+    <button (click)="cambiaGenere('donna')" [class.active]="genereSelezionato() === 'donna'">Donna</button>
   </div>
 
-  <div class="luxury-grid">
-    <div class="luxury-card" *ngFor="let cat of filteredCategories">
-       <img [src]="cat.image" alt="{{cat.name}}">
-       <div class="product-details">
-         <h3 class="product-title">{{ cat.name }}</h3>
-       </div>
+ <div class="luxury-grid">
+  
+  <a [routerLink]="['/login']" 
+     class="luxury-card" 
+     *ngFor="let cat of categorieFiltrate()">
+    
+    <img [src]="cat.immagineDinamica" 
+         [alt]="cat.category"
+         (error)="updateToPlaceholder($event)">
+    
+    <div class="product-details">
+      <h3 class="product-title">{{ cat.category }}</h3>
     </div>
-  </div>
+
+  </a> 
+
+</div>
+
 </section>
-
-
-
-
 

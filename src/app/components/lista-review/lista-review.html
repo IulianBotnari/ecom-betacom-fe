@@ -1,0 +1,24 @@
+<div class="container">
+  <table>
+    <thead>
+      <th>Utente</th>
+      <th>Descrizione</th>
+      <th>Voto</th>
+      <th>Data creazione</th>
+    </thead>
+
+    <tbody>
+      @for (r of listaReview(); track r.id) {
+        <tr class="user_row">
+          <td>{{ r.id }}</td>
+          <td>{{ r.review }}</td>
+          <td>{{ r.rating }}</td>
+          <td>{{ r.date }}</td>
+          <td>
+            <button (click)="deleteReview(r.id)">Elimina</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

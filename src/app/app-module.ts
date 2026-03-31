@@ -1,6 +1,5 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
@@ -25,8 +24,19 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Signup } from './components/pages/signup/signup';
-import { UserProfile } from './components/pages/user-profile/user-profile';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+
+import { Admin } from './pages/admin/admin';
+import { ListaUtenti } from './components/lista-utenti/lista-utenti';
+import { ListaProdotti } from './components/lista-prodotti/lista-prodotti';
+import { OrderDetails } from './components/order-details/order-details';
+import { CreateProduct } from './components/create-product/create-product';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateProduct } from './components/update-product/update-product';
+import { ListaTaglie } from './components/lista-taglie/lista-taglie';
+import { ListaReview } from './components/lista-review/lista-review';
 
 @NgModule({
   declarations: [
@@ -39,8 +49,16 @@ import { UserProfile } from './components/pages/user-profile/user-profile';
     Products,
     UserDetails,
     Homepage,
-    Signup,
-    UserProfile,
+
+    Admin,
+    ListaUtenti,
+    ListaProdotti,
+    OrderDetails,
+    CreateProduct,
+    Homepage,
+    UpdateProduct,
+    ListaTaglie,
+    ListaReview,
   ],
   imports: [
     BrowserModule,
@@ -56,9 +74,15 @@ import { UserProfile } from './components/pages/user-profile/user-profile';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    MatOptionModule,
+    MatSelectModule,
     ReactiveFormsModule,
   ],
-  providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
+  providers: [
+    provideHttpClient(withFetch()),
+    provideBrowserGlobalErrorListeners(),
+    provideClientHydration(withEventReplay()),
+  ],
   bootstrap: [App],
 })
 export class AppModule {}

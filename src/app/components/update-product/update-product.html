@@ -1,0 +1,88 @@
+<div class="container">
+  <h2>Aggiorna il prodotto</h2>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Nome</label>
+      <input type="text" formControlName="name" class="form-control" />
+      @if (productForm.get('name')?.invalid && productForm.get('name')?.touched) {
+        <small class="text-danger"> Campo name non può essere vuoto </small>
+      }
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label>Prezzo</label>
+        <input type="number" formControlName="price" class="form-control" />
+        @if (productForm.get('price')?.invalid && productForm.get('price')?.touched) {
+          <small class="text-danger"> Campo prezzp non può essere vuoto </small>
+        }
+      </div>
+      <div class="col">
+        <label>Prezzo scontato</label>
+        <input type="number" formControlName="discount" class="form-control" />
+        @if (productForm.get('discount')?.invalid && productForm.get('discount')?.touched) {
+          <small class="text-danger"> Campo prezzo scontato non può essere vuoto </small>
+        }
+      </div>
+      <div class="col">
+        <label>Categoria</label>
+        <select formControlName="categoryId" class="form-control">
+          <option [value]="null" disabled>Scegli...</option>
+          @for (cat of categoryList(); track cat) {
+            <option [value]="cat.id">{{ cat.category }}</option>
+          }
+        </select>
+      </div>
+    </div>
+<!--
+        <div class="row">
+
+      <div class="col">
+        <label>Quantità</label>
+        <input type="number" formControlName="quantity" class="form-control" />
+        @if (productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched) {
+          <small class="text-danger"> Campo quantità non può essere vuoto </small>
+        }
+      </div>
+    </div>
+
+
+-->
+
+
+    <div class="form-group">
+      <label>Genere</label>
+      <select formControlName="gender" class="form-control">
+        <option value="MALE">Uomo</option>
+        <option value="FEMALE">Donna</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Descrizione</label>
+      <textarea formControlName="description" class="form-control"></textarea>
+      @if (productForm.get('description')?.invalid && productForm.get('description')?.touched) {
+        <small class="text-danger"> Campo descrizione non può essere vuoto </small>
+      }
+    </div>
+
+    <div class="form-group">
+      <label>URL Immagine</label>
+      <input type="text" formControlName="image" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>Materiale</label>
+      <input type="text" formControlName="material" class="form-control" />
+      @if (productForm.get('material')?.invalid && productForm.get('material')?.touched) {
+        <small class="text-danger"> Campo materiale non può essere vuoto </small>
+      }
+    </div>
+
+    <button type="submit" [disabled]="productForm.invalid" class="btn btn-primary mt-3">
+      Crea Prodotto
+    </button>
+  </form>
+
+</div>

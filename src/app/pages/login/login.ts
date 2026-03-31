@@ -10,24 +10,30 @@ import { Router } from '@angular/router';
   standalone: false
 })
 export class Login {
+
   @ViewChild('loginForm') loginForm!: NgForm;
 
   constructor(
     private userService: UserService,
-      private routing: Router,
+    private routing: Router,
   ) {}
 
   onSubmit() {
-    console.log("Utente" + this.loginForm.value.email)
+    const form = this.loginForm.value;
+
+    console.log("Utente" + form.email)
 
     this.userService.login({
-      email: this.loginForm.value.email,
-      password: this.loginForm.value.password
+      email: form.email,
+      password: form.password
     }).subscribe({
       next: ((r) => this.routing.navigate([''])),
       error: ((r) => console.log(r))
     })
   }
 
+  signUp() {
+    this.routing.navigate(['signup']);
+  }
 
 }

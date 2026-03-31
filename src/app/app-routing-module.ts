@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { Homepage } from './pages/homepage/homepage';
 import { About } from './pages/about/about';
 import { Login } from './pages/login/login';
-import { Signin } from './pages/signin/signin';
 import { UserDetails } from './pages/user-details/user-details';
 import { Products } from './pages/products/products';
+import {Admin} from './pages/admin/admin';
+import { Signin } from './pages/signin/signin';
 import { UserProfile } from './components/pages/user-profile/user-profile';
 
 
@@ -14,10 +15,11 @@ const routes: Routes = [
   {path: '', component: Homepage},
   {path: 'about', component: About},
   {path: 'login', component: Login},
-  {path: 'signin', component: Signin},
+  {path: 'signup', component: Signin},
   {path: 'userDetails', component: UserDetails},
   {path: 'UserProfile', component: UserProfile},
   {path: 'products', component: Products},
+  {path: 'admin', component:Admin},
 ];
 
 @NgModule({

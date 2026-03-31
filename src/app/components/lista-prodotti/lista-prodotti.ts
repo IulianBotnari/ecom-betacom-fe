@@ -10,9 +10,7 @@ import { ProductService } from '../../services/product-service';
 export class ListaProdotti implements OnInit {
   private productService = inject(ProductService);
   products = signal<any[]>([]);
-  selectedProductId = signal<number | null>(null);
-  selectedProductTaglie = signal<number | null>(null);
-  selectedProductReview = signal<number | null>(null);
+
   
 
   loadProducts() {

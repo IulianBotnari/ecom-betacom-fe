@@ -19,8 +19,20 @@
         }
       </div>
       <div class="col">
-        <label>ID Categoria</label>
-        <input type="number" formControlName="categoryId" class="form-control" />
+        <label>Prezzo scontato</label>
+        <input type="number" formControlName="discount" class="form-control" />
+        @if (productForm.get('discount')?.invalid && productForm.get('discount')?.touched) {
+          <small class="text-danger"> Campo prezzo scontato non può essere vuoto </small>
+        }
+      </div>
+      <div class="col">
+        <label>Categoria</label>
+        <select formControlName="categoryId" class="form-control">
+          <option value="" disabled>Scegli...</option>
+          @for (cat of categoryList(); track cat) {
+            <option [value]="cat.id">{{ cat.category }}</option>
+          }
+        </select>
       </div>
     </div>
 
@@ -35,7 +47,7 @@
         </select>
       </div>
       <div class="col">
-        <label>Quantità iniziale</label>
+        <label>Quantità</label>
         <input type="number" formControlName="quantity" class="form-control" />
         @if (productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched) {
           <small class="text-danger"> Campo quantità non può essere vuoto </small>
@@ -46,9 +58,8 @@
     <div class="form-group">
       <label>Genere</label>
       <select formControlName="gender" class="form-control">
-        <option value="Uomo">Uomo</option>
-        <option value="Donna">Donna</option>
-        <option value="Unisex">Unisex</option>
+        <option value="MALE">Uomo</option>
+        <option value="FEMALE">Donna</option>
       </select>
     </div>
 
@@ -77,4 +88,10 @@
       Crea Prodotto
     </button>
   </form>
+  @if (error()) {
+    <p class="message_error">{{ messageError() }}</p>
+  }
+    @if (okMessage() != null) {
+    <p class="ok_message">{{ okMessage() }}</p>
+  }
 </div>

@@ -15,7 +15,7 @@ export class ProductService {
 
 
     create (body: {}) {
-      return this.http.post(this.url + "create", body)
+      return this.http.post(this.url + "create", body, { responseType: 'text' })
     }
 
     update (body: {}) {

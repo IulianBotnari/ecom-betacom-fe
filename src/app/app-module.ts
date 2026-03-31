@@ -24,6 +24,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+
 
 import { Admin } from './pages/admin/admin';
 import { ListaUtenti } from './components/lista-utenti/lista-utenti';
@@ -49,6 +53,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ListaProdotti,
     OrderDetails,
     CreateProduct,
+    Homepage
   ],
   imports: [
     BrowserModule,
@@ -64,9 +69,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    MatOptionModule,
+    MatSelectModule,
     ReactiveFormsModule
   ],
-  providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
+  providers: [provideHttpClient(withFetch()), provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
   bootstrap: [App],
 })
 export class AppModule {}

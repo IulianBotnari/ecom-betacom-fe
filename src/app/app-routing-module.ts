@@ -6,6 +6,7 @@ import { Login } from './pages/login/login';
 import { Signin } from './pages/signin/signin';
 import { UserDetails } from './pages/user-details/user-details';
 import { Products } from './pages/products/products';
+import { UserProfile } from './components/pages/user-profile/user-profile';
 
 
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'login', component: Login},
   {path: 'signin', component: Signin},
   {path: 'userDetails', component: UserDetails},
+  {path: 'UserProfile', component: UserProfile},
   {path: 'products', component: Products},
 ];
 

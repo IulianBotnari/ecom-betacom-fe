@@ -1,5 +1,6 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
@@ -25,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Signup } from './components/pages/signup/signup';
+import { UserProfile } from './components/pages/user-profile/user-profile';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { Signup } from './components/pages/signup/signup';
     UserDetails,
     Homepage,
     Signup,
+    UserProfile,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +56,7 @@ import { Signup } from './components/pages/signup/signup';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
   bootstrap: [App],

@@ -1,0 +1,47 @@
+<div class="container" *ngIf="user">
+  <h1>My Account</h1>
+
+  <div class="tabs">
+    <button (click)="activeTab = 'profile'" [class.active]="activeTab === 'profile'">Profile</button>
+    <button (click)="activeTab = 'orders'" [class.active]="activeTab === 'orders'">Order History</button>
+  </div>
+
+  <div *ngIf="activeTab === 'profile'" class="content-box">
+    <form [formGroup]="userForm" (ngSubmit)="onUpdate()">
+      <div class="form-group">
+        <label>First Name</label>
+        <input formControlName="name">
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input formControlName="lastName">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input formControlName="email">
+      </div>
+      <button type="submit" [disabled]="userForm.invalid">Save Changes</button>
+    </form>
+  </div>
+
+  <div *ngIf="activeTab === 'orders'" class="content-box">
+    <table class="order-table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of user.orders">
+          <td>#{{ order.id }}</td>
+          <td>{{ order.date | date }}</td>
+          <td><span class="status">{{ order.status }}</span></td>
+          <td>{{ order.orderPrice | currency:'EUR' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

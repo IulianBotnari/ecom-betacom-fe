@@ -10,6 +10,7 @@ import { ProductService } from '../../services/product-service';
 export class ListaProdotti implements OnInit {
   private productService = inject(ProductService);
   products = signal<any[]>([]);
+  selectedProductId = signal<number | null>(null);
 
   loadProducts() {
     this.productService.listAll().subscribe({
@@ -36,5 +37,13 @@ export class ListaProdotti implements OnInit {
         console.log(res);
       },
     });
+  }
+
+  open(id: number) {
+    if (this.selectedProductId() === id) {
+      this.selectedProductId.set(null);
+    } else {
+      this.selectedProductId.set(id);
+    }
   }
 }

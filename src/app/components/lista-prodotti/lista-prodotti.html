@@ -26,14 +26,15 @@
           <td>{{ p.discount }}</td>
           <td>{{ p.discountPercentage }}</td>
           <td>
-            <button>Modifica</button>>
+            <button (click)="open(p.id)">Modifica</button>>
             <button (click)="deleteProduct(p.id)">Elimina</button>
             <button>Lista Taglie</button>
             <button>Lista Review</button>
           </td>
         </tr>
-        
-        <div style="width: max-content; height: 500px"></div>
+        @if (selectedProductId() === p.id) {
+          <div style="width: max-content; height: 500px"></div>
+        }
       }
     </tbody>
   </table>

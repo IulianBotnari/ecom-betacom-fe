@@ -10,8 +10,8 @@ import { ProductService } from '../../services/product-service';
 export class ListaProdotti implements OnInit {
   private productService = inject(ProductService);
   products = signal<any[]>([]);
-  selectedProductId = signal<number | null>(null);
-  selectedProductTaglie = signal<number | null>(null);
+
+  
 
   loadProducts() {
     this.productService.listAll().subscribe({
@@ -40,19 +40,20 @@ export class ListaProdotti implements OnInit {
     });
   }
 
-  open(id: number) {
-    if (this.selectedProductId() === id) {
-      this.selectedProductId.set(null);
-    } else {
-      this.selectedProductId.set(id);
-    }
-  }
+  activeView = signal<ActiveView | null>(null);
 
-    openTaglie(id: number) {
-    if (this.selectedProductId() === id) {
-      this.selectedProductTaglie.set(null);
-    } else {
-      this.selectedProductTaglie.set(id);
-    }
+  toggleView(id: number, type: 'update' | 'taglie' | 'review') {
+  const current = this.activeView();
+  if (current?.id === id && current?.type === type) {
+    this.activeView.set(null);
+  } else {
+    this.activeView.set({ id, type });
   }
+}
+
+}
+
+interface ActiveView {
+  id: number;
+  type: 'update' | 'taglie' | 'review';
 }

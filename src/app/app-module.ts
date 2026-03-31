@@ -26,7 +26,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Signup } from './components/pages/signup/signup';
 import { Admin } from './pages/admin/admin';
-import { ListaUtenti } from './component/lista-utenti/lista-utenti';
+import { ListaUtenti } from './components/lista-utenti/lista-utenti';
+import { ListaProdotti } from './components/lista-prodotti/lista-prodotti';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ListaUtenti } from './component/lista-utenti/lista-utenti';
     Signup,
     Admin,
     ListaUtenti,
+    ListaProdotti,
   ],
   imports: [
     BrowserModule,

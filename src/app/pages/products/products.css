@@ -1,0 +1,50 @@
+.filter-box {
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  margin-bottom: 24px;
+}
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  align-items: center;
+}
+
+.filter-btn {
+  height: 56px;
+  border-radius: 12px;
+  font-weight: 600;
+  align-self: stretch;   
+}
+
+/* GRID PRODOTTI */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* CARD */
+.product-card {
+  border-radius: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.price {
+  font-weight: bold;
+  font-size: 18px;
+  color: #1976d2;
+}
+
+.info {
+  color: #666;
+  font-size: 14px;
+}

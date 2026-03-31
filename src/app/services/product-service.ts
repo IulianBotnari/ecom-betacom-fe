@@ -23,7 +23,13 @@ export class ProductService {
     }
 
     listAll () {
-      return this.http.get(this.url + "listAll")
+      return this.http.get<any[]>(this.url + "listAll");
+    }
+
+    multiFilter(filters: {}) {
+      return this.http.get<any[]>(this.url + "multiFilter", {
+        params: filters
+      });
     }
 
     getById (id: number) {

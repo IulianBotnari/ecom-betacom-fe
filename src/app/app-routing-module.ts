@@ -3,10 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { Homepage } from './pages/homepage/homepage';
 import { About } from './pages/about/about';
 import { Login } from './pages/login/login';
-import { Signin } from './pages/signin/signin';
 import { UserDetails } from './pages/user-details/user-details';
 import { Products } from './pages/products/products';
 import {Admin} from './pages/admin/admin';
+import { Signin } from './pages/signin/signin';
 
 
 

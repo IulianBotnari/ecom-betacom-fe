@@ -1,7 +1,6 @@
 <div class="signin-container">
   <form #signInForm="ngForm" (ngSubmit)="onSubmit()">
 
-```
 <mat-form-field appearance="outline">
   <mat-label>Nome</mat-label>
   <input matInput type="text" name="name" placeholder="Inserisci nome" ngModel required>
@@ -45,6 +44,13 @@
   <mat-hint>Minimo 8 caratteri</mat-hint>
 </mat-form-field>
 
+<mat-form-field appearance="outline">
+  <mat-label>Cotnrollo password</mat-label>
+  <input matInput type="password" name="passwordControl" placeholder="ripeti password" ngModel required>
+  <mat-icon matSuffix>lock</mat-icon>
+  <mat-hint>Minimo 8 caratteri</mat-hint>
+</mat-form-field>
+
 <div class="button-container">
   <button mat-raised-button color="primary" type="submit" [disabled]="!signInForm.valid">
     Sign up
@@ -54,7 +60,7 @@
     Back to login
   </button>
 </div>
-```
+
 
   </form>
 </div>

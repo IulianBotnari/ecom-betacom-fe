@@ -29,5 +29,8 @@ export class Login {
     })
   }
 
+  signUp() {
+    this.routing.navigate(['signup']);
+  }
 
 }

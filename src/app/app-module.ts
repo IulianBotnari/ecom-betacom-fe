@@ -24,7 +24,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Signup } from './components/pages/signup/signup';
+
 
 @NgModule({
   declarations: [
@@ -36,8 +36,8 @@ import { Signup } from './components/pages/signup/signup';
     Signin,
     Products,
     UserDetails,
-    Homepage,
-    Signup,
+    Homepage
+   
   ],
   imports: [
     BrowserModule,

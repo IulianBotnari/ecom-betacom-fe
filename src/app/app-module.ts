@@ -24,7 +24,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Signup } from './components/pages/signup/signup';
+
 import { Admin } from './pages/admin/admin';
 import { ListaUtenti } from './components/lista-utenti/lista-utenti';
 import { ListaProdotti } from './components/lista-prodotti/lista-prodotti';
@@ -43,7 +43,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     Products,
     UserDetails,
     Homepage,
-    Signup,
+   
   ],
   imports: [
     BrowserModule,

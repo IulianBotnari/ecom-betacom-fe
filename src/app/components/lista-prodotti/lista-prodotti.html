@@ -33,7 +33,9 @@
           </td>
         </tr>
         @if (selectedProductId() === p.id) {
-          <div style="width: max-content; height: 500px"></div>
+          <tr>
+            <td colspan="10"><app-update-product [productId]="p.id"></app-update-product></td>
+          </tr>
         }
       }
     </tbody>

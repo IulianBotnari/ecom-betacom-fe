@@ -1,3 +1,10 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
 :host {
   display: block;
   --bg-main: #FAF7F2;
@@ -133,29 +140,34 @@ a, .headline-link, .banner-background-link, .hero-btn-link {
 .luxury-grid {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap; 
+  flex-wrap: nowrap; /* Le tiene tutte sulla stessa riga */
   width: 100%;
-  height: 650px; /* Altezza fissa per evitare foto giganti */
-  gap: 4px; 
+  gap: 10px; /* Un po' di respiro tra le foto */
+  padding: 0 10px;
+  align-items: flex-start; /* Evita che si allunghino in modo strano */
 }
 
 .luxury-card {
-  flex: 1; /* Divide lo spazio in parti uguali (25% l'una se sono 4) */
-  min-width: 0;
+  flex: 1; /* Ognuna prende esattamente lo stesso spazio */
+  min-width: 0; /* Impedisce alle card di "esplodere" se il testo è lungo */
   position: relative;
-  overflow: hidden;
   cursor: pointer;
-  height: 100%;
+  transition: transform 0.3s ease;
 }
 
 .luxury-card img {
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* Fondamentale: riempie lo spazio senza deformare */
-  object-position: center top; /* Inquadra bene i modelli */
+  height: auto; /* L'altezza si adatta alla larghezza */
   display: block;
-  filter: brightness(0.9);
-  transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1), filter 0.5s ease;
+  
+  /* LA MAGIA: Imposta il rapporto della foto (es. 2:3 come i poster) */
+  /* Questo impedisce ogni tipo di taglio perché l'immagine mantiene la sua forma originale */
+  aspect-ratio: 2 / 3; 
+  
+  object-fit: contain; /* Mostra l'intera foto nell'area assegnata */
+  background-color: var(--bg-main); /* Sfondo neutro se la foto ha proporzioni diverse */
+  
+  transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .luxury-card:hover img {

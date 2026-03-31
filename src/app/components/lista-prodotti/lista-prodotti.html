@@ -26,20 +26,27 @@
           <td>{{ p.discount }}</td>
           <td>{{ p.discountPercentage }}</td>
           <td>
-            <button (click)="open(p.id)">Modifica</button>>
+            <button (click)="toggleView(p.id, 'update')">Modifica</button>>
             <button (click)="deleteProduct(p.id)">Elimina</button>
-            <button (click)="openTaglie(p.id)">Lista Taglie</button>
-            <button>Lista Review</button>
+            <button (click)="toggleView(p.id, 'taglie')">Lista Taglie</button>
+            <button (click)="toggleView(p.id, 'review')">Lista Review</button>
           </td>
         </tr>
-        @if (selectedProductId() === p.id) {
+        @if (activeView()?.id === p.id) {
           <tr>
-            <td colspan="10"><app-update-product [productId]="p.id"></app-update-product></td>
-          </tr>
-        }
-        @if (selectedProductTaglie() === p.id) {
-          <tr>
-            <td colspan="10"><app-lista-taglie [productId]="p.id"></app-lista-taglie></td>
+            <td colspan="10">
+              @switch (activeView()?.type) {
+                @case ('update') {
+                  <app-update-product [productId]="p.id"></app-update-product>
+                }
+                @case ('taglie') {
+                  <app-lista-taglie [productId]="p.id"></app-lista-taglie>
+                }
+                @case ('review') {
+                  <app-lista-review [productId]="p.id"></app-lista-review>
+                }
+              }
+            </td>
           </tr>
         }
       }

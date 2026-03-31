@@ -6,6 +6,7 @@ import { Login } from './pages/login/login';
 import { Signin } from './pages/signin/signin';
 import { UserDetails } from './pages/user-details/user-details';
 import { Products } from './pages/products/products';
+import {Admin} from './pages/admin/admin';
 
 
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'signup', component: Signin},
   {path: 'userDetails', component: UserDetails},
   {path: 'products', component: Products},
+  {path: 'admin', component:Admin},
 ];
 
 @NgModule({

@@ -1,0 +1,36 @@
+
+
+
+<div class="container">
+  <table>
+    <thead>
+      <th>Nome</th>
+      <th>Cognome</th>
+      <th>ID utente</th>
+      <th>Email</th>
+      <th>Telefono</th>
+      <th>CodiceFiscale</th>
+      <th>Data di nascita</th>
+      <th>Ruolo</th>
+      <th>Data creazione</th>
+      <th>Azione</th>
+    </thead>
+
+    <tbody>
+      @for (u of utenti(); track u.id) {
+        <tr class="user_row">
+          <td>{{ u.name }}</td>
+          <td>{{ u.lastName }}</td>
+          <td>{{ u.id }}</td>
+          <td>{{ u.email }}</td>
+          <td>{{ u.phone }}</td>
+          <td>{{ u.codiceFiscale }}</td>
+          <td>{{ u.birthday }}</td>
+          <td>{{ u.role }}</td>
+          <td>{{ u.createDate }}</td>
+          <td><button>Modifica</button>><button (click)="deleteUser(u.id)">Elimina</button>></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

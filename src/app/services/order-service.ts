@@ -1,20 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
-import { tap } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductService {
+export class OrderService {
 
-  private url = 'http://localhost:9090/rest/product/'
   private http = inject(HttpClient)
 
+  private url = 'http://localhost:9090/rest/orderDetails/'
 
-  
 
-
-    create (body: {}) {
+      create (body: {}) {
       return this.http.post(this.url + "create", body)
     }
 
@@ -34,5 +31,6 @@ export class ProductService {
     delete (id: number) {
       return this.http.delete(this.url + "delete/" + id, { responseType: 'text' })
     }
+
 
 }

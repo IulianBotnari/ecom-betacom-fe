@@ -24,7 +24,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
+import { Signup } from './components/pages/signup/signup';
+import { Admin } from './pages/admin/admin';
+import { ListaUtenti } from './components/lista-utenti/lista-utenti';
+import { ListaProdotti } from './components/lista-prodotti/lista-prodotti';
+import { OrderDetails } from './components/order-details/order-details';
+import { CreateProduct } from './components/create-product/create-product';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,8 +42,8 @@ import { MatInputModule } from '@angular/material/input';
     Signin,
     Products,
     UserDetails,
-    Homepage
-   
+    Homepage,
+    Signup,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +59,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
   bootstrap: [App],

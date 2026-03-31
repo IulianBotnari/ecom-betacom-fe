@@ -26,7 +26,7 @@ export class UserService {
     }
     
     delete (id: number) {
-      return this.http.get(this.url + "delete/" + id);
+      return this.http.delete(this.url + "delete/" + id, { responseType: 'text' });
     }
 
     login (body: {}) {

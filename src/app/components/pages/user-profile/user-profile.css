@@ -1,0 +1,190 @@
+/* Main Layout */
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styling (Matches your Admin Template) */
+.side_bar {
+    width: 300px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-card-filter);
+    border: none;
+
+    .side_bar_tab {
+        height: 50px;
+        width: 100%;
+        color: var(--white);
+        background-color: var(--gold-accent);
+        border: none;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background-color 0.2s;
+
+        &:hover {
+            cursor: pointer;
+            filter: brightness(0.9);
+        }
+    }
+}
+
+/* Dropdown Sub-menu */
+.dropdown_content {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.03); 
+    
+    .option_btn {
+        border: none;
+        height: 40px;
+        width: 100%;
+        color: var(--text-headline); 
+        background-color: transparent; 
+        padding-left: 30px;
+        text-align: left;
+        font-size: 0.9rem;
+        
+        &:hover {
+            cursor: pointer;
+            background-color: var(--border-color);
+        }
+    }
+}
+
+/* Content Area Styling */
+.content {
+    width: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+
+    h1 {
+        color: var(--text-headline);
+        border-bottom: 2px solid var(--gold-accent);
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+    }
+}
+
+/* Header with Action Button */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    /* The "Modifica" button follows the Admin accent color */
+    .option_btn {
+        background-color: var(--accent-button);
+        color: var(--white);
+        padding: 8px 20px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            filter: opacity(0.9);
+        }
+    }
+}
+
+/* Form and Data Box */
+.content-box {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    padding: 25px;
+    border-radius: 4px;
+    max-width: 900px;
+}
+
+/* Individual Data Rows */
+.form-group {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--bg-main);
+    align-items: center;
+
+    label {
+        width: 200px;
+        font-weight: bold;
+        color: var(--text-body);
+    }
+
+    span {
+        color: var(--text-headline);
+    }
+
+    input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-main);
+        color: var(--text-headline);
+        border-radius: 4px;
+
+        &:focus {
+            outline: 2px solid var(--gold-accent);
+        }
+    }
+}
+
+/* Order Table (Matching Admin List Style) */
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    
+    th {
+        background-color: var(--bg-card-filter);
+        color: var(--text-headline);
+        text-align: left;
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+
+    td {
+        padding: 12px;
+        border-bottom: 1px solid var(--border-color);
+        color: var(--text-body);
+    }
+
+    .status {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        border-radius: 12px;
+        background-color: var(--gold-accent);
+        color: var(--white);
+        font-weight: bold;
+    }
+}
+
+/* Address Card List */
+.address-item {
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+
+    p {
+        margin: 5px 0;
+        color: var(--text-body);
+    }
+}
+
+/* Submit Button */
+button[type="submit"] {
+    margin-top: 20px;
+    padding: 10px 30px;
+    background-color: var(--accent-button);
+    color: var(--white);
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:disabled {
+        background-color: var(--border-color);
+        cursor: not-allowed;
+    }
+}

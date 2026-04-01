@@ -39,6 +39,8 @@ import { ListaTaglie } from './components/lista-taglie/lista-taglie';
 import { ListaReview } from './components/lista-review/lista-review';
 import { UserProfile } from './components/pages/user-profile/user-profile';
 import { ProductDetails } from './pages/product-details/product-details';
+import { AggiungiTaglia } from './components/aggiungi-taglia/aggiungi-taglia';
+import { ModificaTaglia } from './components/modifica-taglia/modifica-taglia';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import { ProductDetails } from './pages/product-details/product-details';
     ListaReview,
     UserProfile,
     ProductDetails,
+    AggiungiTaglia,
+    ModificaTaglia,
   ],
   imports: [
     BrowserModule,

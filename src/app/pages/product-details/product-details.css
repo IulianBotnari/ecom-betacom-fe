@@ -57,6 +57,7 @@
   margin: 15px 0;
 }
 
+/* Taglie */
 .sizes label {
   display: inline-block;
   padding: 5px 10px;
@@ -71,6 +72,7 @@
   color: white;
 }
 
+/* Quantità */
 .quantity {
   margin: 15px 0;
 }
@@ -87,7 +89,7 @@
   font-size: 0.9rem;
 }
 
-/* Buttons */
+/* Pulsanti */
 button {
   border: none;
   padding: 10px 15px;
@@ -111,4 +113,14 @@ button {
 
 .back-home:hover {
   background-color: #ddd;
+}
+
+/* Recensioni */
+.reviews {
+  margin-top: 20px;
+}
+
+.review {
+  border-top: 1px solid #ddd;
+  padding: 10px 0;
 }

@@ -3,7 +3,7 @@ import { Injectable, signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class CategorieService {
-  private url = "http://localhost:9090/rest/category/listAll"; 
+  private url = "http://localhost:8080/rest/category/listAll"; 
   
  categorie = signal<any[]>([]);
 

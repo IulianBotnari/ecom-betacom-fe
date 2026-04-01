@@ -7,7 +7,7 @@ import { tap } from 'rxjs';
 })
 export class ProductService {
 
-  private url = 'http://localhost:9090/rest/product/'
+  private url = 'http://localhost:8080/rest/product/'
   private http = inject(HttpClient)
 
 

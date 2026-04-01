@@ -8,7 +8,7 @@ export class OrderService {
 
   private http = inject(HttpClient)
 
-  private url = 'http://localhost:9090/rest/orderDetails/'
+  private url = 'http://localhost:8080/rest/orderDetails/'
 
 
     create (body: {}) {

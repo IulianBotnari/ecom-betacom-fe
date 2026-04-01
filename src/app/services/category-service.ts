@@ -6,7 +6,7 @@ import { inject, Injectable } from '@angular/core';
 })
 export class CategoryService {
 
-  private url = 'http://localhost:9090/rest/category/'
+  private url = 'http://localhost:8080/rest/category/'
 
   private http = inject(HttpClient)
 

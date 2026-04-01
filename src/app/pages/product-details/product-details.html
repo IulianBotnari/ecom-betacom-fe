@@ -1,0 +1,39 @@
+<div class="breadcrumb">
+  <span class="link" (click)="goHome()">Home</span> >
+  <span class="link">Categoria: {{ product().category.category }}</span> >
+  <span class="current">{{ product().name }}</span>
+</div>
+
+<div class="product-container">
+  <div class="image-section">
+    <img [src]="product().image" [alt]="product().name">
+  </div>
+
+  <div class="info-section">
+    <h1>{{ product().name }}</h1>
+    <p class="price">€ {{ product().price }}</p>
+    <p class="category">Categoria: {{ product().category.category }}</p>
+    <p class="gender">Genere: {{ product().gender }}</p>
+    <p class="material">Materiale: {{ product().material }}</p>
+    <p class="description">{{ product().description }}</p>
+
+    <div class="sizes">
+      <label *ngFor="let size of product().sizes" 
+             [class.selected]="size === selectedSize"
+             (click)="selectSize(size)">
+        {{ size }}
+      </label>
+    </div>
+
+    <div class="quantity">
+      <label>Quantità:</label>
+      <input type="number" [(ngModel)]="quantity" min="1" [max]="product().stock">
+      <span *ngIf="quantity > product().stock" class="error">
+        Disponibilità massima: {{ product().stock }}
+      </span>
+    </div>
+
+    <button class="add-cart" (click)="addToCart()">Aggiungi al carrello</button>
+    <button class="back-home" (click)="goHome()">Torna alla home</button>
+  </div>
+</div>

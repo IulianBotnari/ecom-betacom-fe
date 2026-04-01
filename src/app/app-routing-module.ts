@@ -5,9 +5,9 @@ import { About } from './pages/about/about';
 import { Login } from './pages/login/login';
 import { UserDetails } from './pages/user-details/user-details';
 import { Products } from './pages/products/products';
-import {Admin} from './pages/admin/admin';
-import { Signin } from './pages/signin/signin';
+import { ProductDetails } from './pages/product-details/product-details';
 import { UserProfile } from './components/pages/user-profile/user-profile';
+import { Signin } from './pages/signin/signin';
 
 
 
@@ -19,7 +19,7 @@ const routes: Routes = [
   {path: 'userDetails', component: UserDetails},
   {path: 'UserProfile', component: UserProfile},
   {path: 'products', component: Products},
-  {path: 'admin', component:Admin},
+  {path: 'productDetails', component: ProductDetails},
 ];
 
 @NgModule({

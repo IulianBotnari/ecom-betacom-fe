@@ -1,0 +1,114 @@
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 0.9rem;
+  margin: 10px 20px;
+}
+
+.breadcrumb .link {
+  color: #1a73e8;
+  cursor: pointer;
+}
+
+.breadcrumb .link:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb .current {
+  font-weight: bold;
+}
+
+/* Container */
+.product-container {
+  display: flex;
+  gap: 40px;
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.image-section img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.info-section {
+  flex: 1;
+}
+
+.info-section h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 1.5rem;
+  color: #e53935;
+  margin-bottom: 10px;
+}
+
+.category, .gender, .material {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.description {
+  margin: 15px 0;
+}
+
+.sizes label {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sizes label.selected {
+  background-color: #333;
+  color: white;
+}
+
+.quantity {
+  margin: 15px 0;
+}
+
+.quantity input {
+  width: 60px;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.error {
+  color: red;
+  margin-left: 10px;
+  font-size: 0.9rem;
+}
+
+/* Buttons */
+button {
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.add-cart {
+  background-color: #333;
+  color: white;
+}
+
+.add-cart:hover {
+  background-color: #555;
+}
+
+.back-home {
+  background-color: #f0f0f0;
+}
+
+.back-home:hover {
+  background-color: #ddd;
+}

@@ -7,6 +7,10 @@ export interface UserModel {
   name: string;
   lastName: string;
   email: string;
+  phone: string;
+  codiceFiscale: string;
+  birthday: string;
+  role: string;
   addresses: AddressModel[]; 
   orders: OrderModel[];       
   paymentMethods: PaymentMethodModel[];

@@ -1,4 +1,8 @@
 <div class="container">
+  <button (click)="openCreateTaglia()">Aggiungi taglia</button>
+  @if (createTaglia() === true) {
+    <app-aggiungi-taglia [productId]="productId()"></app-aggiungi-taglia>
+  }
   <table>
     <thead>
       <th>Taglia</th>
@@ -14,7 +18,13 @@
           <td>{{ t.id }}</td>
           <td>{{ t.quantity }}</td>
           <td>
+            <button>Modifica</button>
             <button (click)="deleteTaglia(t.id)">Elimina</button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="10">
+            <app-modifica-taglia [productId]="productId()"></app-modifica-taglia>
           </td>
         </tr>
       }

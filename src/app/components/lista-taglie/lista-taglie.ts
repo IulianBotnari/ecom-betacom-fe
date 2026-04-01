@@ -9,25 +9,31 @@ import { ProductService } from '../../services/product-service';
 })
 export class ListaTaglie implements OnInit {
   private productService = inject(ProductService);
-  productId = input.required<number>()
+  productId = input.required<number>();
 
   listaTaglie = signal<any[]>([]);
 
+  createTaglia = signal<boolean>(false);
+
   ngOnInit(): void {
     this.productService.getById(this.productId()).subscribe({
-      next:(res:any) =>{
-        this.listaTaglie.set(res.sizes)
-        console.log("La lista delle taglie");
-        
+      next: (res: any) => {
+        this.listaTaglie.set(res.sizes);
+        console.log('La lista delle taglie');
       },
-      error: (err:any)=>{
+      error: (err: any) => {
         console.log(err);
-        
-      }
-    })
+      },
+    });
   }
 
-  deleteTaglia(id:number){
+  deleteTaglia(id: number) {}
 
+  openCreateTaglia() {
+    if (this.createTaglia() === false) {
+      this.createTaglia.set(true);
+    } else{
+      this.createTaglia.set(false)
+    }
   }
 }

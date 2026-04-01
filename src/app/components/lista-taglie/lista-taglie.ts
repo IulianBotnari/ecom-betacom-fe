@@ -11,13 +11,10 @@ import { SizeService } from '../../services/size-service';
 export class ListaTaglie implements OnInit {
   private productService = inject(ProductService);
   private sizeService = inject(SizeService)
+
   productId = input.required<number>();
-
   sizeId = signal<number | null>(null)
-
-
   listaTaglie = signal<any[]>([]);
-
   createTaglia = signal<boolean>(false);
   updateTaglia = signal<boolean>(false)
   messageError = signal<string | null>(null)

@@ -41,6 +41,8 @@ import { UserProfile } from './components/pages/user-profile/user-profile';
 import { ProductDetails } from './pages/product-details/product-details';
 import { AggiungiTaglia } from './components/aggiungi-taglia/aggiungi-taglia';
 import { ModificaTaglia } from './components/modifica-taglia/modifica-taglia';
+import { AdminUserCreate } from './components/admin-user-create/admin-user-create';
+
 
 @NgModule({
   declarations: [
@@ -67,6 +69,7 @@ import { ModificaTaglia } from './components/modifica-taglia/modifica-taglia';
     ProductDetails,
     AggiungiTaglia,
     ModificaTaglia,
+    AdminUserCreate,
   ],
   imports: [
     BrowserModule,

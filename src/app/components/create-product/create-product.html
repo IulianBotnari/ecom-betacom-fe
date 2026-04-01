@@ -1,4 +1,138 @@
-<div class="container">
+
+
+
+<div class="container mt-4">
+  <h2 class="mb-4">Aggiorna il prodotto</h2>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
+    
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="name" placeholder="Inserisci il nome del prodotto">
+      @if (productForm.get('name')?.invalid && productForm.get('name')?.touched) {
+        <mat-error>Il campo nome non può essere vuoto</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="row">
+      <mat-form-field appearance="outline" class="col-md-4 mb-3">
+        <mat-label>Prezzo</mat-label>
+        <input matInput type="number" formControlName="price" prefix="€">
+        @if (productForm.get('price')?.invalid && productForm.get('price')?.touched) {
+          <mat-error>Prezzo richiesto</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-4 mb-3">
+        <mat-label>Prezzo scontato</mat-label>
+        <input matInput type="number" formControlName="discount">
+        @if (productForm.get('discount')?.invalid && productForm.get('discount')?.touched) {
+          <mat-error>Prezzo scontato richiesto</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-4 mb-3">
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="categoryId">
+          <mat-option value="" disabled>Scegli...</mat-option>
+          @for (cat of categoryList(); track cat.id) {
+            <mat-option [value]="cat.id">{{ cat.category }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="outline" class="col-md-6 mb-3">
+        <mat-label>Taglia</mat-label>
+        <mat-select formControlName="size">
+          <mat-option value="" disabled>Scegli...</mat-option>
+          @for (s of availableSizes; track s) {
+            <mat-option [value]="s">{{ s }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-6 mb-3">
+        <mat-label>Quantità</mat-label>
+        <input matInput type="number" formControlName="quantity">
+        @if (productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched) {
+          <mat-error>Quantità richiesta</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Genere</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option value="MALE">Uomo</mat-option>
+        <mat-option value="FEMALE">Donna</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Descrizione</mat-label>
+      <textarea matInput formControlName="description" rows="3"></textarea>
+      @if (productForm.get('description')?.invalid && productForm.get('description')?.touched) {
+        <mat-error>La descrizione è obbligatoria</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="row">
+      <mat-form-field appearance="outline" class="col-md-6 mb-3">
+        <mat-label>URL Immagine</mat-label>
+        <input matInput formControlName="image">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-6 mb-3">
+        <mat-label>Materiale</mat-label>
+        <input matInput formControlName="material">
+        @if (productForm.get('material')?.invalid && productForm.get('material')?.touched) {
+          <mat-error>Il materiale è richiesto</mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="mt-2">
+      <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">
+        Crea Prodotto
+      </button>
+    </div>
+  </form>
+
+  @if (error()) {
+    <div class="alert alert-danger mt-3">
+      {{ messageError() }}
+    </div>
+  }
+  
+  @if (okMessage() != null) {
+    <div class="alert alert-success mt-3">
+      {{ okMessage() }}
+    </div>
+  }
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="container">
   <h2>Aggiorna il prodotto</h2>
 
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
@@ -94,4 +228,4 @@
     @if (okMessage() != null) {
     <p class="ok_message">{{ okMessage() }}</p>
   }
-</div>
+</div>-->

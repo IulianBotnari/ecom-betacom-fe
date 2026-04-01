@@ -6,7 +6,6 @@
   <table>
     <thead>
       <th>Taglia</th>
-      <th>Id taglia</th>
       <th>Quantità</th>
       <th>Azione</th>
     </thead>
@@ -15,18 +14,21 @@
       @for (t of listaTaglie(); track t.id) {
         <tr class="user_row">
           <td>{{ t.size }}</td>
-          <td>{{ t.id }}</td>
           <td>{{ t.quantity }}</td>
           <td>
-            <button>Modifica</button>
+            <button (click)="openUpdateTaglia(t.id)">Modifica</button>
             <button (click)="deleteTaglia(t.id)">Elimina</button>
           </td>
+          @if(messageError() != null){<td>{{messageError()}}</td>}
+          @if(messageOk() != null){<td>{{messageOk()}}</td>}
         </tr>
-        <tr>
-          <td colspan="10">
-            <app-modifica-taglia [productId]="productId()"></app-modifica-taglia>
-          </td>
-        </tr>
+        @if (updateTaglia() === true && sizeId() === t.id) {
+          <tr>
+            <td colspan="10">
+              <app-modifica-taglia [sizeId]="t.id" [sizeValue]="t.size" [sizeQuantity]="t.quantity"></app-modifica-taglia>
+            </td>
+          </tr>
+        }
       }
     </tbody>
   </table>

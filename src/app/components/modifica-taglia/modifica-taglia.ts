@@ -1,6 +1,7 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { AfterViewInit, Component, inject, input, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SizeService } from '../../services/size-service';
+
 
 @Component({
   selector: 'app-modifica-taglia',
@@ -8,33 +9,40 @@ import { SizeService } from '../../services/size-service';
   templateUrl: './modifica-taglia.html',
   styleUrl: './modifica-taglia.css',
 })
-export class ModificaTaglia {
-   productId = input.required<number>();
+export class ModificaTaglia implements OnInit{
+
+  sizeId = input.required<number>();
+  sizeValue =input.required<string>();
+  sizeQuantity =input.required<number>();
 
   private sizeServie = inject(SizeService);
   private formBuilder = inject(FormBuilder);
+  isUpdateSize = signal<boolean>(false);
+  formData = signal<any[]>([])
 
   taglie = ['XS', 'S', 'M', 'L', 'XL'];
   tagliaForm!: FormGroup;
-  messageError = signal<string | null>(null)
-  messageOk = signal<string | null>(null)
+  messageError = signal<string | null>(null);
+  messageOk = signal<string | null>(null);
   ngOnInit(): void {
     this.tagliaForm = this.formBuilder.group({
-      productId: [this.productId(), Validators.required],
-      size: ['', Validators.required],
-      quantity: [0, Validators.required],
+      id: [this.sizeId(), Validators.required],
+      size: [this.sizeValue(), Validators.required],
+      quantity: [this.sizeQuantity(), Validators.required],
     });
+    
   }
+
 
   onSubmit() {
     if (this.tagliaForm.valid) {
       const sizeValue = this.tagliaForm.value;
-      console.log("Dati inviati:", sizeValue);
-      this.sizeServie.create(sizeValue).subscribe({
+      console.log('Dati inviati:', sizeValue);
+      this.sizeServie.update(sizeValue).subscribe({
         next: (res: any) => {
           console.log(res);
-          console.log("Id prodotto: "+ this.productId());
-          
+          console.log('Id prodotto: ' + this.sizeId());
+
           this.messageOk.set(res);
           setTimeout(() => {
             this.messageOk.set(null);

@@ -1,7 +1,6 @@
 <div class="container">
   <form [formGroup]="tagliaForm" (ngSubmit)="onSubmit()">
     <div class="col">
-      <label>Taglie</label>
       <select formControlName="size" class="form-control">
         <option value="" disabled>Scegli...</option>
         @for (s of taglie; track s) {
@@ -10,10 +9,10 @@
       </select>
     </div>
     <div class="col">
-      <label>Quantità</label>
       <input type="number" formControlName="quantity" class="form-control" />
     </div>
-    <button type="submit">Aggiungi</button>
+    <button type="submit">Modifica</button>
+    
   </form>
   @if (messageError != null) {
     <p class="message_error">{{ messageError() }}</p>

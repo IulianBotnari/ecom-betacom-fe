@@ -8,6 +8,7 @@ import { Products } from './pages/products/products';
 import { ProductDetails } from './pages/product-details/product-details';
 import { UserProfile } from './components/pages/user-profile/user-profile';
 import { Signin } from './pages/signin/signin';
+import { Admin } from './pages/admin/admin';
 
 
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'UserProfile', component: UserProfile},
   {path: 'products', component: Products},
   {path: 'productDetails', component: ProductDetails},
+  {path: 'admin', component:Admin}
 ];
 
 @NgModule({

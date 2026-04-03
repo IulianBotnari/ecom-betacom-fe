@@ -24,6 +24,10 @@ export class ListaProdotti implements OnInit {
     });
   }
 
+  onProductModified() {
+    this.loadProducts(); 
+     }
+
   ngOnInit(): void {
     this.loadProducts();
   }

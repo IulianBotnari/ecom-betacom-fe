@@ -26,6 +26,6 @@ export class SizeService {
   }
 
   delete(id: number) {
-    return this.http.delete(this.url + 'delete', { responseType: 'text' });
+    return this.http.delete(this.url + 'delete/' + id, { responseType: 'text' });
   }
 }

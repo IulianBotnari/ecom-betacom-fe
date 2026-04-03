@@ -1,7 +1,8 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { Component, inject, input, OnInit, Output, signal,EventEmitter } from '@angular/core';
 import { ProductService } from '../../services/product-service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryService } from '../../services/category-service';
+
 
 @Component({
   selector: 'app-update-product',
@@ -11,6 +12,8 @@ import { CategoryService } from '../../services/category-service';
 })
 export class UpdateProduct implements OnInit {
   productId = input.required<number>();
+
+  @Output() productUpdated = new EventEmitter<void>()
 
   private productService = inject(ProductService);
   private formBuilder = inject(FormBuilder);
@@ -69,6 +72,7 @@ export class UpdateProduct implements OnInit {
       this.productService.update(body).subscribe({
         next: (res: any) => {
           console.log('Prodotto aggiornato con successo!', res);
+          this.productUpdated.emit();
       
         },
         error: (err: any) => {

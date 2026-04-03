@@ -37,7 +37,7 @@
             <td colspan="10">
               @switch (activeView()?.type) {
                 @case ('update') {
-                  <app-update-product [productId]="p.id"></app-update-product>
+                  <app-update-product [productId]="p.id" (productUpdated)="onProductModified()"></app-update-product>>
                 }
                 @case ('taglie') {
                   <app-lista-taglie [productId]="p.id"></app-lista-taglie>

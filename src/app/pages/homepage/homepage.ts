@@ -10,7 +10,7 @@ import { CategorieService } from '../../services/category.service';
 export class Homepage implements OnInit {
   // Signal per gestire il genere (donna di default)
   genereSelezionato = signal<string>('donna'); 
-
+  
   constructor(private catService: CategorieService) { }
 
   ngOnInit(): void {

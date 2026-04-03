@@ -108,3 +108,36 @@ textarea.form-control {
 .ok_message{
   color: green;
 }
+
+
+.container-form {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.row-flex {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.row-flex mat-form-field {
+  flex: 1;
+  min-width: 150px;
+}
+
+.actions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}

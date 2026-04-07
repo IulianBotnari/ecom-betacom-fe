@@ -27,7 +27,10 @@ export class Login {
       email: form.email,
       password: form.password
     }).subscribe({
-      next: ((r) => this.routing.navigate([''])),
+      next: ((r) => {this.routing.navigate([''])
+        console.log(r);
+        
+      }),
       error: ((r) => console.log(r))
     })
   }

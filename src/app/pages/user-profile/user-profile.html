@@ -1,0 +1,95 @@
+<div class="container" *ngIf="user">
+  
+  <div class="side_bar">
+    <button class="side_bar_tab" (click)="setView('dashboard')">Dashboard</button>
+    
+    <button class="side_bar_tab" (click)="toggleMenu('account')">Account</button>
+    @if (openMenu === 'account') {
+      <div class="dropdown_content">
+        <button class="option_btn" (click)="setView('profile')">Dati Personali</button>
+        <button class="option_btn" (click)="setView('addresses')">Indirizzi</button>
+      </div>
+    }
+
+    <button class="side_bar_tab" (click)="setView('orders')">Ordini</button>
+  </div>
+
+  <div class="content">
+    @switch (activeView) {
+      
+      @case ('profile') {
+        <div class="header-section">
+          <h1>Profilo Utente</h1>
+          <button class="option_btn" (click)="toggleEdit()">
+            {{ isEditing ? 'Annulla' : 'Modifica Dati' }}
+          </button>
+        </div>
+
+        <form [formGroup]="userForm" (ngSubmit)="onUpdate()">
+          <div class="content-box">
+            <div class="form-group">
+              <label>Nome:</label>
+              <span *ngIf="!isEditing">{{ user.name }}</span>
+              <input *ngIf="isEditing" formControlName="name">
+            </div>
+
+            <div class="form-group">
+              <label>Cognome:</label>
+              <span *ngIf="!isEditing">{{ user.lastName }}</span>
+              <input *ngIf="isEditing" formControlName="lastName">
+            </div>
+
+            <div class="form-group">
+              <label>Email:</label>
+              <span *ngIf="!isEditing">{{ user.email }}</span>
+              <input *ngIf="isEditing" formControlName="email">
+            </div>
+
+            <button type="submit" class="option_btn" *ngIf="isEditing" [disabled]="userForm.invalid">
+              Salva Modifiche
+            </button>
+          </div>
+        </form>
+      }
+
+      @case ('addresses') {
+        <h1>I Miei Indirizzi</h1>
+        <div class="content-box">
+          <div *ngFor="let addr of user.addresses" class="address-item">
+            <p><strong>{{ addr.city }}</strong>: {{ addr.street }} {{ addr.cap }} ({{ addr.province }})</p>
+            <span *ngIf="addr.defaulAddress" class="status">Predefinito</span>
+          </div>
+        </div>
+      }
+
+      @case ('orders') {
+        <h1>Storico Ordini</h1>
+        <div class="content-box">
+          <table class="order-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of user.orders">
+                <td>#{{ order.id }}</td>
+                <td>{{ order.date | date }}</td>
+                <td><span class="status">{{ order.status }}</span></td>
+                <td>{{ order.orderPrice | currency:'EUR' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      }
+
+      @default {
+        <h1>Benvenuto, {{ user.name }}</h1>
+        <p>Seleziona un'opzione dal menu a sinistra per gestire il tuo profilo.</p>
+      }
+    }
+  </div>
+</div>

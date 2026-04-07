@@ -11,6 +11,9 @@ import { CategoryService } from '../../services/category-service';
 })
 export class CreateProduct implements OnInit {
   productForm!: FormGroup;
+  selectedFile: File | null = null;
+  selectedFileName = signal<string>('');
+  imagePreview = signal<string | null>(null);
 
   availableSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
@@ -31,7 +34,6 @@ export class CreateProduct implements OnInit {
       discount: [null],
       categoryId: [null, Validators.required],
       gender: ['', Validators.required],
-      image: ['', Validators.required],
       material: ['', Validators.required],
       size: ['', Validators.required],
       quantity: [1, [Validators.required, Validators.min(1)]],
@@ -47,30 +49,53 @@ export class CreateProduct implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (this.productForm.valid) {
-      const productData = this.productForm.value;
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+      this.selectedFileName.set(file.name);
+      this.productForm.patchValue({ image: file });
+      this.productForm.get('image')?.updateValueAndValidity();
 
-      this.productService.create(productData).subscribe({
+      const reader = new FileReader();
+      reader.onload = () => this.imagePreview.set(reader.result as string);
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onSubmit() {
+    if (this.productForm.valid && this.selectedFile) {
+      const formData = new FormData();
+
+  
+      const productData = { ...this.productForm.value };
+      delete productData.image;
+
+
+      const productBlob = new Blob([JSON.stringify(productData)], {
+        type: 'application/json',
+      });
+
+
+      formData.append('product', productBlob);
+      formData.append('file', this.selectedFile);
+
+      this.productService.create(formData).subscribe({
         next: (res) => {
-          console.log('Prodotto creato!', res);
-          this.okMessage.set(res);
-          setTimeout(() => {
-            this.okMessage.set(null);
-          }, 5000);
-          this.productForm.reset();
+          this.okMessage.set('Prodotto creato con successo!');
+          this.resetForm();
         },
         error: (err) => {
-          console.error('Errore durante la creazione', err.error);
-          this.messageError.set(err.error);
+          this.messageError.set('Errore durante la creazione.');
           this.error.set(true);
-          setTimeout(() => {
-            this.error.set(false);
-          }, 5000);
         },
       });
-    } else {
-      this.productForm.markAllAsTouched();
     }
+  }
+  resetForm() {
+    this.productForm.reset();
+    this.selectedFile = null;
+    this.selectedFileName.set('');
+    this.imagePreview.set(null);
   }
 }

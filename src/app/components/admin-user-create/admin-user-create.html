@@ -1,3 +1,6 @@
+
+<h1>Aggiungi un utente</h1>
+
 <div class="signin-container">
   <form #signInForm="ngForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline">
@@ -71,13 +74,18 @@
       <mat-hint>Minimo 8 caratteri</mat-hint>
     </mat-form-field>
 
+    <mat-form-field appearance="outline">
+        <mat-label>Scegli un ruolo</mat-label>
+        <mat-select [disabled]="disableSelect.value">
+          <mat-option value="USER">User</mat-option>
+          <mat-option value="ADMIN">Admin</mat-option>
+        </mat-select>
+
+    </mat-form-field>
+
     <div class="button-container">
       <button mat-raised-button color="primary" type="submit" [disabled]="!signInForm.valid">
-        Sign up
-      </button>
-
-      <button mat-stroked-button color="accent" type="button" routerLink="/login">
-        Back to login
+        Aggiungi
       </button>
     </div>
   </form>

@@ -1,88 +1,88 @@
-<div class="container">
+<div class="container-form">
   <h2>Aggiorna il prodotto</h2>
 
-  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label>Nome</label>
-      <input type="text" formControlName="name" class="form-control" />
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
+    
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="name" placeholder="Es. Scarpe da corsa" />
       @if (productForm.get('name')?.invalid && productForm.get('name')?.touched) {
-        <small class="text-danger"> Campo name non può essere vuoto </small>
+        <mat-error>Il campo nome non può essere vuoto</mat-error>
       }
-    </div>
+    </mat-form-field>
 
-    <div class="row">
-      <div class="col">
-        <label>Prezzo</label>
-        <input type="number" formControlName="price" class="form-control" />
+    <div class="row-flex">
+      <mat-form-field appearance="outline">
+        <mat-label>Prezzo</mat-label>
+        <input matInput type="number" formControlName="price" />
+        <span matPrefix>€&nbsp;</span>
         @if (productForm.get('price')?.invalid && productForm.get('price')?.touched) {
-          <small class="text-danger"> Campo prezzp non può essere vuoto </small>
+          <mat-error>Il prezzo è obbligatorio</mat-error>
         }
-      </div>
-      <div class="col">
-        <label>Prezzo scontato</label>
-        <input type="number" formControlName="discount" class="form-control" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Prezzo scontato</mat-label>
+        <input matInput type="number" formControlName="discount" />
+        <span matPrefix>€&nbsp;</span>
         @if (productForm.get('discount')?.invalid && productForm.get('discount')?.touched) {
-          <small class="text-danger"> Campo prezzo scontato non può essere vuoto </small>
+          <mat-error>Il prezzo scontato è obbligatorio</mat-error>
         }
-      </div>
-      <div class="col">
-        <label>Categoria</label>
-        <select formControlName="categoryId" class="form-control">
-          <option [value]="null" disabled>Scegli...</option>
-          @for (cat of categoryList(); track cat) {
-            <option [value]="cat.id">{{ cat.category }}</option>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="categoryId">
+          <mat-option [value]="null">Scegli...</mat-option>
+          @for (cat of categoryList(); track cat.id) {
+            <mat-option [value]="cat.id">{{ cat.category }}</mat-option>
           }
-        </select>
-      </div>
-    </div>
-<!--
-        <div class="row">
-
-      <div class="col">
-        <label>Quantità</label>
-        <input type="number" formControlName="quantity" class="form-control" />
-        @if (productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched) {
-          <small class="text-danger"> Campo quantità non può essere vuoto </small>
-        }
-      </div>
+        </mat-select>
+      </mat-form-field>
     </div>
 
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Genere</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option value="MALE">Uomo</mat-option>
+        <mat-option value="FEMALE">Donna</mat-option>
+      </mat-select>
+    </mat-form-field>
 
--->
-
-
-    <div class="form-group">
-      <label>Genere</label>
-      <select formControlName="gender" class="form-control">
-        <option value="MALE">Uomo</option>
-        <option value="FEMALE">Donna</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label>Descrizione</label>
-      <textarea formControlName="description" class="form-control"></textarea>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descrizione</mat-label>
+      <textarea matInput formControlName="description" rows="4"></textarea>
       @if (productForm.get('description')?.invalid && productForm.get('description')?.touched) {
-        <small class="text-danger"> Campo descrizione non può essere vuoto </small>
+        <mat-error>La descrizione è obbligatoria</mat-error>
       }
-    </div>
+    </mat-form-field>
 
-    <div class="form-group">
-      <label>URL Immagine</label>
-      <input type="text" formControlName="image" class="form-control" />
-    </div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>URL Immagine</mat-label>
+      <input matInput type="url" formControlName="image" />
+    </mat-form-field>
 
-    <div class="form-group">
-      <label>Materiale</label>
-      <input type="text" formControlName="material" class="form-control" />
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Materiale</mat-label>
+      <input matInput formControlName="material" />
       @if (productForm.get('material')?.invalid && productForm.get('material')?.touched) {
-        <small class="text-danger"> Campo materiale non può essere vuoto </small>
+        <mat-error>Il materiale è obbligatorio</mat-error>
       }
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="productForm.invalid">
+        Modifica
+      </button>
     </div>
 
-    <button type="submit" [disabled]="productForm.invalid" class="btn btn-primary mt-3">
-      Crea Prodotto
-    </button>
   </form>
-
 </div>
+
+
+
+
+
+
+
+

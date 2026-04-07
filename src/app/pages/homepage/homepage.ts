@@ -1,65 +1,72 @@
-import { Component, OnInit, signal, computed } from '@angular/core';
-import { CategorieService } from '../../services/category.service';
+import { Component, OnInit, signal, computed, inject } from '@angular/core';
+import { CategoryService } from '../../services/category-service';
 
 @Component({
   selector: 'app-homepage',
   templateUrl: 'homepage.html',
   styleUrl: 'homepage.css',
   standalone: false
-})  
+})
 export class Homepage implements OnInit {
-  // Signal per gestire il genere (donna di default)
-  genereSelezionato = signal<string>('donna'); 
+  // Signals per lo stato
+  genereSelezionato = signal<string>('donna');
+  categorie = signal<any[]>([]);
 
-  constructor(private catService: CategorieService) { }
+  private catService = inject(CategoryService);
 
   ngOnInit(): void {
-    // Carica le categorie dal database tramite il service
-    this.catService.list();
+    // Avvia il caricamento dei dati all'inizializzazione
+    this.loadCategories();
+  }
+
+  loadCategories() {
+    this.catService.listAll().subscribe({
+      next: (data) => {
+        console.log("Dati caricati:", data);
+        this.categorie.set(data);
+      },
+      error: (err) => {
+        console.error("Errore nel caricamento categorie:", err);
+      }
+    });
   }
 
   /**
-   * Computed: Crea la lista di categorie iniettando i percorsi immagine.
-   * REGOLE PER IL FUNZIONAMENTO:
-   * 1. Prende il nome dal DB (es: "Camicie")
-   * 2. Lo trasforma in minuscolo (es: "camicie")
-   * 3. Cerca il file in: images/donna/camicie/main.jpg
+   * Computed: Reattivo ai cambiamenti di 'genereSelezionato' e 'categorie'
    */
   categorieFiltrate = computed(() => {
     const genere = this.genereSelezionato();
-    const categorieView = this.catService.categorie().filter((cat)=>cat.isView);
+    const lista = this.categorie();
 
-
-
-    return categorieView.map(cat => {
-      // Trasforma il nome del DB in minuscolo senza spazi (es: "Magliette " -> "magliette")
-      const nomeStandard = cat.category.toLowerCase().trim();
-
-      return {
-        ...cat,
-        // Percorso dinamico basato sul nome esatto della categoria
-        immagineDinamica: `images/${genere}/${nomeStandard}/main.jpg`
-      };
-    });
+    return lista
+      .filter(cat => cat.isView)
+      .map(cat => {
+        // Pulizia del nome per il path del file
+        const nomeStandard = cat.category.toLowerCase().trim().replace(/\s+/g, '-');
+        
+        return {
+          ...cat,
+          immagineDinamica: `images/${genere}/${nomeStandard}/main.jpg`
+        };
+      });
   });
 
-  // Metodo per cambiare il genere dai bottoni
   cambiaGenere(nuovoGenere: string) {
     this.genereSelezionato.set(nuovoGenere);
   }
 
   /**
-   * Gestore errori immagini:
-   * Se 'main.jpg' non esiste nella cartella specifica, carica il placeholder generico.
+   * Gestione errori immagini
    */
-  updateToPlaceholder(event: any) {
-    const imgElement = event.target;
-    
-      // Se manca anche il placeholder, nascondiamo l'immagine per non mostrare l'icona "rotta"
+  updateToPlaceholder(event: Event) {
+    const imgElement = event.target as HTMLImageElement;
+    const placeholder = 'assets/images/placeholder.jpg'; // Assicurati che il path sia corretto
+
+    // Evita loop infiniti se anche il placeholder fallisce
+    if (imgElement.src.includes(placeholder)) {
       imgElement.style.display = 'none';
-      console.warn("Immagine non trovata e placeholder mancante in images/placeholder.jpg");
+    } else {
+      imgElement.src = placeholder;
     }
   }
-
- 
- 
+}

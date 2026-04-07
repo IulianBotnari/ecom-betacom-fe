@@ -1,5 +1,6 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, inject, input, OnInit, signal } from '@angular/core';
 import { ProductService } from '../../services/product-service';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'app-lista-review',
@@ -7,9 +8,11 @@ import { ProductService } from '../../services/product-service';
   templateUrl: './lista-review.html',
   styleUrl: './lista-review.css',
 })
-export class ListaReview implements OnInit {
+export class ListaReview implements OnInit, AfterViewInit {
+
 
   private productService = inject(ProductService);
+  private userService = inject(UserService)
   productId = input.required<number>()
 
   listaReview = signal<any[]>([]);
@@ -27,6 +30,11 @@ export class ListaReview implements OnInit {
         
       }
     })
+  }
+
+    ngAfterViewInit(): void {
+      
+
   }
 
   deleteReview(id:number){

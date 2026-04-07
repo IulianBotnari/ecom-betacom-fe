@@ -1,5 +1,10 @@
 <div class="container">
   <div class="side_bar">
+
+    <div style="padding: 20px 25px; font-weight: 900; letter-spacing: 2px; color: var(--accent-button);">
+       ADMIN PANEL
+    </div>
+    
     <button class="side_bar_tab" (click)="toggleMenu('utenti')">Utenti</button>
     @if (openMenu === 'utenti') {
       <div class="dropdown_content">

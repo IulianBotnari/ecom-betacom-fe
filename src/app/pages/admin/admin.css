@@ -1,74 +1,101 @@
-.container{
-    display: flex;
-
-}
-
 :host {
   display: block;
   --bg-main: #FAF7F2;
-  --bg-card-filter: #F0E9E0;
+  --bg-sidebar: #F0E9E0;
   --accent-button: #721C1C;
   --text-headline: #1A1512;
   --text-body: #5C5552;
   --border-color: #DED8D1; 
   --white: #ffffff;
   --gold-accent: #C5A059;
+}
 
-  
+.container {
+  display: flex;
   min-height: 100vh;
   background-color: var(--bg-main);
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-.side_bar{
-    width: 300px;
-    height: 100vh;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--bg-card-filter);
-    border: none;
-    .side_bar_tab{
-        height: 50px;
-        width: 100%;
-        color: var(--white);
-        background-color: var(--gold-accent);
-        border: none;
-        &:hover{
-            cursor: pointer;
-
-        }
-        
-    }
-
-    
+/* SIDEBAR: Elegante e fissa */
+.side_bar {
+  width: 280px;
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
 }
 
+/* I TAB PRINCIPALI (Utenti, Prodotti, Ordini) */
+.side_bar_tab {
+  height: 55px;
+  width: 100%;
+  color: var(--text-headline);
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  padding-left: 25px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-left: 4px solid transparent; 
+}
+
+.side_bar_tab:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: var(--gold-accent);
+  border-left: 4px solid var(--gold-accent);
+}
+
+/* IL SOTTOMENU (Dropdown) */
 .dropdown_content {
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.03); 
-    
-    .option_btn {
-        border: none;
-        height: 40px;
-        width: 100%;
-        color: var(--text-headline); 
-        background-color: transparent; 
-        padding-left: 30px;
-        text-align: left;
-        
-        &:hover {
-            cursor: pointer;
-            background-color: var(--border-color);
-        }
-    }
-
-
-}
-
-.content{
+  background-color: rgba(0, 0, 0, 0.02);
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  
+  .option_btn {
+    border: none;
+    height: 45px;
     width: 100%;
+    color: var(--text-body);
+    background-color: transparent;
+    padding-left: 45px; 
+    text-align: left;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--accent-button); 
+      background-color: var(--white);
+    }
+  }
 }
 
+/* AREA CONTENUTO PRINCIPALE */
+.content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
 
+.content h1 {
+  font-size: 1.8rem;
+  color: var(--text-headline);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  font-weight: 800;
+  border-bottom: 2px solid var(--gold-accent);
+  display: inline-block;
+  padding-bottom: 5px;
+}

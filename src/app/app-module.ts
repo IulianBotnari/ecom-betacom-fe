@@ -14,7 +14,7 @@ import { UserDetails } from './pages/user-details/user-details';
 
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 /* Angular Material */
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -88,7 +88,8 @@ import { AdminUserCreate } from './components/admin-user-create/admin-user-creat
     MatOptionModule,
     MatSelectModule,
     ReactiveFormsModule,
-  ],
+    NgOptimizedImage
+],
   providers: [
     provideHttpClient(withFetch()),
     provideBrowserGlobalErrorListeners(),

@@ -14,12 +14,12 @@ export class ProductService {
   
 
 
-    create (body: {}) {
-      return this.http.post(this.url + "create", body, { responseType: 'text' })
+    create (formData: FormData) {
+      return this.http.post(this.url + "create", formData, { responseType: 'text',withCredentials:true })
     }
 
-    update (body: {}) {
-      return this.http.put(this.url + "update", body, { responseType: 'text' })
+    update (formData: FormData) {
+      return this.http.put(this.url + "update", formData, { responseType: 'text', withCredentials:true })
     }
 
     listAll () {
@@ -34,11 +34,11 @@ export class ProductService {
 
     getById (id: number) {
 
-      return this.http.get(this.url + "findById/" + id)
+      return this.http.get(this.url + "findById/" + id,{withCredentials:true})
     }
     
     delete (id: number) {
-      return this.http.delete(this.url + "delete/" + id, { responseType: 'text' })
+      return this.http.delete(this.url + "delete/" + id, { responseType: 'text',withCredentials:true })
     }
 
 }

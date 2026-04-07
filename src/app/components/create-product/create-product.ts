@@ -10,20 +10,20 @@ import { CategoryService } from '../../services/category-service';
   styleUrl: './create-product.css',
 })
 export class CreateProduct implements OnInit {
-  productForm!: FormGroup;
-  selectedFile: File | null = null;
-  selectedFileName = signal<string>('');
-  imagePreview = signal<string | null>(null);
-
-  availableSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
   private formBuilder = inject(FormBuilder);
   private productService = inject(ProductService);
   private categoryService = inject(CategoryService);
+
+
+  productForm!: FormGroup;
+  selectedFile: File | null = null;
+  selectedFileName = signal<string>('');
+  imagePreview = signal<string | null>(null);
+  availableSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
   messageError = signal<any>('');
   error = signal<boolean>(false);
   okMessage = signal<any | null>(null);
-
   categoryList = signal<any[]>([]);
 
   ngOnInit(): void {

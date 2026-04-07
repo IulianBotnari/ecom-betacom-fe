@@ -8,14 +8,14 @@ import { CategoryService } from '../../services/category-service';
   standalone: false
 })
 export class Homepage implements OnInit {
-  // Signals per lo stato
+
   genereSelezionato = signal<string>('donna');
   categorie = signal<any[]>([]);
 
   private catService = inject(CategoryService);
 
   ngOnInit(): void {
-    // Avvia il caricamento dei dati all'inizializzazione
+
     this.loadCategories();
   }
 
@@ -31,9 +31,6 @@ export class Homepage implements OnInit {
     });
   }
 
-  /**
-   * Computed: Reattivo ai cambiamenti di 'genereSelezionato' e 'categorie'
-   */
   categorieFiltrate = computed(() => {
     const genere = this.genereSelezionato();
     const lista = this.categorie();
@@ -41,7 +38,7 @@ export class Homepage implements OnInit {
     return lista
       .filter(cat => cat.isView)
       .map(cat => {
-        // Pulizia del nome per il path del file
+
         const nomeStandard = cat.category.toLowerCase().trim().replace(/\s+/g, '-');
         
         return {
@@ -55,14 +52,12 @@ export class Homepage implements OnInit {
     this.genereSelezionato.set(nuovoGenere);
   }
 
-  /**
-   * Gestione errori immagini
-   */
+
   updateToPlaceholder(event: Event) {
     const imgElement = event.target as HTMLImageElement;
-    const placeholder = 'assets/images/placeholder.jpg'; // Assicurati che il path sia corretto
+    const placeholder = 'assets/images/placeholder.jpg'; 
 
-    // Evita loop infiniti se anche il placeholder fallisce
+
     if (imgElement.src.includes(placeholder)) {
       imgElement.style.display = 'none';
     } else {

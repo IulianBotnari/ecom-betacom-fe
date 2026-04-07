@@ -42,6 +42,8 @@ import { ProductDetails } from './pages/product-details/product-details';
 import { AggiungiTaglia } from './components/aggiungi-taglia/aggiungi-taglia';
 import { ModificaTaglia } from './components/modifica-taglia/modifica-taglia';
 import { AdminUserCreate } from './components/admin-user-create/admin-user-create';
+import { Cart } from './cart/cart';
+
 
 
 @NgModule({
@@ -70,6 +72,7 @@ import { AdminUserCreate } from './components/admin-user-create/admin-user-creat
     AggiungiTaglia,
     ModificaTaglia,
     AdminUserCreate,
+    Cart,
   ],
   imports: [
     BrowserModule,
@@ -88,8 +91,8 @@ import { AdminUserCreate } from './components/admin-user-create/admin-user-creat
     MatOptionModule,
     MatSelectModule,
     ReactiveFormsModule,
-    NgOptimizedImage
-],
+    NgOptimizedImage,
+  ],
   providers: [
     provideHttpClient(withFetch()),
     provideBrowserGlobalErrorListeners(),

@@ -20,7 +20,7 @@ export class CategoryService {
   }
 
   listAll(){
-    return this.http.get(this.url + "listAll", {withCredentials: true})
+    return this.http.get<any[]>(this.url + "listAll", {withCredentials: true})
   }
 
   getById(id:number){

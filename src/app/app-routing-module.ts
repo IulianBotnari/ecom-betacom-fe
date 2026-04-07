@@ -6,7 +6,7 @@ import { Login } from './pages/login/login';
 import { UserDetails } from './pages/user-details/user-details';
 import { Products } from './pages/products/products';
 import { ProductDetails } from './pages/product-details/product-details';
-import { UserProfile } from './components/pages/user-profile/user-profile';
+import { UserProfile } from './pages/user-profile/user-profile';
 import { Signin } from './pages/signin/signin';
 import { Admin } from './pages/admin/admin';
 

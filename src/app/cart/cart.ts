@@ -11,7 +11,7 @@ export class Cart implements OnInit {
   private cartService = inject(CartService);
   
   items: any[] = [];
-  // Aggiungiamo questa variabile per gestire l'attesa del server
+  
   isInitialLoad: boolean = true; 
 
   ngOnInit(): void {
@@ -22,7 +22,7 @@ export class Cart implements OnInit {
     this.cartService.listAll().subscribe({
       next: (res: any) => {
         this.items = res;
-        // Dati ricevuti: ora possiamo mostrare il contenuto reale
+      
         this.isInitialLoad = false; 
       },
       error: (err) => {

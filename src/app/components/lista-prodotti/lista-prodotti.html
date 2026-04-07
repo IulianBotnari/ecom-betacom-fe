@@ -17,7 +17,7 @@
       @for (p of products(); track p.id) {
         <tr class="user_row">
           <td>{{ p.name }}</td>
-          <td>{{ p.image }}</td>
+          <td><img [src]="p.image" style="width: 50px;"></td>
           <td>{{ p.description }}</td>
           <td>{{ p.category.category }}</td>
           <td>{{ p.gender }}</td>

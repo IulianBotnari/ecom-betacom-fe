@@ -1,0 +1,62 @@
+<div class="container">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input matInput type="text" formControlName="name" placeholder="Inserisci nome" />
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Cognome</mat-label>
+      <input matInput type="text" formControlName="lastName" placeholder="Inserisci cognome" />
+      <mat-icon matSuffix>person_outline</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" placeholder="Inserisci email" />
+      <mat-icon matSuffix>mail</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Data di nascita</mat-label>
+      <input matInput type="date" formControlName="birthday" />
+      <mat-icon matSuffix>calendar_today</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Codice Fiscale</mat-label>
+      <input matInput type="text" formControlName="codiceFiscale" placeholder="(opzionale)" />
+      <mat-icon matSuffix>badge</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Telefono</mat-label>
+      <input matInput type="text" formControlName="phone" placeholder="Inserisci telefono" />
+      <mat-icon matSuffix>phone</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="role">
+        <mat-option value="" disabled>Scegli...</mat-option>
+        @for (s of availableUserType; track s) {
+          <mat-option [value]="s">{{ s }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button  mat-raised-button color="primary" type="submit" >
+        Modifica
+      </button>
+    </div>
+  </form>
+  @if (messageOk != null) {
+    <p class="messageOk">{{messageOk()}}</p>
+  }
+    @if (messageError != null) {
+    <p class="messageOk">{{messageError()}}</p>
+  }
+</div>

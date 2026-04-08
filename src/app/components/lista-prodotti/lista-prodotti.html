@@ -17,7 +17,7 @@
       @for (p of products(); track p.id) {
         <tr class="user_row">
           <td>{{ p.name }}</td>
-          <td><img [src]="p.image" style="width: 50px;"></td>
+          <td><img [src]="p.image" style="width: 50px" /></td>
           <td>{{ p.description }}</td>
           <td>{{ p.category.category }}</td>
           <td>{{ p.gender }}</td>
@@ -27,9 +27,10 @@
           <td>{{ p.discountPercentage }}</td>
           <td>
             <button (click)="toggleView(p.id, 'update')">Modifica</button>
-            <button (click)="deleteProduct(p.id)">Elimina</button>
+
             <button (click)="toggleView(p.id, 'taglie')">Lista Taglie</button>
             <button (click)="toggleView(p.id, 'review')">Lista Review</button>
+            <button (click)="deleteProduct(p.id)">Elimina</button>
           </td>
         </tr>
         @if (activeView()?.id === p.id) {
@@ -37,7 +38,11 @@
             <td colspan="10">
               @switch (activeView()?.type) {
                 @case ('update') {
-                  <app-update-product [productId]="p.id" (productUpdated)="onProductModified()"></app-update-product>>
+                  <app-update-product
+                    [productId]="p.id"
+                    (productUpdated)="onProductModified()"
+                  ></app-update-product
+                  >>
                 }
                 @case ('taglie') {
                   <app-lista-taglie [productId]="p.id"></app-lista-taglie>

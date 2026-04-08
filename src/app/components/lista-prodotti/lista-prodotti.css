@@ -3,7 +3,7 @@
     margin: 30px auto;
     background-color: #FFFFFF;
     border: 1px solid var(--border-color);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     border-radius: 4px;
 }
 
@@ -13,7 +13,7 @@ table {
 }
 
 thead {
-    background-color: #F0E9E0; 
+    background-color: #F0E9E0;
 }
 
 th {
@@ -51,9 +51,8 @@ td img {
     border: 1px solid var(--border-color);
 }
 
-/* Bottoni Azione */
 td button {
-    background: none;
+    background-color: var(--gold-accent);
     border: 1px solid var(--border-color);
     padding: 6px 10px;
     margin: 2px;
@@ -62,19 +61,20 @@ td button {
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.2s;
-    color: var(--body-text);
+    color: var(--white);
+}
+
+td button:last-child {
+    background-color: var(--accent-button);
 }
 
 td button:hover {
-    background-color: var(--headline-text);
-    color: white;
     border-color: var(--headline-text);
+    opacity: var(--opacity-standard);
+    ;
 }
 
-/* Colore specifico per Elimina */
-td button:nth-child(2) {
-    color: var(--btn-action);
-}
+
 
 /* Riga espandibile (Update/Taglie/Review) */
 tr td[colspan="10"] {

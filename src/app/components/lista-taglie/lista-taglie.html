@@ -1,5 +1,5 @@
 <div class="container">
-  <button (click)="openCreateTaglia()">Aggiungi taglia</button>
+  <button (click)="openCreateTaglia()" class="add_taglia">Aggiungi taglia</button>
   @if (createTaglia() === true) {
     <app-aggiungi-taglia [productId]="productId()"></app-aggiungi-taglia>
   }

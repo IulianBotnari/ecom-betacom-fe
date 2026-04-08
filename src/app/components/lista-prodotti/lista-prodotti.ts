@@ -11,8 +11,6 @@ export class ListaProdotti implements OnInit {
   private productService = inject(ProductService);
   products = signal<any[]>([]);
 
-  
-
   loadProducts() {
     this.productService.listAll().subscribe({
       next: (res: any) => {
@@ -25,36 +23,37 @@ export class ListaProdotti implements OnInit {
   }
 
   onProductModified() {
-    this.loadProducts(); 
-     }
+    this.loadProducts();
+  }
 
   ngOnInit(): void {
     this.loadProducts();
   }
 
   deleteProduct(id: number) {
-    this.productService.delete(id).subscribe({
-      next: (res: any) => {
-        console.log(res);
-        this.loadProducts();
-      },
-      error: (res: any) => {
-        console.log(res);
-      },
-    });
+    if (confirm('Sei sicuro di voler eliminare il prodotto')) {
+      this.productService.delete(id).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          this.loadProducts();
+        },
+        error: (res: any) => {
+          console.log(res);
+        },
+      });
+    }
   }
 
   activeView = signal<ActiveView | null>(null);
 
   toggleView(id: number, type: 'update' | 'taglie' | 'review') {
-  const current = this.activeView();
-  if (current?.id === id && current?.type === type) {
-    this.activeView.set(null);
-  } else {
-    this.activeView.set({ id, type });
+    const current = this.activeView();
+    if (current?.id === id && current?.type === type) {
+      this.activeView.set(null);
+    } else {
+      this.activeView.set({ id, type });
+    }
   }
-}
-
 }
 
 interface ActiveView {

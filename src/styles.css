@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+    display: block;
+    --bg-main: #FAF7F2;
+    --bg-card-filter: #F0E9E0;
+    --accent-button: #721C1C;
+    --text-headline: #1A1512;
+    --text-body: #5C5552;
+    --border-color: #DED8D1;
+    --white: #ffffff;
+    --gold-accent: #C5A059;
+    --opacity-standard: 0.6;
+    --brightness-standard: 1.2;
+
+    min-height: 100vh;
+    background-color: var(--bg-main);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}

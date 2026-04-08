@@ -1,6 +1,3 @@
-
-
-
 <div class="container">
   <table>
     <thead>
@@ -28,8 +25,19 @@
           <td>{{ u.birthday }}</td>
           <td>{{ u.role }}</td>
           <td>{{ u.createDate }}</td>
-          <td><button>Modifica</button><button (click)="deleteUser(u.id)">Elimina</button></td>
+          <td>
+            <button (click)="userUpdate(u.id)">Modifica</button
+            ><button (click)="deleteUser(u.id)">Elimina</button>
+          </td>
         </tr>
+
+        @if (userUpdateId() === u.id) {
+          <tr >
+            <td colspan="10">
+              <app-admin-user-update [userId]="u.id"></app-admin-user-update>
+            </td>
+          </tr>
+        }
       }
     </tbody>
   </table>

@@ -4,8 +4,8 @@
     background-color: #FFFFFF;
     border: 1px solid var(--border-color);
     border-radius: 4px;
-    overflow: hidden; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 
 table {
@@ -15,7 +15,7 @@ table {
 }
 
 thead {
-    background-color: #F0E9E0; 
+    background-color: #F0E9E0;
     border-bottom: 2px solid var(--border-color);
 }
 
@@ -46,8 +46,9 @@ td {
 
 /* Stile per i bottoni nella tabella */
 td button {
-    background: transparent;
+    background-color: var(--gold-accent);
     border: 1px solid var(--border-color);
+    color: var(--white);
     padding: 6px 12px;
     font-size: 11px;
     font-weight: 700;
@@ -57,11 +58,13 @@ td button {
     transition: all 0.2s;
 }
 
-td button:first-child { color: var(--accent-gold); } 
-td button:last-child { color: var(--btn-action); border-color: #fbdada; } 
+
+td button:last-child {
+    background-color: var(--accent-button);
+    border-color: #fbdada;
+}
 
 td button:hover {
-    background-color: var(--headline-text);
-    color: white;
+    opacity: var(--opacity-standard);
     border-color: var(--headline-text);
 }

@@ -81,15 +81,15 @@ button[mat-stroked-button] {
     text-align: center;
 }
 
+
+
 .btn-primary {
-    background-color: var(--btn-action) !important;
-    color: white !important;
-    padding: 25px 80px !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 2px !important;
-    border-radius: 0 !important;
-    transition: all 0.3s !important;
+    background-color: var( --gold-accent);
+    color: white;
+    padding: 25px 80px;
+    font-weight: 700;
+    text-transform: uppercase ;
+    letter-spacing: 2px ;
 }
 
 .btn-primary:hover:not(:disabled) {

@@ -1,0 +1,39 @@
+/* Bottoni Azione */
+td button {
+    background-color: var(--gold-accent);
+    border: 1px solid var(--border-color);
+    padding: 6px 10px;
+    margin: 2px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--white);
+}
+
+td button:last-child{
+    background-color: var(--accent-button);
+}
+
+td button:hover {
+  opacity: var(--opacity-standard);
+}
+
+
+.add_taglia{
+    background-color: var(--gold-accent);
+    border: 1px solid var(--border-color);
+    padding: 6px 10px;
+    margin: 2px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--white);
+}
+
+.add_taglia:hover{
+      opacity: var(--opacity-standard);
+}

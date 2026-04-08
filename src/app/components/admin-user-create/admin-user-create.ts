@@ -35,7 +35,6 @@ export class AdminUserCreate {
         codiceFiscale: form.codiceFiscale,
         password: form.password,
         phone: form.phone,
-        role: 'USER',
       })
       .subscribe({
         next: (r) => this.routing.navigate(['create']),

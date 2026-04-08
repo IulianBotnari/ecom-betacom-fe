@@ -141,3 +141,8 @@ textarea.form-control {
   display: flex;
   justify-content: flex-end;
 }
+
+.submit-button{
+  background-color: var(--gold-accent)!important;
+  color: var(--white)  !important;
+}

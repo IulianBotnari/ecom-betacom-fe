@@ -1,0 +1,96 @@
+.container {
+    padding: 2rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.headline {
+    color: var(--text-headline);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Tabella */
+.review-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.review-table th {
+    background-color: var(--bg-card-filter);
+    color: var(--text-headline);
+    text-align: left;
+    padding: 1rem;
+    font-size: 0.9rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.review-table td {
+    padding: 1rem;
+    color: var(--text-body);
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+/* Righe al passaggio del mouse */
+.user_row:hover {
+    background-color: rgba(240, 233, 224, 0.3);
+}
+
+/* Stile Stelline */
+.stars {
+    color: var(--border-color); 
+    font-size: 1.2rem;
+    white-space: nowrap;
+}
+
+.stars .filled {
+    color: var(--gold-accent); 
+}
+
+
+.btn-delete {
+ background-color: var(--accent-button);
+    border: 1px solid var(--border-color);
+    padding: 4px 4px;
+    margin: 2px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--white);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 10px;
+}
+
+.btn-delete:hover {
+    opacity: 0.8;
+    filter: brightness(var(--brightness-standard));
+}
+
+.user-id {
+    font-weight: bold;
+    color: var(--text-headline);
+}
+
+.message_error, .messageOk {
+    margin-top: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.message_error { color: #ff4d4d; }
+.messageOk { color: var(--gold-accent); }

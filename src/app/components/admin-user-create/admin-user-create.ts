@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
 import { UserService } from '../../services/user-service';
 import { Router } from '@angular/router';
@@ -11,35 +11,37 @@ import { Router } from '@angular/router';
 })
 export class AdminUserCreate {
   @ViewChild('signInForm') signInForm!: NgForm;
-  disableSelect = new FormControl(false);
 
-  constructor(
-    private userService: UserService,
-    private routing: Router,
-  ) {}
+  disableSelect = new FormControl(false);
+  private userService = inject(UserService);
+  private router = inject(Router);
 
   onSubmit() {
-    const form = this.signInForm.value;
+    if (this.signInForm.invalid) return;
 
-    if (form.password != form.passwordCntrl) {
-      // this.msg.set("le due password non coincidono");
+    const formValues = this.signInForm.value;
+
+    if (formValues.password !== formValues.passwordControl) {
+      alert('Le due password non coincidono');
       return;
     }
 
     this.userService
       .create({
-        name: form.name,
-        lastName: form.lastName,
-        email: form.email,
-        birthday: form.birthday,
-        codiceFiscale: form.codiceFiscale,
-        password: form.password,
-        phone: form.phone,
-        role: 'USER',
+        name: formValues.name,
+        lastName: formValues.lastName,
+        email: formValues.email,
+        birthday: formValues.birthday,
+        codiceFiscale: formValues.codiceFiscale,
+        password: formValues.password,
+        phone: formValues.phone,
       })
       .subscribe({
-        next: (r) => this.routing.navigate(['create']),
-        error: (r) => console.log(r),
+        next: (r) => {
+          console.log('Utente creato:', r);
+          this.signInForm.resetForm();
+        },
+        error: (err) => console.error('Errore:', err),
       });
   }
 }

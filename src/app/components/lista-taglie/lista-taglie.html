@@ -1,5 +1,5 @@
 <div class="container">
-  <button (click)="openCreateTaglia()">Aggiungi taglia</button>
+  <button (click)="openCreateTaglia()" class="add_taglia"><span class="material-symbols-outlined">add</span> Aggiungi</button>
   @if (createTaglia() === true) {
     <app-aggiungi-taglia [productId]="productId()"></app-aggiungi-taglia>
   }
@@ -16,8 +16,8 @@
           <td>{{ t.size }}</td>
           <td>{{ t.quantity }}</td>
           <td>
-            <button (click)="openUpdateTaglia(t.id)">Modifica</button>
-            <button (click)="deleteTaglia(t.id)">Elimina</button>
+            <button (click)="openUpdateTaglia(t.id)"><span class="material-symbols-outlined">edit</span></button>
+            <button (click)="deleteTaglia(t.id)"><span class="material-symbols-outlined">delete</span></button>
           </td>
           @if(messageError() != null){<td>{{messageError()}}</td>}
           @if(messageOk() != null){<td>{{messageOk()}}</td>}

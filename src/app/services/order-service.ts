@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { text } from 'node:stream/consumers';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ export class OrderService {
 
   private http = inject(HttpClient)
 
-  private url = 'http://localhost:9090/rest/orderDetails/'
+  private url = 'http://localhost:9090/rest/order/'
 
 
     create (body: {}) {
@@ -20,7 +21,7 @@ export class OrderService {
     }
 
     listAll () {
-      return this.http.get(this.url + "listAll")
+      return this.http.get(this.url + "listAll", { withCredentials:true})
     }
 
     getById (id: number) {

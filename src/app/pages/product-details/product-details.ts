@@ -1,27 +1,43 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.html',
   styleUrls: ['./product-details.css'],
-  standalone: false // o true a seconda del tuo progetto
+  standalone: false,
+  encapsulation: ViewEncapsulation.None // Permette di gestire il dialog senza styles.css
 })
-export class ProductDetails{
+export class ProductDetails {
+  isAvaible: boolean = false;
+  selectedSize: any = null;
 
-  isAvaible:boolean =false;
-  
-
-  // Il trucco è tutto qui: Injection dei dati
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ProductDetails>
   ) {
-    // Ora puoi usare "data" nel tuo HTML per mostrare nome, prezzo, ecc.
     console.log('Dati ricevuti nel dialog:', this.data);
-   this.data.sizes.forEach((element: any) => {
-      element.quantity > 0 ? this.isAvaible=true : this.isAvaible = false;
-    });
+    
+    // Verifica disponibilità generale
+    if (this.data && this.data.sizes) {
+      this.isAvaible = this.data.sizes.some((s: any) => s.quantity > 0);
+    }
+  }
+
+  // Seleziona la taglia se disponibile
+  selectSize(size: any) {
+    if (size.quantity > 0) {
+      this.selectedSize = size;
+    }
+  }
+
+  // Azione del carrello
+  addToCart() {
+    if (this.selectedSize) {
+      console.log('Prodotto aggiunto:', this.data.name, 'Taglia:', this.selectedSize.size);
+      // Qui aggiungerai la chiamata al tuo CartService
+      this.close();
+    }
   }
 
   close() {

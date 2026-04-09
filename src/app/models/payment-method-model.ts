@@ -5,5 +5,6 @@ export interface PaymentMethodModel {
     cardNumber: string;
     expiryDate: string;
     cardHolder: string;
+    cvv: Number;
   };
 }

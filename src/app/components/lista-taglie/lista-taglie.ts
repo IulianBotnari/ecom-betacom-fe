@@ -37,21 +37,23 @@ export class ListaTaglie implements OnInit {
   }
 
   deleteTaglia(id: number) {
-    this.sizeService.delete(id).subscribe({
-      next: (res: any) => {
-        this.messageOk.set(res);
-        this.getListaTaglie();
-        setTimeout(() => {
-          this.messageOk.set(null);
-        }, 5000);
-      },
-      error: (err: any) => {
-        this.messageError.set(err);
-        setTimeout(() => {
-          this.messageError.set(null);
-        }, 5000);
-      },
-    });
+    if (confirm('Sei sicuro di voler eliminare la tagia')) {
+      this.sizeService.delete(id).subscribe({
+        next: (res: any) => {
+          this.messageOk.set(res);
+          this.getListaTaglie();
+          setTimeout(() => {
+            this.messageOk.set(null);
+          }, 5000);
+        },
+        error: (err: any) => {
+          this.messageError.set(err);
+          setTimeout(() => {
+            this.messageError.set(null);
+          }, 5000);
+        },
+      });
+    }
   }
 
   openCreateTaglia() {

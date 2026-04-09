@@ -4,11 +4,10 @@ import { inject, Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class CartService {
-
+export class CartItemServices {
   private http = inject(HttpClient)
 
-  private url = 'http://localhost:9090/rest/cart/'
+  private url = 'http://localhost:9090/rest/cartItem/'
 
   create(body: {}) {
     return this.http.post(this.url + "create", body, { withCredentials: true })

@@ -1,49 +1,46 @@
-import { Component, signal, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.html',
   styleUrls: ['./product-details.css'],
-  standalone: false
+  standalone: false,
+  encapsulation: ViewEncapsulation.None // Permette di gestire il dialog senza styles.css
 })
-export class ProductDetails implements OnInit {
+export class ProductDetails {
+  isAvaible: boolean = false;
+  selectedSize: any = null;
 
-  // Dati finti
-  product = signal<any>({
-    id: 1,
-    name: 'Maglietta Demo',
-    price: 29.99,
-    category: { category: 'T-Shirt' },
-    gender: 'UNISEX',
-    material: 'Cotone',
-    description: 'Questa è una maglietta demo per testare la pagina Product Details.',
-    image: 'https://via.placeholder.com/300x300',
-    sizes: ['XS','S','M','L','XL'],
-    stock: 10
-  });
-
-  selectedSize: string | null = null;
-  quantity: number = 1;
-
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {
-  }
-
-  selectSize(size: string) {
-    this.selectedSize = size;
-  }
-
-  addToCart() {
-    if (!this.selectedSize) {
-      alert("Seleziona una taglia prima di aggiungere al carrello!");
-      return;
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<ProductDetails>
+  ) {
+    console.log('Dati ricevuti nel dialog:', this.data);
+    
+    // Verifica disponibilità generale
+    if (this.data && this.data.sizes) {
+      this.isAvaible = this.data.sizes.some((s: any) => s.quantity > 0);
     }
-    //alert(Aggiunto ${this.quantity} x ${this.product().name} (Taglia: ${this.selectedSize}) al carrello);
   }
 
-  goHome() {
-    this.router.navigate(['/']);
+  // Seleziona la taglia se disponibile
+  selectSize(size: any) {
+    if (size.quantity > 0) {
+      this.selectedSize = size;
+    }
+  }
+
+  // Azione del carrello
+  addToCart() {
+    if (this.selectedSize) {
+      console.log('Prodotto aggiunto:', this.data.name, 'Taglia:', this.selectedSize.size);
+      // Qui aggiungerai la chiamata al tuo CartService
+      this.close();
+    }
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 }

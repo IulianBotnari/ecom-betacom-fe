@@ -17,34 +17,92 @@
   height: 56px;
   border-radius: 12px;
   font-weight: 600;
+  background-color: #721C1C !important; /* Usiamo il tuo rosso brand */
+  color: white !important;
   align-self: stretch;   
 }
 
 /* GRID PRODOTTI */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Leggermente più grandi */
+  gap: 30px;
+  padding: 20px 0;
 }
 
 /* CARD */
 .product-card {
-  border-radius: 16px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  background: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer; /* FONDAMENTALE: indica che è cliccabile */
+  position: relative;
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  border-color: #C5A059; /* Un tocco di oro al passaggio */
+}
+
+/* Immagine Prodotto */
+.card-img-container {
+  height: 320px;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-img {
+  transform: scale(1.08); /* Effetto zoom lussuoso */
+}
+
+/* Info Prodotto */
+.product-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+h3 {
+  margin: 0;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #1A1512;
 }
 
 .price {
-  font-weight: bold;
-  font-size: 18px;
-  color: #1976d2;
+  font-weight: 700;
+  font-size: 16px;
+  color: #721C1C; /* Coerente con il brand */
+}
+
+.product-info-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .info {
-  color: #666;
-  font-size: 14px;
+  color: #888;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.gender-tag {
+  font-size: 10px;
+  background: #F0E9E0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #5C5552;
 }

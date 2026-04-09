@@ -1,35 +1,46 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { text } from 'stream/consumers';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-    private url = "http://localhost:9090/rest/user/";
+  private url = 'http://localhost:9090/rest/user/';
 
-    constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
-    create (body: {}) {
-      return this.http.post(this.url + "create", body, {withCredentials: true});
-    }
+  create(body: {}) {
+    return this.http.post(this.url + 'create', body, {responseType:'text', withCredentials: true });
+  }
 
-    update (body: {}) {
-      return this.http.put(this.url + "update", body, {withCredentials: true});
-    }
+  update(body: {}) {
+    return this.http.put(this.url + 'update', body, {
+      withCredentials: true,
+      responseType: 'text',
+    });
+  }
 
-    listAll () {
-      return this.http.get(this.url + "listAll", {withCredentials: true});
-    }
+  updateByAdmin(body: {}) {
+    return this.http.put(this.url + 'updateByAdmin', body, {
+      withCredentials: true,
+      responseType: 'text',
+    });
+  }
 
-    getById (id: number) {
-      return this.http.get(this.url + "findById/" + id, {withCredentials: true});
-    }
-    
-    delete (id: number) {
-      return this.http.delete(this.url + "delete/" + id, { responseType: 'text' });
-    }
+  listAll() {
+    return this.http.get(this.url + 'listAll', { withCredentials: true });
+  }
 
-    login (body: {}) {
-      return this.http.post(this.url + "login", body, {withCredentials: true});
-    }
+  getById(id: number) {
+    return this.http.get(this.url + 'findById/' + id, { withCredentials: true });
+  }
+
+  delete(id: number) {
+    return this.http.delete(this.url + 'delete/' + id, { responseType: 'text' });
+  }
+
+  login(body: {}) {
+    return this.http.post(this.url + 'login', body, { withCredentials: true });
+  }
 }

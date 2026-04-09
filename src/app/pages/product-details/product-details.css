@@ -1,18 +1,18 @@
 /* --- CONFIGURAZIONE DIALOG (OVERLAY) --- */
 .luxury-modal {
-  max-width: 1000px !important;
-  width: 95% !important;
+  max-width: 1000px;
+  width: 95%;
 }
 
 .luxury-modal .mat-mdc-dialog-container {
-  padding: 0 !important;
-  border-radius: 16px !important;
-  background-color: #FAF7F2 !important;
-  overflow: hidden !important;
+  padding: 0;
+  border-radius: 16px;
+  background-color: #FAF7F2;
+  overflow: hidden;
 }
 
 .cdk-overlay-dark-backdrop {
-  background: rgba(0, 0, 0, 0.8) !important;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 /* --- LAYOUT GENERALE --- */
@@ -213,7 +213,7 @@
 }
 
 .wishlist-btn {
-  border: 1px solid #DED8D1 !important;
-  height: 60px !important;
-  width: 60px !important;
+  border: 1px solid #DED8D1;
+  height: 60px;
+  width: 60px;
 }

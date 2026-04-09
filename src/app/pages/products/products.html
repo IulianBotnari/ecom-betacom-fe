@@ -33,23 +33,7 @@
 
 <div class="grid">
   @for (p of products; track p.id) {
-    <mat-card class="product-card" (click)="openDetails(p)">
-      <div class="card-img-container">
-        <img mat-card-image [src]="p.image" [alt]="p.name" class="product-img">
-      </div>
-
-      <mat-card-content>
-        <div class="product-info-header">
-          <h3>{{ p.name }}</h3>
-          <p class="price">{{ p.price }}€</p>
-        </div>
-        
-        <div class="product-info-footer">
-          <p class="info">{{ p.material }}</p>
-          <span class="gender-tag">{{ p.gender }}</span>
-        </div>
-      </mat-card-content>
-    </mat-card>
+    <app-product-card [prodotto]="p"></app-product-card>
   } @empty {
     <div class="no-products">
       <p>Nessun prodotto trovato con questi filtri.</p>

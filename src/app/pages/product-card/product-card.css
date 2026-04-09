@@ -1,0 +1,34 @@
+/* CARD */
+.product-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  background: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer; /* FONDAMENTALE: indica che è cliccabile */
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  border-color: #C5A059; /* Un tocco di oro al passaggio */
+}
+
+/* Immagine Prodotto */
+.card-img-container {
+  height: 320px;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-img {
+  transform: scale(1.08); /* Effetto zoom lussuoso */
+}

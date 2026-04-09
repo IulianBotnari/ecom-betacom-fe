@@ -19,6 +19,7 @@
   font-weight: 600;
   background-color: #721C1C !important; /* Usiamo il tuo rosso brand */
   color: white !important;
+  align-self: stretch;   
 }
 
 /* GRID PRODOTTI */

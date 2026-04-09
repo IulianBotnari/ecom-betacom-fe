@@ -38,6 +38,11 @@ export class ListaUtenti implements OnInit {
 }
 
   userUpdate(id: number) {
-    this.userUpdateId.set(id);
+    if (this.userUpdateId() == null) {
+       this.userUpdateId.set(id);
+    } else{
+      this.userUpdateId.set(null)
+    }
+   
   }
 }

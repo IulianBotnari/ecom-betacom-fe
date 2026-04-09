@@ -3,7 +3,6 @@
     <thead>
       <th>Nome</th>
       <th>Cognome</th>
-      <th>ID utente</th>
       <th>Email</th>
       <th>Telefono</th>
       <th>CodiceFiscale</th>
@@ -18,7 +17,6 @@
         <tr class="user_row">
           <td>{{ u.name }}</td>
           <td>{{ u.lastName }}</td>
-          <td>{{ u.id }}</td>
           <td>{{ u.email }}</td>
           <td>{{ u.phone }}</td>
           <td>{{ u.codiceFiscale }}</td>
@@ -26,8 +24,8 @@
           <td>{{ u.role }}</td>
           <td>{{ u.createDate }}</td>
           <td>
-            <button (click)="userUpdate(u.id)">Modifica</button
-            ><button (click)="deleteUser(u.id)">Elimina</button>
+            <button (click)="userUpdate(u.id)"><span class="material-symbols-outlined">edit</span></button
+            ><button (click)="deleteUser(u.id)"><span class="material-symbols-outlined">delete</span></button>
           </td>
         </tr>
 

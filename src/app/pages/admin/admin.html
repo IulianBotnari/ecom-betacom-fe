@@ -33,24 +33,20 @@
   <div class="content">
     @switch (activeView) {
       @case ('lista-utenti') {
-        <h1>Lista utenti</h1>
         <app-lista-utenti></app-lista-utenti>
       }
       @case ('aggiungi-utente') {
         <app-admin-user-create></app-admin-user-create>>
       }
       @case ('lista-prodotti') {
-        <h1>Lista prodotti</h1>
         <app-lista-prodotti></app-lista-prodotti>
       }
 
       @case ('aggiungi-prodotto') {
-        <h1>Aggiungi prodotto</h1>
         <app-create-product></app-create-product>
       }
 
       @case ('lista-ordini') {
-        <h1>Lista ordini</h1>
         <app-order-details></app-order-details>
       }
 

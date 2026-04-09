@@ -44,18 +44,23 @@ td {
     font-size: 13px;
 }
 
-/* Stile per i bottoni nella tabella */
+
 td button {
-    background-color: var(--gold-accent);
+ background-color: var(--gold-accent);
     border: 1px solid var(--border-color);
-    color: var(--white);
-    padding: 6px 12px;
-    font-size: 11px;
+    padding: 4px 4px;
+    margin: 2px;
+    font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
     cursor: pointer;
-    margin-right: 5px;
     transition: all 0.2s;
+    color: var(--white);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 10px;
 }
 
 

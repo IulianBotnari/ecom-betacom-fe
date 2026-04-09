@@ -1,7 +1,5 @@
 <form class="filter-box" (ngSubmit)="onFilter()">
-
   <div class="filters">
-
     <mat-form-field appearance="outline">
       <mat-label>🔍 Cerca prodotto</mat-label>
       <input matInput name="name" [(ngModel)]="filters.name">
@@ -27,23 +25,34 @@
       <input matInput type="number" step="0.01" name="price" [(ngModel)]="filters.price">
     </mat-form-field>
 
-    <button mat-flat-button color="primary" type="submit" class="filter-btn">
+    <button mat-flat-button type="submit" class="filter-btn">
       Filtra
     </button>
-
   </div>
-
 </form>
 
 <div class="grid">
-  @for (p of products; track p) {
-  <mat-card class="product-card">
-    <mat-card-content>
-      <h3>{{ p.name }}</h3>
-      <p class="price">{{ p.price }}€</p>
-      <p class="info">{{ p.material }}</p>
-      <p class="info">{{ p.gender }}</p>
-    </mat-card-content>
-  </mat-card>
-}
+  @for (p of products; track p.id) {
+    <mat-card class="product-card" (click)="openDetails(p)">
+      <div class="card-img-container">
+        <img mat-card-image [src]="p.image" [alt]="p.name" class="product-img">
+      </div>
+
+      <mat-card-content>
+        <div class="product-info-header">
+          <h3>{{ p.name }}</h3>
+          <p class="price">{{ p.price }}€</p>
+        </div>
+        
+        <div class="product-info-footer">
+          <p class="info">{{ p.material }}</p>
+          <span class="gender-tag">{{ p.gender }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  } @empty {
+    <div class="no-products">
+      <p>Nessun prodotto trovato con questi filtri.</p>
+    </div>
+  }
 </div>

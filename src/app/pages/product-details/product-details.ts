@@ -1,49 +1,30 @@
-import { Component, signal, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.html',
   styleUrls: ['./product-details.css'],
-  standalone: false
+  standalone: false // o true a seconda del tuo progetto
 })
-export class ProductDetails implements OnInit {
+export class ProductDetails{
 
-  // Dati finti
-  product = signal<any>({
-    id: 1,
-    name: 'Maglietta Demo',
-    price: 29.99,
-    category: { category: 'T-Shirt' },
-    gender: 'UNISEX',
-    material: 'Cotone',
-    description: 'Questa è una maglietta demo per testare la pagina Product Details.',
-    image: 'https://via.placeholder.com/300x300',
-    sizes: ['XS','S','M','L','XL'],
-    stock: 10
-  });
+  isAvaible:boolean =false;
+  
 
-  selectedSize: string | null = null;
-  quantity: number = 1;
-
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {
+  // Il trucco è tutto qui: Injection dei dati
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<ProductDetails>
+  ) {
+    // Ora puoi usare "data" nel tuo HTML per mostrare nome, prezzo, ecc.
+    console.log('Dati ricevuti nel dialog:', this.data);
+   this.data.sizes.forEach((element: any) => {
+      element.quantity > 0 ? this.isAvaible=true : this.isAvaible = false;
+    });
   }
 
-  selectSize(size: string) {
-    this.selectedSize = size;
-  }
-
-  addToCart() {
-    if (!this.selectedSize) {
-      alert("Seleziona una taglia prima di aggiungere al carrello!");
-      return;
-    }
-    //alert(Aggiunto ${this.quantity} x ${this.product().name} (Taglia: ${this.selectedSize}) al carrello);
-  }
-
-  goHome() {
-    this.router.navigate(['/']);
+  close() {
+    this.dialogRef.close();
   }
 }

@@ -29,7 +29,7 @@ export class Login {
       email: form.email,
       password: form.password
     }).subscribe({
-      next: ((r:any) => {this.routing.navigate([''])
+      next: ((r:any) => {this.routing.navigate(['UserProfile/'+ r.id])
 
         this.authService.setLogin(r.id, r.role)
         console.log(r);

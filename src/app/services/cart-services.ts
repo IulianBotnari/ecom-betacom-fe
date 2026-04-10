@@ -15,7 +15,7 @@ export class CartService {
   }
 
   update(body: {}) {
-    return this.http.put(this.url + "update", body, { withCredentials: true })
+    return this.http.put(this.url + "update", body, { withCredentials: true, responseType:'text' })
   }
 
   listAll() {

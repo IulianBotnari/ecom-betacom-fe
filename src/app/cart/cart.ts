@@ -13,7 +13,6 @@ export class Cart implements OnInit {
   private cartitemservices = inject(CartItemServices)
   
   cart = signal <any|null>(null);
-  cartitem=signal <any[]>([]);
   isInitialLoad: boolean = true; 
   userId = 1
   ngOnInit(): void {
@@ -35,5 +34,30 @@ export class Cart implements OnInit {
 
   }
 
+  updateQuantity(item: any, delta: number) {
+  const newQuantity = item.quantity + delta;
+  if (newQuantity <= 0) return;
+
+  const request = {
+    cartItemId: item.id,
+    quantity: newQuantity,
+    cartId: this.cart().id,
+    productId: item.product.id
+  };
+
+  this.cartitemservices.update(request).subscribe({
+    next: (res:any) => {
+     // this.cart.set(res)
+      this.loadCart(this.cart().id)
+    },
+    error: (err) => {
+    console.log(err)
+      
+    }
+  });
+}
+
+
   
 }
+

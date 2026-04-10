@@ -1,249 +1,92 @@
-:host {
-  display: block;
+.cart-item-card {
+  display: flex;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eaeaea;
+  background: #fff;
+  gap: 1.5rem;
+}
+
+.item-img-box img {
+  width: 140px;
+  max-height: 140px;
+  object-fit: contain;
+}
+
+.product-title {
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+}
+
+.availability-text {
+  color: #2e7d32;
+  font-size: 0.85rem;
+  margin: 0 0 1rem 0;
+}
+
+/* SELETTORE QUANTITÀ */
+.qty-controls {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   background-color: #ffffff;
-  color: #121212;
-  min-height: 100vh;
-}
-
-.cart-container {
-  max-width: 900px; /* Leggermente più largo per far spazio alle immagini */
-  margin: 0 auto;
-  padding: 80px 24px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  text-align: center;
-}
-
-/* --- STILE STATO VUOTO --- */
-.empty-state-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-}
-
-.icon-thin-bag {
-  font-size: 40px !important;
-  width: 40px !important;
-  height: 40px !important;
-  color: #121212;
-  font-weight: 200;
-}
-
-.empty-title {
-  font-size: 28px;
-  font-weight: 400;
-  margin: 0;
-}
-
-.empty-subtitle {
-  font-size: 16px;
-  color: #121212;
-  max-width: 400px;
-  line-height: 1.5;
-  margin: 0;
-}
-
-.noir-action-btn {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  border: none !important;
-  padding: 20px 60px !important;
-  font-size: 16px !important;
-  font-weight: 500 !important;
-  border-radius: 0 !important;
-  text-transform: capitalize;
-  cursor: pointer;
-  transition: opacity 0.3s !important;
-}
-
-.noir-action-btn:hover {
-  opacity: 0.8;
-}
-
-/* --- STILE STATO PIENO --- */
-.page-title {
-  font-size: 24px;
-  font-weight: 500;
-  margin-bottom: 40px;
-  text-align: left;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.cart-layout {
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-}
-
-.product-list {
-  border-top: 1px solid #121212; /* Linea più decisa per lo stile Noir */
-}
-
-/* Modificata la Grid per includere la colonna immagine */
-.item-row {
-  display: grid;
-  grid-template-columns: 100px 2fr 1fr 1fr 40px; /* 100px dedicati all'immagine */
-  align-items: center;
-  gap: 20px;
-  padding: 25px 0;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-/* --- NUOVE CLASSI PER LE IMMAGINI --- */
-.product-image-container {
-  width: 100px;
-  height: 130px; /* Proporzione verticale tipica del fashion */
-  background-color: #f7f7f7;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  height: 34px;
   overflow: hidden;
-  border-radius: 2px;
 }
 
-.cart-product-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Fondamentale per non deformare le foto */
-  display: block;
-}
-
-.image-placeholder {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  background: #f9f9f9;
-  color: #ccc;
-}
-
-/* --- INFO PRODOTTO --- */
-.product-info-minimal {
-  display: flex;
-  flex-direction: column;
-}
-
-.product-name {
-  font-size: 16px;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.product-unit-price {
-  font-size: 14px;
-  color: #757575;
-  margin-top: 5px;
-}
-
-/* CONTROLLI QUANTITÀ */
-.quantity-selectors-minimal {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.quantity-selectors-minimal button {
-  background: transparent;
-  border: 1px solid #e0e0e0;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.qty-controls button {
+  background-color: #f5f5f5;
+  border: none;
+  padding: 0 14px;
   cursor: pointer;
-  transition: all 0.2s;
+  font-size: 1.1rem;
+  height: 100%;
+  transition: background 0.2s;
 }
 
-.quantity-selectors-minimal button:hover:not(:disabled) {
-  border-color: #121212;
+.qty-controls button:hover:not(:disabled) {
+  background-color: #e0e0e0;
 }
 
-.qty {
-  font-size: 15px;
-  font-weight: 500;
-  min-width: 20px;
-  text-align: center;
-}
-
-.line-total {
+.qty-num {
+  padding: 0 12px;
   font-weight: 600;
-  font-size: 16px;
+  color: #333;
+}
+
+/* AZIONI E LINK */
+.item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #0066c0;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+  color: #c45500;
+}
+
+.divider { color: #ddd; }
+
+/* PREZZO DINAMICO */
+.item-price-display {
   text-align: right;
-}
-
-.minimal-delete-btn {
-  color: #a0a0a0 !important;
-  background: transparent !important;
-  border: none !important;
-  cursor: pointer;
-}
-
-.minimal-delete-btn:hover {
-  color: #000000 !important;
-}
-
-/* --- FOOTER CARRELLO --- */
-.cart-summary-footer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 24px;
-  margin-top: 40px;
-  padding-top: 30px;
-  border-top: 1px solid #121212;
-}
-
-.grand-total-row {
-  display: flex;
-  align-items: baseline;
-  gap: 15px;
-}
-
-.grand-total-row span:first-child {
-  font-size: 14px;
-  text-transform: uppercase;
-  color: #757575;
-}
-
-.grand-total-value {
+  min-width: 110px;
   font-weight: 700;
-  color: #121212;
-  font-size: 26px;
+  color: #111;
 }
 
-.checkout-button-noir {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  padding: 22px 60px !important;
-  border: none !important;
-  border-radius: 0 !important;
-  font-size: 14px !important;
-  font-weight: 600 !important;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  cursor: pointer;
-  width: 100%; /* Su mobile occupa tutto, su desktop si può limitare */
-  max-width: 400px;
-}
-
-.checkout-button-noir:hover {
-  background-color: #333333 !important;
-}
-
-/* Responsive per schermi piccoli */
-@media (max-width: 600px) {
-  .item-row {
-    grid-template-columns: 80px 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 10px;
-  }
-  
-  .product-image-container {
-    grid-row: span 2;
-    width: 80px;
-    height: 100px;
-  }
-  
-  .line-total {
-    grid-column: span 2;
-    text-align: left;
-  }
-}
+.price-main { font-size: 1.4rem; }
+.price-decimal, .currency { font-size: 0.9rem; vertical-align: super; }

@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user-service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../../services/authentication-service';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class Login {
   constructor(
     private userService: UserService,
     private routing: Router,
+    private authService : AuthenticationService
   ) {}
 
   onSubmit() {
@@ -27,11 +29,13 @@ export class Login {
       email: form.email,
       password: form.password
     }).subscribe({
-      next: ((r) => {this.routing.navigate([''])
+      next: ((r:any) => {this.routing.navigate([''])
+
+        this.authService.setLogin(r.id, r.role)
         console.log(r);
         
       }),
-      error: ((r) => console.log(r))
+      error: ((r:any) => console.log(r))
     })
   }
 

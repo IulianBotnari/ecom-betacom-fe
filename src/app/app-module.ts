@@ -45,6 +45,7 @@ import { AdminUserCreate } from './components/admin-user-create/admin-user-creat
 import { Cart } from './pages/cart/cart';
 import { AdminUserUpdate } from './components/admin-user-update/admin-user-update';
 import { ProductCard } from './pages/product-card/product-card';
+import { Wishlist } from './pages/wishlist/wishlist';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,6 @@ import { ProductCard } from './pages/product-card/product-card';
     Products,
     UserDetails,
     Homepage,
-
     Admin,
     ListaUtenti,
     ListaProdotti,
@@ -75,6 +75,7 @@ import { ProductCard } from './pages/product-card/product-card';
     Cart,
     AdminUserUpdate,
     ProductCard,
+    Wishlist,
   ],
   imports: [
     BrowserModule,

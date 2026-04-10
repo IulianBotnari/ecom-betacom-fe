@@ -7,8 +7,8 @@
     <div class="product-stage">
       <div class="image-wrapper">
         <img
-          [src]="data.image || 'assets/images/placeholder-product.jpg'"
-          [alt]="data.name"
+          [src]="product.image || 'assets/images/placeholder-data.jpg'"
+          [alt]="product.name"
           class="main-product-img"
         />
       </div>
@@ -18,13 +18,13 @@
       <div class="info-content">
         
         <header class="product-header">
-          <span class="brand-category">{{ data.category?.category || 'Collezione Esclusiva' }}</span>
-          <h1 class="product-title">{{ data.name }}</h1>
-          <span class="gender-badge">{{ data.gender }}</span>
+          <span class="brand-category">{{ product.category?.category || 'Collezione Esclusiva' }}</span>
+          <h1 class="product-title">{{ product.name }}</h1>
+          <span class="gender-badge">{{ product.gender }}</span>
         </header>
 
         <div class="price-action-area">
-          <p class="luxury-price">{{ data.price }}€</p>
+          <p class="luxury-price">{{ product.price }}€</p>
 
           @if (isAvaible) {
             <span class="stock-info available">
@@ -41,15 +41,15 @@
 
         <section class="description-section">
           <h2>Descrizione e Dettagli</h2>
-          <p class="product-description">
-            {{ data.description || 'Nessuna descrizione disponibile per questo articolo esclusivo.' }}
+          <p class="data-description">
+            {{ product.description || 'Nessuna descrizione disponibile per questo articolo esclusivo.' }}
           </p>
         </section>
 
         <section class="size-selection">
           <h2>Seleziona Taglia</h2>
           <div class="size-grid">
-            @for (s of data.sizes; track s.id) {
+            @for (s of product.sizes; track s.id) {
               <button 
                 class="size-chip" 
                 [class.selected]="selectedSize?.id === s.id"
@@ -65,11 +65,11 @@
         <section class="specs-section">
           <div class="spec-item">
             <span class="spec-label">Materiale pregiato</span>
-            <span class="spec-value">{{ data.material || 'Cotone Premium' }}</span>
+            <span class="spec-value">{{ product.material || 'Cotone Premium' }}</span>
           </div>
           <div class="spec-item">
             <span class="spec-label">Codice Prodotto</span>
-            <span class="spec-value">TH-{{ data.id }}-MOD</span>
+            <span class="spec-value">TH-{{ product.id }}-MOD</span>
           </div>
         </section>
 
@@ -89,8 +89,8 @@
   }
 </button>
           
-          <button class="wishlist-btn" mat-icon-button>
-            <mat-icon>favorite_border</mat-icon>
+          <button class="wishlist-btn" mat-icon-button (click)="addToFavorites()" [class.active]="isFavorite()">
+            <mat-icon>{{ isFavorite() ? 'favorite' : 'favorite_border' }}</mat-icon>
           </button>
         </footer>
 

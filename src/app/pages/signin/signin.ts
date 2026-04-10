@@ -19,25 +19,27 @@ export class Signin {
 
   onSubmit() {
     const form = this.signInForm.value;
-
-    if(form.password != form.passwordCntrl) {
-      // this.msg.set("le due password non coincidono");
+    if (form.password !== form.passwordControl) {
+      console.error('Le password non coincidono');
       return;
     }
 
-
-    this.userService.create({
-      name: form.name,
-      lastName: form.lastName,
-      email: form.email,
-      birthday: form.birthday,
-      codiceFiscale: form.codiceFiscale,
-      password: form.password,
-      phone: form.phone,
-      role: 'USER'
-    }).subscribe({
-      next: ((r) => this.routing.navigate(['create'])),
-      error: ((r) => console.log(r))
-    })
+    this.userService
+      .create({
+        name: form.name,
+        lastName: form.lastName,
+        email: form.email,
+        birthday: form.birthday,
+        codiceFiscale: form.codiceFiscale,
+        password: form.password,
+        phone: form.phone,
+      })
+      .subscribe({
+        next: (r: any) => {
+          console.log('Registrazione avvenuta:', r);
+          this.routing.navigate(['/login']); 
+        },
+        error: (err: any) => console.log('Errore:', err),
+      });
   }
 }

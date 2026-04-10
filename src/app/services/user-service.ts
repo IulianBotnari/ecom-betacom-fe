@@ -11,7 +11,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   create(body: {}) {
-    return this.http.post(this.url + 'create', body, {responseType:'text', withCredentials: true });
+    return this.http.post(this.url + 'create', body, {responseType:'text'});
   }
 
   update(body: {}) {

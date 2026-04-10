@@ -217,3 +217,13 @@
   height: 60px;
   width: 60px;
 }
+
+.wishlist-btn mat-icon {
+  color: #aaa;
+  transition: all 0.3s ease;
+}
+
+.wishlist-btn.active mat-icon {
+  color: black; /* 👈 cuore nero */
+  transform: scale(1.2); /* effetto figo */
+}

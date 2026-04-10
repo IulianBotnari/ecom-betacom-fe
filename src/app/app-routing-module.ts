@@ -9,6 +9,7 @@ import { ProductDetails } from './pages/product-details/product-details';
 import { UserProfile } from './pages/user-profile/user-profile';
 import { Signin } from './pages/signin/signin';
 import { Admin } from './pages/admin/admin';
+import { Wishlist } from './pages/wishlist/wishlist';
 
 
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'userDetails', component: UserDetails},
   {path: 'UserProfile/:id', component: UserProfile},
   {path: 'products', component: Products},
+  {path: 'wishlist', component: Wishlist},
   {path: 'productDetails', component: ProductDetails},
   {path: 'admin', component:Admin}
 ];

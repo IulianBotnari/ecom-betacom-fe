@@ -27,7 +27,9 @@ export class Header {
   }
   }
 
-
+  goToWishlist() {
+      this.router.navigate(['/wishlist']);
+  }
 
 
 }

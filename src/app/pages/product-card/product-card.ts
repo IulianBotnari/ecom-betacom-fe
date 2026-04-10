@@ -16,7 +16,7 @@ export class ProductCard {
   @Input() prodotto: any;
 
    openDetails(product: any) {
-      console.log("Il click funziona! Prodotto:", product); // <--- Aggiungi questo
+      console.log("Il click funziona! Prodotto:", product);
       
       this.dialog.open(ProductDetails, {
         width: '90vw',

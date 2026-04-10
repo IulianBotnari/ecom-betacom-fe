@@ -44,6 +44,7 @@ import { ModificaTaglia } from './components/modifica-taglia/modifica-taglia';
 import { AdminUserCreate } from './components/admin-user-create/admin-user-create';
 import { AdminUserUpdate } from './components/admin-user-update/admin-user-update';
 import { ProductCard } from './pages/product-card/product-card';
+import { Wishlist } from './pages/wishlist/wishlist';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,6 @@ import { ProductCard } from './pages/product-card/product-card';
     Products,
     UserDetails,
     Homepage,
-
     Admin,
     ListaUtenti,
     ListaProdotti,
@@ -73,6 +73,7 @@ import { ProductCard } from './pages/product-card/product-card';
     AdminUserCreate,
     AdminUserUpdate,
     ProductCard,
+    Wishlist,
   ],
   imports: [
     BrowserModule,

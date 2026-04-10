@@ -1,7 +1,5 @@
 import { ChangeDetectorRef, Component, Inject, OnInit, signal, ViewEncapsulation, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CartItemsService } from '../../services/cart-items-service';
-import { AuthenticationService } from '../../services/authentication-service';
 import { WishlistService } from '../../services/wishlist-service';
 import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -43,7 +41,26 @@ export class ProductDetails implements OnInit {
     if (this.product && this.product.sizes) {
       this.isAvaible = this.product.sizes.some((s: any) => s.quantity > 0);
     }
+    this.user = serviceAuth.getUserData();
   }
+
+  ngOnInit(): void {
+    this.syncWishlist().subscribe((isFav) => this.isFavorite.set(isFav));
+  }
+
+  syncWishlist(): Observable<boolean> {
+  return this.serviceWishlist.listAll().pipe(
+    map((r) => {
+      this.productInWishlist = r.find(
+        (a) =>
+          a.userId === Number(this.user.id) &&
+          a.productId?.id === this.product?.id
+      );
+
+      return this.productInWishlist != null;
+    })
+  );
+}
 
   // Seleziona la taglia se disponibile
   selectSize(size: any) {
@@ -83,7 +100,7 @@ export class ProductDetails implements OnInit {
         
           const cartItemBody = {
             cartId: myCart.id,
-            productId: this.data.id,
+            productId: this.product.id,
             sizeId: this.selectedSize.id,
             quantity: 1
           };

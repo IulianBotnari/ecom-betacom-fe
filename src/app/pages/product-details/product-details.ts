@@ -162,45 +162,4 @@ export class ProductDetails implements OnInit {
       }
     });
   }
-
-  // addToFavorites() {
-  //   if (!this.user) return;
-
-  //   // this.addOrRemoveFavorite().subscribe();
-  //   const prev = this.isFavorite();
-
-  //   this.isFavorite.set(!prev);
-
-  //   if(prev) {
-  //     this.serviceWishlist.delete(this.productInWishlist.id).subscribe({
-  //       next: ((r) => {
-  //         console.log("eliminazione avvenuta con successo");
-  //         this.productInWishlist = undefined;
-  //         this.isFavorite.set(false);
-  //       }),
-  //       error: ((r) => {
-  //         console.log("eliminazione falllita");
-  //         console.log(r);
-  //         this.isFavorite.set(true);
-  //       })
-  //     })
-  //   } else {
-  //     this.serviceWishlist.create({
-  //         userId: this.user.id,
-  //         productId: this.product.id
-  //       }).subscribe({
-  //         next: ((r) => {
-  //           console.log("salvataggio avvenuto con successo");
-  //           console.log("result", r);
-  //           this.addOrRemoveFavorite().subscribe();
-  //           this.isFavorite.set(true);
-  //         }),
-  //         error: ((r) => {
-  //           console.log("salvataggio fallito");
-  //           console.log("result", r);
-  //           this.isFavorite.set(false);
-  //         })
-  //       })
-  //   }
-  // }
 }

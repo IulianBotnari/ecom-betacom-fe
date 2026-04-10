@@ -11,23 +11,29 @@ import { AuthenticationService } from '../../services/authentication-service';
 export class Header {
   @Output() menuClick = new EventEmitter<void>();
 
-  private authService = inject(AuthenticationService)
-  private router = inject(Router)
+  private authService = inject(AuthenticationService);
+  private router = inject(Router);
 
-
-  
-  goToUserProfile(){
-    const userData = this.authService.getUserData()
+  goToUserProfile() {
+    const userData = this.authService.getUserData();
     console.log('Dati utente recuperati:', userData);
 
-   if (userData && userData.id) {
-    this.router.navigate(['/UserProfile', userData.id]);
-  } else {
-    this.router.navigate(['/login']);
+    if (userData && userData.id) {
+      this.router.navigate(['/UserProfile', userData.id]);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
+
+  goToCart(){
+    this.router.navigate(['/cart'])
   }
 
+    goToAdmin(){
+    this.router.navigate(['/admin'])
+  }
 
-
-
+      goToLogin(){
+    this.router.navigate(['/login'])
+  }
 }

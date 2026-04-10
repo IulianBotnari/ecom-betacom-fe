@@ -6,28 +6,30 @@
     </button>
 
     <button class="search-btn-inline" title="admin" (click)="goToUserProfile()">
-      <div class="nav-logo" >
+      <div class="nav-logo">
         <span class="menu-label">PROFILO</span>
       </div>
     </button>
     <button class="search-btn-inline" title="admin">
-      <div class="nav-logo" [routerLink]="['/admin']">
+      <div class="nav-logo" (click)="goToAdmin()">
         <span class="menu-label">admin</span>
       </div>
     </button>
   </div>
 
-  <div class="nav-logo" [routerLink]="['/']">
+  <div class="nav-logo">
     <img src="/images/logo_vante.jpg" alt="Logo Aziendale" class="logo-img" />
   </div>
 
   <div class="nav-icons">
-    <button mat-icon-button title="Accedi" [routerLink]="['/login']">
+    <button mat-icon-button title="Accedi" (click)="goToLogin()">
       <mat-icon>person_outline</mat-icon>
     </button>
 
     <button mat-icon-button title="Preferiti"><mat-icon>favorite_border</mat-icon></button>
 
-    <button mat-icon-button title="Carrello"><mat-icon>shopping_bag</mat-icon></button>
+    <button mat-icon-button title="Carrello" (click)="goToCart()">
+      <mat-icon>shopping_bag</mat-icon>
+    </button>
   </div>
 </nav>

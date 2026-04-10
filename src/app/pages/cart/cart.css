@@ -1,0 +1,92 @@
+.cart-item-card {
+  display: flex;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eaeaea;
+  background: #fff;
+  gap: 1.5rem;
+}
+
+.item-img-box img {
+  width: 140px;
+  max-height: 140px;
+  object-fit: contain;
+}
+
+.product-title {
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+}
+
+.availability-text {
+  color: #2e7d32;
+  font-size: 0.85rem;
+  margin: 0 0 1rem 0;
+}
+
+/* SELETTORE QUANTITÀ */
+.qty-controls {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  height: 34px;
+  overflow: hidden;
+}
+
+.qty-controls button {
+  background-color: #f5f5f5;
+  border: none;
+  padding: 0 14px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  height: 100%;
+  transition: background 0.2s;
+}
+
+.qty-controls button:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+.qty-num {
+  padding: 0 12px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* AZIONI E LINK */
+.item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #0066c0;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+  color: #c45500;
+}
+
+.divider { color: #ddd; }
+
+/* PREZZO DINAMICO */
+.item-price-display {
+  text-align: right;
+  min-width: 110px;
+  font-weight: 700;
+  color: #111;
+}
+
+.price-main { font-size: 1.4rem; }
+.price-decimal, .currency { font-size: 0.9rem; vertical-align: super; }

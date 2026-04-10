@@ -1,5 +1,5 @@
 <div class="cart-container">
-  @if (cart()) {
+  
     <div class="cart-layout">
       @for (item of cart().cartItems; track item.id) {
         <div class="cart-item-card">
@@ -14,11 +14,11 @@
             
             <div class="item-actions">
               <div class="qty-controls">
-                <button type="button" (click)="updateQuantity(item, -1)" [disabled]="item.quantity <= 1">
-                   @if(item.quantity === 1) { <span class="icon-small">🗑</span> } @else { - }
+                <button type="button" (click)="updateQuantity(item.id, -1,item.quantity)" [disabled]="item.quantity <= 1">
+                   @if(item.quantity >= 1) { <span class="icon-small">🗑</span> } @else { - }
                 </button>
                 <span class="qty-num">{{ item.quantity }}</span>
-                <button type="button" (click)="updateQuantity(item, 1)">+</button>
+                <button type="button" (click)="updateQuantity(item.id, 1,item.quantity)">+</button>
               </div>
 
               <span class="divider">|</span>
@@ -37,5 +37,5 @@
         </div>
       }
     </div>
-  }
+  
 </div>

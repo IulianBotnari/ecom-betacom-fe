@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CartService } from '../../services/cart-services';
-import { CartItemServices } from '../../services/cart-item-services';
+import { CartItemsService } from '../../services/cart-items-service';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { CartItemServices } from '../../services/cart-item-services';
 })
 export class Cart implements OnInit {
   private cartService = inject(CartService);
-  private cartitemservices = inject(CartItemServices)
+  private cartitemservices = inject(CartItemsService)
   
   cart = signal <any|null>(null);
   isInitialLoad: boolean = true; 
@@ -34,22 +34,24 @@ export class Cart implements OnInit {
     })
 
   }
+ 
 
-  updateQuantity(item: any, delta: number) {
-  const newQuantity = item.quantity + delta;
+  updateQuantity(itemId: number, delta: number, actualqty:number) {
+  const newQuantity = actualqty + delta;
   if (newQuantity <= 0) return;
 
   const request = {
-    cartItemId: item.id,
+    cartItemId: itemId,
     quantity: newQuantity,
-    cartId: this.cart().id,
-    productId: item.product.id
+    cartId: this.cart().id
+    
   };
 
   this.cartitemservices.update(request).subscribe({
     next: (res:any) => {
      // this.cart.set(res)
-      this.loadCart(this.cart().id)
+     console.log('risposta update CartItem: +',res)
+      this.loadCart(this.userId)
     },
     error: (err) => {
     console.log(err)

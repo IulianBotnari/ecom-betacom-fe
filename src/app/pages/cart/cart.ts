@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { CartService } from '../services/cart-services';
-import { CartItemServices } from '../services/cart-item-services';
+import { CartService } from '../../services/cart-services';
+import { CartItemServices } from '../../services/cart-item-services';
+
 
 @Component({
   selector: 'app-cart',

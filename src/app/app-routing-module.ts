@@ -9,7 +9,7 @@ import { ProductDetails } from './pages/product-details/product-details';
 import { UserProfile } from './pages/user-profile/user-profile';
 import { Signin } from './pages/signin/signin';
 import { Admin } from './pages/admin/admin';
-import { Cart } from './cart/cart'; 
+import { Cart } from './pages/cart/cart';
 
 
 const routes: Routes = [

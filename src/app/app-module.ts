@@ -42,7 +42,7 @@ import { ProductDetails } from './pages/product-details/product-details';
 import { AggiungiTaglia } from './components/aggiungi-taglia/aggiungi-taglia';
 import { ModificaTaglia } from './components/modifica-taglia/modifica-taglia';
 import { AdminUserCreate } from './components/admin-user-create/admin-user-create';
-import { Cart } from './cart/cart';
+import { Cart } from './pages/cart/cart';
 import { AdminUserUpdate } from './components/admin-user-update/admin-user-update';
 import { ProductCard } from './pages/product-card/product-card';
 

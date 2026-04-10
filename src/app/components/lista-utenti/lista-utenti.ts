@@ -14,6 +14,38 @@ export class ListaUtenti implements OnInit {
   utenti = signal<any[]>([]);
   userUpdateId = signal<any | null>(null);
 
+  filters = {
+    email: '',
+    codiceFiscale: ''
+  };
+
+
+ onFilter() {
+  const params: any = {};
+  
+
+  if (this.filters.email) params.email = this.filters.email.trim();
+  if (this.filters.codiceFiscale) params.codiceFiscale = this.filters.codiceFiscale.toUpperCase();
+
+  console.log('Invio parametri:', params); 
+
+  this.userService.multiFilter(params).subscribe({
+    next: (res) => {
+      console.log('Ricevuti dal server:', res);
+      this.utenti.set(res);
+    },
+    error: (err) => console.error('Errore:', err)
+  });
+}
+
+  resetFilters() {
+    this.filters = {
+      email: '',
+      codiceFiscale: ''
+    };
+    this.onFilter(); 
+  }
+
   loadUsers() {
     this.userService.listAll().subscribe({
       next: (res: any) => this.utenti.set(res),

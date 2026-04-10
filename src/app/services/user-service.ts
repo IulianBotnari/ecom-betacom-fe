@@ -43,4 +43,12 @@ export class UserService {
   login(body: {}) {
     return this.http.post(this.url + 'login', body, { withCredentials: true });
   }
+
+
+  multiFilter(filters: any) {
+    return this.http.get<any[]>(this.url + 'multiFilter', {
+      params: filters,
+      withCredentials: true 
+    });
+  }
 }

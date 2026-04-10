@@ -1,3 +1,23 @@
+<form class="filter-box" (ngSubmit)="onFilter()" >
+  <div class="filters">
+    
+    <mat-form-field appearance="outline" class="small-form-field" subscriptSizing="dynamic">
+      <mat-label>Cerca per Email</mat-label>
+      <input matInput type="email" name="email" [(ngModel)]="filters.email" placeholder="esempio@mail.com">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="small-form-field" subscriptSizing="dynamic">
+      <mat-label>Codice Fiscale</mat-label>
+      <input matInput name="codiceFiscale" [(ngModel)]="filters.codiceFiscale" placeholder="Inserisci CF" style="text-transform: uppercase;">
+    </mat-form-field>
+
+    <button mat-flat-button type="submit" class="filter-btn">Filtra Utenti</button>
+    <button mat-flat-button class="reset-btn" type="button" (click)="resetFilters()">Reset</button>
+    
+  </div>
+</form>
+
+
 <div class="container">
   <table>
     <thead>

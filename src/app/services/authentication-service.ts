@@ -36,4 +36,17 @@ export class AuthenticationService {
     localStorage.removeItem('userId')
     localStorage.removeItem('role')
   }
+
+  getUserData(): any {
+  const userId = localStorage.getItem('userId');
+  const role = localStorage.getItem('role');
+
+  if (userId) {
+    return { 
+      id: userId, 
+      role: role 
+    };
+  }
+  return {};
+}
 }

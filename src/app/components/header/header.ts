@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { AuthenticationService } from '../../services/authentication-service';
 
 @Component({
   selector: 'app-header',
@@ -8,4 +10,24 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class Header {
   @Output() menuClick = new EventEmitter<void>();
+
+  private authService = inject(AuthenticationService)
+  private router = inject(Router)
+
+
+  
+  goToUserProfile(){
+    const userData = this.authService.getUserData()
+    console.log('Dati utente recuperati:', userData);
+
+   if (userData && userData.id) {
+    this.router.navigate(['/UserProfile', userData.id]);
+  } else {
+    this.router.navigate(['/login']);
+  }
+  }
+
+
+
+
 }

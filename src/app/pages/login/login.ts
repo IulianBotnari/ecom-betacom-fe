@@ -20,24 +20,25 @@ export class Login {
     private authService : AuthenticationService
   ) {}
 
-  onSubmit() {
-    const form = this.loginForm.value;
+ onSubmit() {
+  const form = this.loginForm.value;
 
-    console.log("Utente" + form.email)
+  this.userService.login({
+    email: form.email,
+    password: form.password
+  }).subscribe({
+    next: (r: any) => {
+      console.log("Risposta server:", r);
 
-    this.userService.login({
-      email: form.email,
-      password: form.password
-    }).subscribe({
-      next: ((r:any) => {this.routing.navigate(['UserProfile/'+ r.id])
+      this.authService.setLogin(r.id, r.role);
 
-        this.authService.setLogin(r.id, r.role)
-        console.log(r);
-        
-      }),
-      error: ((r:any) => console.log(r))
-    })
-  }
+      this.routing.navigate(['UserProfile', r.id]);
+    },
+    error: (err: any) => {
+      console.error("Errore durante il login:", err);
+    }
+  });
+}
 
   signUp() {
     this.routing.navigate(['signup']);

@@ -25,7 +25,9 @@ export class Header {
     }
   }
 
-  goToCart(){
+  goToWishlist() {
+      this.router.navigate(['/wishlist']);
+  }  goToCart(){
     this.router.navigate(['/cart'])
   }
 

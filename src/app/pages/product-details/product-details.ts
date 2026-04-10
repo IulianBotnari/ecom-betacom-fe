@@ -1,5 +1,9 @@
-import { Component, Inject, ViewEncapsulation, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit, signal, ViewEncapsulation, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CartItemsService } from '../../services/cart-items-service';
+import { AuthenticationService } from '../../services/authentication-service';
+import { WishlistService } from '../../services/wishlist-service';
+import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CartItemsService } from '../../services/cart-items-service';
 import { AuthenticationService } from '../../services/authentication-service';
@@ -12,9 +16,12 @@ import { CartService } from '../../services/cart-service';
   standalone: false,
   encapsulation: ViewEncapsulation.None
 })
-export class ProductDetails {
+export class ProductDetails implements OnInit {
   isAvaible: boolean = false;
   selectedSize: any = null;
+  isFavorite = signal(false);
+  user: any = null;
+  productInWishlist: any;
   isAdding: boolean = false;
 
   // Iniezione dei servizi tramite inject()
@@ -24,16 +31,21 @@ export class ProductDetails {
   private cartService = inject(CartService);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<ProductDetails>
+    @Inject(MAT_DIALOG_DATA) public product: any,
+    private dialogRef: MatDialogRef<ProductDetails>,
+    private serviceWishlist: WishlistService,
+    private serviceAuth: AuthenticationService
   ) {
-    // Controllo disponibilità prodotto in base alle taglie
-    if (this.data && this.data.sizes) {
-      this.isAvaible = this.data.sizes.some((s: any) => s.quantity > 0);
+    console.log('Dati ricevuti nel dialog:', this.product);
+    console.log("dati dell'utente", serviceAuth.getUserData().id)
+    
+    // Verifica disponibilità generale
+    if (this.product && this.product.sizes) {
+      this.isAvaible = this.product.sizes.some((s: any) => s.quantity > 0);
     }
   }
 
-  // Seleziona la taglia cliccata
+  // Seleziona la taglia se disponibile
   selectSize(size: any) {
     if (size.quantity > 0) {
       this.selectedSize = size;
@@ -100,7 +112,78 @@ export class ProductDetails {
       });
     }
 
-    close() {
-      this.dialogRef.close();
-    }
+  close() {
+    this.dialogRef.close();
   }
+
+  addToFavorites() {
+    if (!this.user) return;
+
+    const prev = this.isFavorite();
+    this.isFavorite.set(!prev); // optimistic
+
+    const request$ = prev
+      ? this.serviceWishlist.delete(this.productInWishlist.id)
+      : this.serviceWishlist.create({
+          userId: this.user.id,
+          productId: this.product.id
+        });
+
+    request$.subscribe({
+      next: () => {
+        if (prev) {
+          // DELETE
+          this.productInWishlist = null;
+          this.isFavorite.set(false);
+        } else {
+          // CREATE
+          this.syncWishlist().subscribe((isFav) => this.isFavorite.set(isFav));
+        }
+      },
+      error: () => {
+        this.isFavorite.set(prev); // rollback
+      }
+    });
+  }
+
+  // addToFavorites() {
+  //   if (!this.user) return;
+
+  //   // this.addOrRemoveFavorite().subscribe();
+  //   const prev = this.isFavorite();
+
+  //   this.isFavorite.set(!prev);
+
+  //   if(prev) {
+  //     this.serviceWishlist.delete(this.productInWishlist.id).subscribe({
+  //       next: ((r) => {
+  //         console.log("eliminazione avvenuta con successo");
+  //         this.productInWishlist = undefined;
+  //         this.isFavorite.set(false);
+  //       }),
+  //       error: ((r) => {
+  //         console.log("eliminazione falllita");
+  //         console.log(r);
+  //         this.isFavorite.set(true);
+  //       })
+  //     })
+  //   } else {
+  //     this.serviceWishlist.create({
+  //         userId: this.user.id,
+  //         productId: this.product.id
+  //       }).subscribe({
+  //         next: ((r) => {
+  //           console.log("salvataggio avvenuto con successo");
+  //           console.log("result", r);
+  //           this.addOrRemoveFavorite().subscribe();
+  //           this.isFavorite.set(true);
+  //         }),
+  //         error: ((r) => {
+  //           console.log("salvataggio fallito");
+  //           console.log("result", r);
+  //           this.isFavorite.set(false);
+  //         })
+  //       })
+  //   }
+  // }
+}

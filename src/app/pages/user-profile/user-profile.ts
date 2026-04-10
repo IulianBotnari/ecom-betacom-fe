@@ -10,10 +10,9 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './user-profile.html',
   styleUrl: './user-profile.css',
 })
-export class UserProfile implements OnInit{
+export class UserProfile implements OnInit {
   userForm!: FormGroup;
   user?: UserModel;
-  //activeTab: "profile" | "orders" = "profile";
   activeView: string = "dashboard";
   openMenu: string | null = null;
   isEditing: boolean = false;
@@ -21,34 +20,35 @@ export class UserProfile implements OnInit{
   constructor(
     private fb: FormBuilder, 
     private userService: UserService,
-    private route: ActivatedRoute){}
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get("id"));
-    if(id){
+    if (id) {
       this.loadUser(id);
     }
   }
 
-  get addressGroups(){
+  get addressGroups() {
     return this.userForm.get("addresses") as FormArray;
   }
 
-  get paymentGroups(){
+  get paymentGroups() {
     return this.userForm.get("paymentMethods") as FormArray;
   }
 
-  loadUser(id: number): void{
-    this.userService.getById(id).subscribe({
-      next: (data: any) => {
-        this.user = data;
-        this.initForm(data);
-      },
-      error: (err) => console.error("Could not fetch User", err)
-    });
-  }
+  loadUser(id: number): void {
+  this.userService.getById(id).subscribe({
+    next: (data: any) => { 
+      this.user = data as UserModel;
+      this.initForm(this.user);
+    },
+    error: (err) => console.error("Could not fetch User", err)
+  });
+}
 
-  initForm(user: UserModel): void{
+  initForm(user: UserModel): void {
     this.userForm = this.fb.group({
       id: [user.id],
       name: [user.name, Validators.required],
@@ -57,7 +57,7 @@ export class UserProfile implements OnInit{
       password: [user.password, Validators.required],
       phone: [user.phone, Validators.required],
       birthday: [user.birthday],
-      role: [{value: user.role, disabled: true}],
+      role: [{ value: user.role, disabled: true }],
       codiceFiscale: [{ value: user.codiceFiscale, disabled: true }],
 
       addresses: this.fb.array(user.addresses.map(addr => this.fb.group({
@@ -66,7 +66,7 @@ export class UserProfile implements OnInit{
         street: [addr.street, Validators.required],
         cap: [addr.cap, Validators.required],
         province: [addr.province, Validators.required],
-        defaultAddress: [addr.defaulAddress],
+        defaultAddress: [addr.defaulAddress], // Note: matches your model typo 'defaulAddress'
         residence: [addr.residence],
         domicile: [addr.domicile]
       }))),
@@ -84,22 +84,22 @@ export class UserProfile implements OnInit{
     });
   }
 
-  toggleMenu(menuId: string){
+  toggleMenu(menuId: string) {
     this.openMenu = this.openMenu === menuId ? null : menuId;
   }
 
-  setView(view: string){
+  setView(view: string) {
     this.activeView = view;
     this.isEditing = false;
   }
 
-  toggleEdit(){
+  toggleEdit() {
     this.isEditing = !this.isEditing;
   }
 
-  onUpdate(): void{
-    if (this.userForm.valid){
-      this.userService.update(this.userForm.value).subscribe(response => {
+  onUpdate(): void {
+    if (this.userForm.valid) {
+      this.userService.update(this.userForm.getRawValue()).subscribe(response => {
         alert(response);
         this.isEditing = false;
         this.loadUser(this.user!.id);
@@ -107,11 +107,10 @@ export class UserProfile implements OnInit{
     }
   }
 
-  onCheckboxChange(controlName: string, index: number){
+  onCheckboxChange(controlName: string, index: number) {
     const addresses = this.addressGroups;
-
-    for (let i = 0; i < addresses.length; i++){
-      if(i !== index){
+    for (let i = 0; i < addresses.length; i++) {
+      if (i !== index) {
         addresses.at(i).get(controlName)?.setValue(false);
       }
     }

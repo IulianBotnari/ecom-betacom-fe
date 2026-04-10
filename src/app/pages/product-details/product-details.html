@@ -75,17 +75,19 @@
 
         <footer class="action-footer">
           <button 
-            class="primary-add-btn" 
-            [disabled]="!isAvaible || !selectedSize"
-            (click)="addToCart()">
-            @if (!isAvaible) {
-              Esaurito
-            } @else if (!selectedSize) {
-              Scegli la Taglia
-            } @else {
-              Aggiungi al Carrello
-            }
-          </button>
+  class="primary-add-btn" 
+  [disabled]="!isAvaible || !selectedSize || isAdding"
+  (click)="addToCart()">
+  @if (isAdding) {
+    Attendere...
+  } @else if (!isAvaible) {
+    Esaurito
+  } @else if (!selectedSize) {
+    Scegli la Taglia
+  } @else {
+    Aggiungi al Carrello
+  }
+</button>
           
           <button class="wishlist-btn" mat-icon-button>
             <mat-icon>favorite_border</mat-icon>

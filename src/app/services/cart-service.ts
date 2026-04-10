@@ -4,18 +4,12 @@ import { inject, Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class CartItemsService {
-  private url = 'http://localhost:9090/rest/cartItem/'
+export class CartService {
+  private url = 'http://localhost:9090/rest/cart/'
 
   private http = inject(HttpClient)
 
 
-  create(body: {}) {
-  return this.http.post(this.url + "create", body, { 
-    withCredentials: true, 
-    responseType: 'text' 
-  });
-}
 
   update(body:{}){
     return this.http.put(this.url + "update", body,{withCredentials: true})
@@ -25,7 +19,7 @@ export class CartItemsService {
     return this.http.get<any[]>(this.url + "listAll", {withCredentials: true})
   }
 
-  getById(id:number){
+  findById(id:number){
     return this.http.get(this.url + "findById/" + id,{withCredentials: true})
   }
 

@@ -1,0 +1,41 @@
+<div class="cart-container">
+  @if (cart()) {
+    <div class="cart-layout">
+      @for (item of cart().cartItems; track item.id) {
+        <div class="cart-item-card">
+          
+          <div class="item-img-box">
+            <img [src]="item.product?.image || 'placeholder.jpg'" alt="Prodotto">
+          </div>
+
+          <div class="item-details">
+            <h3 class="product-title">{{ item.product?.name }}</h3>
+            <p class="availability-text">Disponibilità immediata</p>
+            
+            <div class="item-actions">
+              <div class="qty-controls">
+                <button type="button" (click)="updateQuantity(item, -1)" [disabled]="item.quantity <= 1">
+                   @if(item.quantity === 1) { <span class="icon-small">🗑</span> } @else { - }
+                </button>
+                <span class="qty-num">{{ item.quantity }}</span>
+                <button type="button" (click)="updateQuantity(item, 1)">+</button>
+              </div>
+
+              <span class="divider">|</span>
+              
+              <span class="divider">|</span>
+              <button class="btn-link">Salva per dopo</button>
+            </div>
+          </div>
+
+          <div class="item-price-display">
+            <span class="currency">€</span>
+            <span class="price-main">{{ (item.product?.price * item.quantity).toFixed(2).split('.')[0] }}</span>
+            <span class="price-decimal">{{ (item.product?.price * item.quantity).toFixed(2).split('.')[1] }}</span>
+          </div>
+
+        </div>
+      }
+    </div>
+  }
+</div>

@@ -1,9 +1,7 @@
-
 import { WishlistService } from '../../services/wishlist-service';
 import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductDetails } from '../product-details/product-details';
-
 
 @Component({
   selector: 'app-wishlist',
@@ -18,33 +16,42 @@ export class Wishlist implements OnInit {
     name: '',
     gender: '',
     material: '',
-    price: null
+    price: null,
   };
 
   constructor(
-    private wishlistService: WishlistService, 
+    private wishlistService: WishlistService,
     private cdr: ChangeDetectorRef,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
+
+  loading = true;
 
   ngOnInit(): void {
     this.wishlistService.listAll().subscribe({
-      next: (res) => this.products = res.map((r) => r.productId),
-      error: (err) => console.error(err)
+      next: (res) => {
+        this.products = res.map((r) => r.productId);
+        this.loading = false;
+        this.cdr.markForCheck();
+      },
+      error: (err) => {
+        console.error(err);
+        this.loading = false;
+      },
     });
   }
 
- openDetails(product: any) {
-    console.log("Il click funziona! Prodotto:", product);
-    
+  openDetails(product: any) {
+    console.log('Il click funziona! Prodotto:', product);
+
     this.dialog.open(ProductDetails, {
       width: '90vw',
       maxWidth: '90vw',
       height: '90vh',
       panelClass: 'full-screen-dialog',
-      data: product
+      data: product,
     });
-}
+  }
 
   // onFilter() {
   //   const cleanedFilters = this.cleanFilters(this.filters);

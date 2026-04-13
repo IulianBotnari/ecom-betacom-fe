@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserModel } from '../../models/user-model';
 import { UserService } from '../../services/user-service';
@@ -20,7 +20,8 @@ export class UserProfile implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +44,7 @@ export class UserProfile implements OnInit {
     next: (data: any) => { 
       this.user = data as UserModel;
       this.initForm(this.user);
+      this.cdr.markForCheck();
     },
     error: (err) => console.error("Could not fetch User", err)
   });

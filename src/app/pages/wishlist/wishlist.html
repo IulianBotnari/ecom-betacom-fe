@@ -32,11 +32,17 @@
 </form> -->
 
 <div class="grid">
-  @for (p of products; track p.id) {
-    <app-product-card [prodotto]="p"></app-product-card>
-  } @empty {
-    <div class="no-products">
-      <p>Nessun prodotto trovato con questi filtri.</p>
-    </div>
-  }
+  @if (loading) {
+  <div class="grid">
+    @for (i of [1,2,3,4]; track i) {
+      <div class="skeleton-card"></div>
+    }
+  </div>
+} @else {
+  <div class="grid">
+    @for (p of products; track $index) {
+      <app-product-card [prodotto]="p"></app-product-card>
+    }
+  </div>
+}
 </div>

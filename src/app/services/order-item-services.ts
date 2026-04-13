@@ -1,15 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { text } from 'node:stream/consumers';
 
 @Injectable({
   providedIn: 'root',
 })
-export class OrderService {
-
+export class OrderItemServices {
   private http = inject(HttpClient)
 
-  private url = 'http://localhost:9090/rest/order/'
+  private url = 'http://localhost:9090/rest/orderDetails/'
 
 
     create (body: {}) {
@@ -37,6 +35,4 @@ export class OrderService {
 
       return this.http.get(this.url + "findByUserId/" + id)
     }
-
-
 }

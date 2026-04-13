@@ -90,3 +90,42 @@
 
 .price-main { font-size: 1.4rem; }
 .price-decimal, .currency { font-size: 0.9rem; vertical-align: super; }
+
+
+.cart-summary-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1.5rem;
+  background: #fff;
+  border-top: 2px solid #eaeaea;
+  margin-top: 1rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.summary-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.summary-label {
+  font-size: 1.1rem;
+  color: #111;
+}
+
+.btn-checkout {
+  background-color: #ffd814;
+  border: 1px solid #fcd200;
+  border-radius: 8px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(213, 217, 217, 0.5);
+  transition: background 0.2s;
+}
+
+.btn-checkout:hover {
+  background-color: #f7ca00;
+}

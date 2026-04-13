@@ -29,7 +29,10 @@ export class Products implements OnInit {
 
   ngOnInit(): void {
     this.productService.listAll().subscribe({
-      next: (res) => this.products = res,
+      next: (res) => {
+        this.products = res
+        this.cdr.markForCheck();
+      },
       error: (err) => console.error(err)
     });
   }

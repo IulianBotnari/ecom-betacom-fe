@@ -1,7 +1,7 @@
 <div class="cart-container">
   
     <div class="cart-layout">
-      @for (item of cart().cartItems; track item.id) {
+      @for (item of cart()?.cartItems; track item.id) {
         <div class="cart-item-card">
           
           <div class="item-img-box">

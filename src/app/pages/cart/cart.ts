@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { CartService } from '../../services/cart-services';
 import { CartItemsService } from '../../services/cart-items-service';
 
@@ -15,7 +15,14 @@ export class Cart implements OnInit {
   
   cart = signal <any|null>(null);
   isInitialLoad: boolean = true; 
+  cartTotal = computed(() => {
+  return this.cart().cartItems.reduce((acc:any, item:any) => {
+    return acc + (item.product?.price || 0) * item.quantity;
+  }, 0);
+});
+
   userId = 1
+  
   ngOnInit(): void {
     this.loadCart(this.userId);
     
@@ -58,7 +65,9 @@ export class Cart implements OnInit {
       
     }
   });
+
 }
+
 
 
   

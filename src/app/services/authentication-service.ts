@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { inject, Injectable, PLATFORM_ID } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  user = 'user';
-  admin = 'admin';
+  private platformId = inject(PLATFORM_ID);
+  user = 'USER';
+  admin = 'ADMIN';
 
   setLogin(id: string, role: string) {
     localStorage.setItem('userId', id);
@@ -33,20 +35,23 @@ export class AuthenticationService {
   }
 
   resetAll() {
-    localStorage.removeItem('userId')
-    localStorage.removeItem('role')
+    localStorage.removeItem('userId');
+    localStorage.removeItem('role');
   }
 
   getUserData(): any {
-  const userId = localStorage.getItem('userId');
-  const role = localStorage.getItem('role');
+    if (isPlatformBrowser(this.platformId)) {
+      const userId = localStorage.getItem('userId');
+      const role = localStorage.getItem('role');
 
-  if (userId) {
-    return { 
-      id: userId, 
-      role: role 
-    };
+      if (userId) {
+        return {
+          id: userId,
+          role: role,
+        };
+      }
+    }
+
+    return null;
   }
-  return {};
-}
 }

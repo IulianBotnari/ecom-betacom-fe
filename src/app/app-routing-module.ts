@@ -11,24 +11,34 @@ import { Signin } from './pages/signin/signin';
 import { Admin } from './pages/admin/admin';
 import { Wishlist } from './pages/wishlist/wishlist';
 import { Cart } from './pages/cart/cart';
-
+import { authGuard } from './guard/auth-guard';
 
 const routes: Routes = [
-  {path: '', component: Homepage},
-  {path: 'about', component: About},
-  {path: 'login', component: Login},
-  {path: 'signup', component: Signin},
-  {path: 'userDetails', component: UserDetails},
-  {path: 'UserProfile/:id', component: UserProfile},
-  {path: 'products', component: Products},
-  {path: 'wishlist', component: Wishlist},
-  {path: 'productDetails', component: ProductDetails},
-  {path: 'admin', component:Admin},
-  {path: 'cart', component: Cart}
+  { path: '', component: Homepage },
+  { path: 'about', component: About },
+  { path: 'login', component: Login },
+  { path: 'signup', component: Signin },
+  { path: 'userDetails', component: UserDetails },
+  {
+    path: 'UserProfile/:id',
+    component: UserProfile,
+    canActivate: [authGuard],
+    data: { expectedRole: 'USER' },
+  },
+  { path: 'products', component: Products },
+  { path: 'wishlist', component: Wishlist },
+  { path: 'productDetails', component: ProductDetails },
+  {
+    path: 'admin',
+    component: Admin,
+    canActivate: [authGuard],
+    data: { expectedRole: 'ADMIN' },
+  },
+  { path: 'cart', component: Cart },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

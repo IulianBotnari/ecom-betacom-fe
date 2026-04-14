@@ -25,6 +25,17 @@
       <input matInput type="number" step="0.01" name="price" [(ngModel)]="filters.price">
     </mat-form-field>
 
+   <mat-form-field appearance="outline">
+  <mat-label>Categoria</mat-label>
+  <mat-select name="categoryId" [(ngModel)]="filters.categoryId">
+    <mat-option [value]="null">Tutte le categorie</mat-option>
+    
+    @for (cat of categorieDisponibili; track cat.id) {
+      <mat-option [value]="cat.id">{{ cat.category }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
     <button mat-flat-button type="submit" class="filter-btn">
       Filtra
     </button>

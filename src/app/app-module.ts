@@ -27,6 +27,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { MatCheckboxModule } from '@angular/material/checkbox'
 
 import { Admin } from './pages/admin/admin';
 import { ListaUtenti } from './components/lista-utenti/lista-utenti';
@@ -46,6 +47,9 @@ import { Cart } from './pages/cart/cart';
 import { AdminUserUpdate } from './components/admin-user-update/admin-user-update';
 import { ProductCard } from './pages/product-card/product-card';
 import { Wishlist } from './pages/wishlist/wishlist';
+
+import { CreateCategory } from './components/create-category/create-category';
+;
 
 @NgModule({
   declarations: [
@@ -76,6 +80,7 @@ import { Wishlist } from './pages/wishlist/wishlist';
     AdminUserUpdate,
     ProductCard,
     Wishlist,
+    CreateCategory
   ],
   imports: [
     BrowserModule,
@@ -95,6 +100,8 @@ import { Wishlist } from './pages/wishlist/wishlist';
     MatSelectModule,
     ReactiveFormsModule,
     NgOptimizedImage,
+    MatCheckboxModule
+    
   ],
   providers: [
     provideHttpClient(withFetch()),

@@ -12,8 +12,12 @@ export class CategoryService {
 
 
   create(body:{}){
-    return this.http.post(this.url + "create", body, {withCredentials: true})
-  }
+  // Aggiungiamo responseType: 'text' come quarta opzione
+  return this.http.post(this.url + "create", body, {
+    withCredentials: true, 
+    responseType: 'text' as 'json' 
+  });
+}
 
   update(body:{}){
     return this.http.put(this.url + "update", body,{withCredentials: true})

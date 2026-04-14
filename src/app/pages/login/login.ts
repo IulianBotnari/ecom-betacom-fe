@@ -31,7 +31,7 @@ export class Login {
         next: (r: any) => {
           console.log('Risposta server:', r);
 
-          this.authService.setLogin(r.id, r.role);
+          this.authService.setLogin(r.id, r.role, r.name);
           if (this.authService.getUserData().role === 'USER') {
             this.routing.navigate(['UserProfile', r.id]);
           }else{

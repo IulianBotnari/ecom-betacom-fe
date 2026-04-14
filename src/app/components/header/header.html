@@ -24,9 +24,13 @@
   </div>
 
   <div class="nav-icons">
-    <button mat-icon-button title="Accedi" (click)="goToLogin()">
-      <mat-icon>person_outline</mat-icon>
-    </button>
+    @if (userData?.name) {
+      <p>{{ userData?.name }}</p>
+    } @else {
+      <button mat-icon-button title="Accedi" (click)="goToLogin()">
+        <mat-icon>person_outline</mat-icon>
+      </button>
+    }
 
     <button mat-icon-button title="Esci" (click)="logout()">
       <mat-icon>logout</mat-icon>

@@ -1,50 +1,50 @@
 
-<div class="hero-section">
-  
-  <a [routerLink]="['/products']" class="banner-background-link">
-    <div class="mega-banner-img-container">
-      <img src="/images/banner.jpg" alt="Collezione Promozione di Mezza Stagione" class="mega-banner-img">
-      <div class="banner-overlay"></div>
+  <div class="hero-section">
+    
+    <a [routerLink]="['/products']" class="banner-background-link">
+      <div class="mega-banner-img-container">
+        <img src="/images/banner.jpg" alt="Collezione Promozione di Mezza Stagione" class="mega-banner-img">
+        <div class="banner-overlay"></div>
+      </div>
+    </a>
+
+    <div class="banner-box">
+      <a [routerLink]="['/products']" class="headline-link">
+        <h1 class="banner-headline">PROMOZIONE DI MEZZA STAGIONE</h1>
+      </a>
+
+      <h2 class="banner-subheadline">Sconti fino al 50% su articoli selezionati</h2>
+
+      <a [routerLink]="['/products']" class="hero-btn-link">
+        <button class="hero-btn">SCOPRI I PRODOTTI</button>
+      </a>
     </div>
-  </a>
-
-  <div class="banner-box">
-    <a [routerLink]="['/products']" class="headline-link">
-      <h1 class="banner-headline">PROMOZIONE DI MEZZA STAGIONE</h1>
-    </a>
-
-    <h2 class="banner-subheadline">Sconti fino al 50% su articoli selezionati</h2>
-
-    <a [routerLink]="['/products']" class="hero-btn-link">
-      <button class="hero-btn">SCOPRI I PRODOTTI</button>
-    </a>
-  </div>
-</div>
-
-<section class="luxury-categories-section">
-  
-  <div class="gender-nav">
-    <button (click)="cambiaGenere('uomo')" [class.active]="genereSelezionato() === 'uomo'">Uomo</button>
-    <button (click)="cambiaGenere('donna')" [class.active]="genereSelezionato() === 'donna'">Donna</button>
   </div>
 
- <div class="luxury-grid">
-  
-  <a [routerLink]="['/login']" 
-     class="luxury-card" 
-     *ngFor="let cat of categorieFiltrate()">
+  <section class="luxury-categories-section">
+    
+    <div class="gender-nav">
+      <button (click)="cambiaGenere('uomo')" [class.active]="genereSelezionato() === 'uomo'">Uomo</button>
+      <button (click)="cambiaGenere('donna')" [class.active]="genereSelezionato() === 'donna'">Donna</button>
+    </div>
+
+  <div class="luxury-grid">
+    
+    <a [routerLink]="['/products']" 
+    [queryParams]="{ categoryId: cat.id }" 
+    class="luxury-card" 
+    *ngFor="let cat of categorieFiltrate()">
     
     <img [src]="cat.immagineDinamica" 
-         [alt]="cat.category"
-         (error)="updateToPlaceholder($event)">
+        [alt]="cat.category"
+        (error)="updateToPlaceholder($event)">
     
     <div class="product-details">
       <h3 class="product-title">{{ cat.category }}</h3>
     </div>
+  </a>
 
-  </a> 
+  </div>
 
-</div>
-
-</section>
+  </section>
 

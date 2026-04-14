@@ -2,7 +2,7 @@
   <div class="side_bar">
 
     <div style="padding: 20px 25px; font-weight: 900; letter-spacing: 2px; color: var(--accent-button);">
-       ADMIN PANEL
+        ADMIN PANEL
     </div>
     
     <button class="side_bar_tab" (click)="toggleMenu('utenti')">Utenti</button>
@@ -21,6 +21,14 @@
       </div>
     }
 
+    <button class="side_bar_tab" (click)="toggleMenu('categorie')">Categorie</button>
+    @if (openMenu === 'categorie') {
+      <div class="dropdown_content">
+        
+        <button class="option_btn" (click)="setView('aggiungi-categoria')">Aggiungi categoria</button>
+      </div>
+    }
+
     <button class="side_bar_tab" (click)="toggleMenu('ordini')">Ordini</button>
     @if (openMenu === 'ordini') {
       <div class="dropdown_content">
@@ -36,26 +44,29 @@
         <app-lista-utenti></app-lista-utenti>
       }
       @case ('aggiungi-utente') {
-        <app-admin-user-create></app-admin-user-create>>
+        <app-admin-user-create></app-admin-user-create>
       }
       @case ('lista-prodotti') {
         <app-lista-prodotti></app-lista-prodotti>
       }
-
       @case ('aggiungi-prodotto') {
         <app-create-product></app-create-product>
       }
-
+     
+      @case ('aggiungi-categoria') {
+        <app-create-category></app-create-category>
+      }
       @case ('lista-ordini') {
         <app-order-details></app-order-details>
       }
-
-      @case ('modifica-ordini') {
+      @case ('modifica-ordine') {
         <h1>Modifica ordini</h1>
       }
       @default {
-        <h1>Benvenuto nell'Area Admin</h1>
-
+        <div class="welcome-screen">
+            <h1>Benvenuto nell'Area Admin</h1>
+            <p>Seleziona una voce dal menu laterale per iniziare.</p>
+        </div>
       }
     }
   </div>

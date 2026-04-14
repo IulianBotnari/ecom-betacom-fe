@@ -1,0 +1,109 @@
+<div class="container-form">
+  <h2>Aggiorna il prodotto</h2>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="name" placeholder="Es. Scarpe da corsa" />
+      @if (productForm.get('name')?.invalid && productForm.get('name')?.touched) {
+        <mat-error>Il campo nome non può essere vuoto</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="row-flex">
+      <mat-form-field appearance="outline">
+        <mat-label>Prezzo</mat-label>
+        <input matInput type="number" formControlName="price" />
+        <span matPrefix>€&nbsp;</span>
+        @if (productForm.get('price')?.invalid && productForm.get('price')?.touched) {
+          <mat-error>Il prezzo è obbligatorio</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Prezzo scontato</mat-label>
+        <input matInput type="number" formControlName="discount" />
+        <span matPrefix>€&nbsp;</span>
+        @if (productForm.get('discount')?.invalid && productForm.get('discount')?.touched) {
+          <mat-error>Il prezzo scontato è obbligatorio</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="categoryId">
+          <mat-option [value]="null">Scegli...</mat-option>
+          @for (cat of categoryList(); track cat.id) {
+            <mat-option [value]="cat.id">{{ cat.category }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Genere</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option value="MALE">Uomo</mat-option>
+        <mat-option value="FEMALE">Donna</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descrizione</mat-label>
+      <textarea matInput formControlName="description" rows="4"></textarea>
+      @if (productForm.get('description')?.invalid && productForm.get('description')?.touched) {
+        <mat-error>La descrizione è obbligatoria</mat-error>
+      }
+    </mat-form-field>
+    <div class="row">
+      <label class="mb-2 text-muted">Immagine Prodotto</label>
+            @if (productForm.get('image')?.invalid && productForm.get('image')?.touched) {
+        <small class="text-danger mt-1">L'immagine è obbligatoria</small>
+      }
+
+      @if (imagePreview()) {
+        <div class="mt-2">
+          <img
+            [src]="imagePreview()"
+            alt="Preview"
+            style="height: 80px; border-radius: 4px; border: 1px solid #ddd"
+          />
+        </div>
+      }
+
+      <div class="d-flex align-items-center gap-3">
+        <input
+          type="file"
+          #fileInput
+          (change)="onFileSelected($event)"
+          accept="image/*"
+          style="display: none"
+        />
+
+        <button type="button" mat-stroked-button color="accent" (click)="fileInput.click()">
+          <mat-icon>upload</mat-icon> Scegli File
+        </button>
+
+        <span class="text-truncate" style="max-width: 200px">
+          {{ selectedFileName() || 'Nessun file selezionato' }}
+        </span>
+      </div>
+
+
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Materiale</mat-label>
+      <input matInput formControlName="material" />
+      @if (productForm.get('material')?.invalid && productForm.get('material')?.touched) {
+        <mat-error>Il materiale è obbligatorio</mat-error>
+      }
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button class="submit-button" type="submit" [disabled]="productForm.invalid">
+        Modifica
+      </button>
+    </div>
+  </form>
+</div>

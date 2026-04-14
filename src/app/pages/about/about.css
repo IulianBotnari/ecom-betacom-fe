@@ -1,0 +1,124 @@
+/*Host mi serve a far capire ad angular che quelle modifiche si applicano a tutti i componenti*/
+:host {
+  display: block;
+  width: 100%;
+  overflow-x: hidden;/*serve per togliere lo scorrimento della barra di scorrimento orizontale */
+}
+
+.hero-sartoria { /*definsico quanto spazio deve occupare in atezza */
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center; /* Centra il contenuto verticalmente */
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+  padding: 80px 40px; /* Più respiro ai lati */
+}
+
+/* background-container che bg-video hanno la funzione di far rimanere il video centrato senza che si deformi */
+.background-container {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: -1;
+  background: #000;
+}
+
+.bg-video {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.4) grayscale(20%); /*serve per abbassare la luminosità del video, perche se questa è troppo non si vedrebbero le scritte in bianco*/
+  transform: translateZ(0); /*Sposta il lavoro sulla scheda video (GPU) per evitare che il sito "scatti" quando l'utente scorre la pagina.*/
+  will-change: opacity;
+}
+
+.dark-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  /* Gradiente da sinistra a destra per bilanciare il nuovo layout */
+  background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 100%);
+  pointer-events: none;
+}
+
+/* --- NUOVO LAYOUT A DUE COLONNE --- */
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr; /* Titolo a sx, Storia a dx serve per creare le due colonne */
+  gap: 80px; /* Spazio tra le due colonne */
+  max-width: 1200px;
+  width: 100%;
+  z-index: 2;
+  text-align: left; /* Allineamento a sinistra */
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Animazione del Testo, */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.year-label, .main-title, .sub-title {
+  opacity: 0;
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+/* Colonna Sinistra: Titolo */
+.year-label {
+  display: block;
+  font-size: 1rem;
+  letter-spacing: 6px;
+  margin-bottom: 1rem;
+  animation-delay: 0.2s;
+}
+
+.main-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1;
+  margin: 0;
+  animation-delay: 0.5s;
+}
+
+/* Colonna Destra: Storia */
+.sub-title {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  font-weight: 300;
+  /* Rimosso border-top e messo a sinistra per un look editoriale */
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  padding-left: 40px;
+  animation-delay: 0.8s;
+}
+
+.sub-title p { 
+  margin-bottom: 2rem; 
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .hero-content {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr; /* Torna a colonna singola */
+    text-align: center;
+    gap: 30px;
+  }
+  
+  .sub-title {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-left: 0;
+    padding-top: 30px;
+  }
+
+  .main-title { font-size: 2.2rem; }
+  .sub-title { font-size: 1rem; }
+}

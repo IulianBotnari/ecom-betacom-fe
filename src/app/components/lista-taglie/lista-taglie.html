@@ -1,0 +1,35 @@
+<div class="container">
+  <button (click)="openCreateTaglia()" class="add_taglia"><span class="material-symbols-outlined">add</span> Aggiungi</button>
+  @if (createTaglia() === true) {
+    <app-aggiungi-taglia [productId]="productId()"></app-aggiungi-taglia>
+  }
+  <table>
+    <thead>
+      <th>Taglia</th>
+      <th>Quantità</th>
+      <th>Azione</th>
+    </thead>
+
+    <tbody>
+      @for (t of listaTaglie(); track t.id) {
+        <tr class="user_row">
+          <td>{{ t.size }}</td>
+          <td>{{ t.quantity }}</td>
+          <td>
+            <button (click)="openUpdateTaglia(t.id)"><span class="material-symbols-outlined">edit</span></button>
+            <button (click)="deleteTaglia(t.id)"><span class="material-symbols-outlined">delete</span></button>
+          </td>
+          @if(messageError() != null){<td>{{messageError()}}</td>}
+          @if(messageOk() != null){<td>{{messageOk()}}</td>}
+        </tr>
+        @if (updateTaglia() === true && sizeId() === t.id) {
+          <tr>
+            <td colspan="10">
+              <app-modifica-taglia [sizeId]="t.id" [sizeValue]="t.size" [sizeQuantity]="t.quantity"></app-modifica-taglia>
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>

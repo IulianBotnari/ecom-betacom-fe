@@ -1,0 +1,81 @@
+<div class="main-wrapper">
+  <mat-card class="signin-card">
+    <mat-card-header>
+      <mat-card-title>Crea un Account</mat-card-title>
+      <mat-card-subtitle>Inserisci i tuoi dati per registrarti</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form #signInForm="ngForm" (ngSubmit)="onSubmit()" class="signin-form">
+        
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput name="name" ngModel required #name="ngModel" />
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Cognome</mat-label>
+            <input matInput name="lastName" ngModel required #lastName="ngModel" />
+            <mat-icon matSuffix>person_outline</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" name="email" ngModel required email #email="ngModel" />
+          <mat-icon matSuffix>mail</mat-icon>
+        </mat-form-field>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Data di nascita</mat-label>
+            <input matInput type="date" name="birthday" ngModel required />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Telefono</mat-label>
+            <input matInput name="phone" ngModel required />
+            <mat-icon matSuffix>phone</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Codice Fiscale</mat-label>
+          <input matInput name="codiceFiscale" placeholder="Opzionale" ngModel />
+          <mat-icon matSuffix>badge</mat-icon>
+        </mat-form-field>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" name="password" ngModel required minlength="8" #password="ngModel" />
+            <mat-icon matSuffix>lock</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Ripeti Password</mat-label>
+            <input matInput type="password" name="passwordControl" ngModel required #passwordControl="ngModel" />
+            <mat-icon matSuffix>lock_reset</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <p class="error-text" *ngIf="signInForm.value.password !== signInForm.value.passwordControl && passwordControl.touched">
+          Le password non coincidono
+        </p>
+
+        <div class="actions">
+          <button mat-flat-button color="primary" type="submit" 
+            [disabled]="!signInForm.valid || signInForm.value.password !== signInForm.value.passwordControl">
+            REGISTRATI
+          </button>
+          <button mat-button color="accent" type="button" routerLink="/login">
+            Hai già un account? Accedi
+          </button>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

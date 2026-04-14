@@ -1,0 +1,165 @@
+<div class="container" *ngIf="user">
+  <div class="side_bar">
+    <div class="sidebar_brand">USER PANEL</div>
+
+    <button class="side_bar_tab" (click)="setView('dashboard')">Dashboard</button>
+
+    <button class="side_bar_tab" (click)="toggleMenu('account')">Account</button>
+    @if (openMenu === 'account') {
+    <div class="dropdown_content">
+      <button class="option_btn" (click)="setView('profile')">Dati Personali</button>
+      <button class="option_btn" (click)="setView('addresses')">Indirizzi</button>
+    </div>
+    }
+
+    <button class="side_bar_tab" (click)="toggleMenu('wallet')">Pagamenti</button>
+    @if (openMenu === 'wallet') {
+    <div class="dropdown_content">
+      <button class="option_btn" (click)="setView('payments')">Metodi di Pagamento</button>
+    </div>
+    }
+
+    <button class="side_bar_tab" (click)="setView('orders')">Ordini</button>
+  </div>
+
+  <div class="content">
+    @switch (activeView) { 
+      
+      @case ('profile') {
+        <div class="header-section">
+          <h1>Profilo Utente</h1>
+          <button class="action_btn" (click)="toggleEdit()">
+            {{ isEditing ? 'Annulla' : 'Modifica Dati' }}
+          </button>
+        </div>
+
+        <div class="content-box">
+          <form [formGroup]="userForm" (ngSubmit)="onUpdate()">
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Nome</label>
+                <span *ngIf="!isEditing">{{ user.name }}</span>
+                <input *ngIf="isEditing" formControlName="name">
+              </div>
+              <div class="form-group">
+                <label>Cognome</label>
+                <span *ngIf="!isEditing">{{ user.lastName }}</span>
+                <input *ngIf="isEditing" formControlName="lastName">
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <span *ngIf="!isEditing">{{ user.email }}</span>
+                <input *ngIf="isEditing" formControlName="email">
+              </div>
+              <div class="form-group">
+                <label>Telefono</label>
+                <span *ngIf="!isEditing">{{ user.phone }}</span>
+                <input *ngIf="isEditing" formControlName="phone">
+              </div>
+              <div class="form-group">
+                <label>Codice Fiscale</label>
+                <span>{{ user.codiceFiscale }}</span>
+              </div>
+            </div>
+            <button *ngIf="isEditing" type="submit" class="action_btn" [disabled]="userForm.invalid">Salva Modifiche</button>
+          </form>
+        </div>
+      } 
+
+      @case ('addresses') {
+        <div class="header-section">
+          <h1>I Miei Indirizzi</h1>
+          <button class="action_btn" (click)="toggleEdit()">
+            {{ isEditing ? 'Annulla' : 'Gestisci' }}
+          </button>
+        </div>
+
+        <div class="content-box">
+          <form [formGroup]="userForm" (ngSubmit)="onUpdate()">
+            <div formArrayName="addresses">
+              <div *ngFor="let addr of addressGroups.controls; let i = index" [formGroupName]="i" class="item-card">
+                <div *ngIf="!isEditing">
+                  <p><strong>{{ user.addresses[i].city }}</strong> ({{ user.addresses[i].province }})</p>
+                  <p>{{ user.addresses[i].street }} - {{ user.addresses[i].cap }}</p>
+                  <div class="badge-row">
+                    <span *ngIf="user.addresses[i].defaulAddress" class="status-badge">Predefinito</span>
+                    <span *ngIf="user.addresses[i].residence" class="residence-badge">Residenza</span>
+                  </div>
+                </div>
+
+                <div *ngIf="isEditing" class="address-edit-grid">
+                  <input formControlName="city" placeholder="Città">
+                  <input formControlName="street" placeholder="Via/Piazza">
+                  <input formControlName="cap" placeholder="CAP">
+                  <input formControlName="province" placeholder="Prov">
+                  <div class="checkbox-row">
+                    <label><input type="checkbox" formControlName="defaultAddress" (change)="onCheckboxChange('defaultAddress', i)"> Predefinito</label>
+                    <label><input type="checkbox" formControlName="residence" (change)="onCheckboxChange('residence', i)"> Residenza</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button *ngIf="isEditing" type="submit" class="action_btn">Salva Indirizzi</button>
+          </form>
+        </div>
+      } 
+
+      @case ('payments') {
+        <div class="header-section">
+          <h1>Metodi di Pagamento</h1>
+          <button class="action_btn" (click)="toggleEdit()">{{ isEditing ? 'Annulla' : 'Gestisci' }}</button>
+        </div>
+        <div class="content-box">
+          <form [formGroup]="userForm" (ngSubmit)="onUpdate()">
+            <div formArrayName="paymentMethods">
+              <div *ngFor="let pay of paymentGroups.controls; let i = index" [formGroupName]="i" class="item-card card-design">
+                <div *ngIf="!isEditing" class="card-info">
+                  <p class="card-label">{{ user.paymentMethods[i].description }}</p>
+                  <p class="card-number">**** **** **** {{ user.paymentMethods[i].card.cardNumber.slice(-4) }}</p>
+                  <p class="card-holder">{{ user.paymentMethods[i].card.cardHolder }}</p>
+                </div>
+                
+                <div *ngIf="isEditing" formGroupName="card" class="payment-edit-grid">
+                  <input formControlName="cardHolder" placeholder="Intestatario">
+                  <input formControlName="cardNumber" placeholder="Numero Carta">
+                  <input formControlName="expiryDate" type="date">
+                  <input formControlName="cvv" placeholder="CVV">
+                </div>
+              </div>
+            </div>
+            <button *ngIf="isEditing" type="submit" class="action_btn">Salva Carte</button>
+          </form>
+        </div>
+      }
+
+      @case ('orders') {
+        <h1>Storico Ordini</h1>
+        <div class="content-box">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Data</th>
+                <th>Stato</th>
+                <th>Totale</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of user.orders">
+                <td>#{{ order.id }}</td>
+                <td>{{ order.date | date }}</td>
+                <td><span class="status-badge">{{ order.status }}</span></td>
+                <td>{{ order.orderPrice | currency:'EUR' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      }
+
+      @default {
+        <h1>Benvenuto, {{ user.name }}</h1>
+        <p class="welcome-text">Seleziona una categoria dal menu laterale per gestire il tuo account.</p>
+      }
+    }
+  </div>
+</div>

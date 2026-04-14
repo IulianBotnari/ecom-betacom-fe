@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="side_bar">
+
+    <div style="padding: 20px 25px; font-weight: 900; letter-spacing: 2px; color: var(--accent-button);">
+       ADMIN PANEL
+    </div>
+    
+    <button class="side_bar_tab" (click)="toggleMenu('utenti')">Utenti</button>
+    @if (openMenu === 'utenti') {
+      <div class="dropdown_content">
+        <button class="option_btn" (click)="setView('lista-utenti')">Lista Utenti</button>
+        <button class="option_btn" (click)="setView('aggiungi-utente')">Aggiungi utente</button>
+      </div>
+    }
+
+    <button class="side_bar_tab" (click)="toggleMenu('prodotti')">Prodotti</button>
+    @if (openMenu === 'prodotti') {
+      <div class="dropdown_content">
+        <button class="option_btn" (click)="setView('lista-prodotti')">Lista prodotti</button>
+        <button class="option_btn" (click)="setView('aggiungi-prodotto')">Aggiungi prodotto</button>
+      </div>
+    }
+
+    <button class="side_bar_tab" (click)="toggleMenu('ordini')">Ordini</button>
+    @if (openMenu === 'ordini') {
+      <div class="dropdown_content">
+        <button class="option_btn" (click)="setView('lista-ordini')">Lista ordini</button>
+        <button class="option_btn" (click)="setView('modifica-ordine')">Modifica ordine</button>
+      </div>
+    }
+  </div>
+
+  <div class="content">
+    @switch (activeView) {
+      @case ('lista-utenti') {
+        <app-lista-utenti></app-lista-utenti>
+      }
+      @case ('aggiungi-utente') {
+        <app-admin-user-create></app-admin-user-create>>
+      }
+      @case ('lista-prodotti') {
+        <app-lista-prodotti></app-lista-prodotti>
+      }
+
+      @case ('aggiungi-prodotto') {
+        <app-create-product></app-create-product>
+      }
+
+      @case ('lista-ordini') {
+        <app-order-details></app-order-details>
+      }
+
+      @case ('modifica-ordini') {
+        <h1>Modifica ordini</h1>
+      }
+      @default {
+        <h1>Benvenuto nell'Area Admin</h1>
+
+      }
+    }
+  </div>
+</div>

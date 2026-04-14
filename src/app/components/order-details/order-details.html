@@ -1,0 +1,43 @@
+<div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th>Id ordine</th>
+        <th>Email utente</th>
+        <th>Data</th>
+        <th>Status</th>
+        <th>Totale</th>
+        <th>Azione</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (o of orderList(); track o.id) {
+        <tr class="user_row">
+          <td>{{ o.id }}</td>
+          <td>Email utente</td>
+          <td>{{ o.date }}</td>
+          <td>{{ o.status ?? 'In elaborazione' }}</td>
+          <td>{{ o.orderPrice }}€</td>
+
+          <td>
+            <button><span class="material-symbols-outlined">edit</span></button>
+            <button><span class="material-symbols-outlined">delete</span></button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+              @for (detail of o.details; track detail.id) {
+                <div>
+                    <img [src]="detail.product.image">
+                    <p>{{detail.product.name}}</p>
+                    <p>{{detail.product.description}}</p>
+                    <p>{{detail.product.size}}</p>
+                </div>
+              }
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,48 @@
+<!-- <form class="filter-box" (ngSubmit)="onFilter()">
+  <div class="filters">
+    <mat-form-field appearance="outline">
+      <mat-label>🔍 Cerca prodotto</mat-label>
+      <input matInput name="name" [(ngModel)]="filters.name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Genere</mat-label>
+      <mat-select name="gender" [(ngModel)]="filters.gender">
+        <mat-option value="">Tutti</mat-option>
+        <mat-option value="MALE">Uomo</mat-option>
+        <mat-option value="FEMALE">Donna</mat-option>
+        <mat-option value="UNISEX">Unisex</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Materiale</mat-label>
+      <input matInput name="material" [(ngModel)]="filters.material">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Prezzo max (€)</mat-label>
+      <input matInput type="number" step="0.01" name="price" [(ngModel)]="filters.price">
+    </mat-form-field>
+
+    <button mat-flat-button type="submit" class="filter-btn">
+      Filtra
+    </button>
+  </div>
+</form> -->
+
+<div class="grid">
+  @if (loading) {
+  <div class="grid">
+    @for (i of [1,2,3,4]; track i) {
+      <div class="skeleton-card"></div>
+    }
+  </div>
+} @else {
+  <div class="grid">
+    @for (p of products; track $index) {
+      <app-product-card [prodotto]="p"></app-product-card>
+    }
+  </div>
+}
+</div>

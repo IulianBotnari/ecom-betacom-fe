@@ -1,0 +1,31 @@
+<div class="container">
+  <form [formGroup]="tagliaForm" (ngSubmit)="onSubmit()">
+    
+    <div class="col">
+      <label>Taglia</label>
+      <select formControlName="size" class="form-control">
+        <option value="" disabled>Seleziona</option>
+        @for (s of taglie; track s) {
+          <option [value]="s">{{ s }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="col">
+      <label>Quantità</label>
+      <input type="number" formControlName="quantity" class="form-control" />
+    </div>
+
+    <button type="submit" [disabled]="tagliaForm.invalid">
+      Aggiungi
+    </button>
+
+  </form>
+
+  @if (messageError()) {
+    <p class="message_error">{{ messageError() }}</p>
+  }
+  @if (messageOk()) {
+    <p class="messageOk">{{ messageOk() }}</p>
+  }
+</div>

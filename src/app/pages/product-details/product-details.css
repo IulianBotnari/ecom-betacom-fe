@@ -1,0 +1,229 @@
+/* --- CONFIGURAZIONE DIALOG (OVERLAY) --- */
+.luxury-modal {
+  max-width: 1000px;
+  width: 95%;
+}
+
+.luxury-modal .mat-mdc-dialog-container {
+  padding: 0;
+  border-radius: 16px;
+  background-color: #FAF7F2;
+  overflow: hidden;
+}
+
+.cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* --- LAYOUT GENERALE --- */
+.luxury-details-container {
+  width: 100%;
+  position: relative;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #FAF7F2;
+}
+
+.minimal-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: white;
+  border: none;
+  cursor: pointer;
+  z-index: 100;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.minimal-close-btn:hover {
+  transform: rotate(90deg);
+  color: #721C1C;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  min-height: 600px;
+}
+
+/* --- COLONNA IMMAGINE --- */
+.product-stage {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  border-right: 1px solid #DED8D1;
+}
+
+.main-product-img {
+  max-width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+}
+
+/* --- COLONNA INFO --- */
+.info-panel {
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.brand-category {
+  display: block;
+  color: #C5A059;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 700;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.product-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #1A1512;
+  text-transform: uppercase;
+  margin: 0 0 10px 0;
+}
+
+.luxury-price {
+  font-size: 24px;
+  font-weight: 600;
+  color: #721C1C;
+  margin-bottom: 20px;
+}
+
+.stock-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.stock-info.available { color: #2e7d32; }
+.stock-info.out-of-stock { color: #999; }
+
+.stylized-divider {
+  width: 40px;
+  height: 2px;
+  background-color: #C5A059;
+  margin: 25px 0;
+}
+
+/* --- SEZIONE TAGLIE (NEW) --- */
+.size-selection {
+  margin-bottom: 30px;
+}
+
+.size-selection h2 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #888;
+  margin-bottom: 15px;
+}
+
+.size-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.size-chip {
+  min-width: 50px;
+  height: 50px;
+  border: 1px solid #DED8D1;
+  background: white;
+  color: #1A1512;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.size-chip:hover:not(.disabled) {
+  border-color: #1A1512;
+}
+
+.size-chip.selected {
+  background-color: #1A1512;
+  color: white;
+  border-color: #1A1512;
+}
+
+.size-chip.disabled {
+  color: #DED8D1;
+  background-color: #f9f9f9;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+/* --- SPECS & FOOTER --- */
+.specs-section {
+  margin-bottom: 40px;
+}
+
+.spec-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  font-size: 13px;
+}
+
+.spec-label { color: #999; }
+.spec-value { color: #1A1512; font-weight: 600; }
+
+.action-footer {
+  display: flex;
+  gap: 15px;
+}
+
+.primary-add-btn {
+  flex: 1;
+  background-color: #721C1C;
+  color: white;
+  border: none;
+  padding: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.primary-add-btn:hover:not(:disabled) {
+  background-color: #1A1512;
+}
+
+.primary-add-btn:disabled {
+  background-color: #DED8D1;
+  cursor: not-allowed;
+}
+
+.wishlist-btn {
+  border: 1px solid #DED8D1;
+  height: 60px;
+  width: 60px;
+}
+
+.wishlist-btn mat-icon {
+  color: #aaa;
+  transition: all 0.3s ease;
+}
+
+.wishlist-btn.active mat-icon {
+  color: black; /* 👈 cuore nero */
+  transform: scale(1.2); /* effetto figo */
+}

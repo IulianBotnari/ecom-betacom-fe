@@ -1,0 +1,17 @@
+<mat-card class="product-card" (click)="openDetails(prodotto)">
+      <div class="card-img-container">
+        <img mat-card-image [src]="prodotto.image" [alt]="prodotto.name" class="product-img">
+      </div>
+
+      <mat-card-content>
+        <div class="product-info-header">
+          <h3>{{ prodotto.name }}</h3>
+          <p class="price">{{ prodotto.price }}€</p>
+        </div>
+        
+        <div class="product-info-footer">
+          <p class="info">{{ prodotto.material }}</p>
+          <span class="gender-tag">{{ prodotto.gender }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>

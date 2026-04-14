@@ -1,0 +1,241 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+:host {
+  display: block;
+  --bg-main: #FAF7F2;
+  --bg-card-filter: #F0E9E0;
+  --accent-button: #721C1C;
+  --text-headline: #1A1512;
+  --text-body: #5C5552;
+  --border-color: #DED8D1; 
+  --white: #ffffff;
+  
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* --- RESET LINK --- */
+a, .headline-link, .banner-background-link, .hero-btn-link {
+  text-decoration: none !important;
+  color: inherit;
+  outline: none;
+}
+
+/* --- 1. HERO SECTION --- */
+.hero-section {
+  width: 100%;
+  height: 700px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.banner-background-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.mega-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.banner-box {
+  position: relative;
+  z-index: 2;
+  background: var(--bg-card-filter);
+  padding: 60px 40px; 
+  text-align: center;
+  border: 1px solid var(--border-color);
+  min-width: 400px;
+  max-width: 85%; 
+  box-shadow: 0 15px 45px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.banner-headline {
+  color: var(--text-headline);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.banner-subheadline {
+  color: var(--text-body);
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin: 10px 0 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.hero-btn {
+  background-color: var(--accent-button);
+  color: var(--white);
+  border: none;
+  padding: 20px 55px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero-btn:hover {
+  background-color: #5a1515;
+  transform: translateY(-2px);
+}
+
+/* --- 2. GENDER NAV --- */
+.gender-nav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 50px 0;
+  background: var(--white);
+}
+
+.gender-nav button {
+  background: none;
+  border: none;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  cursor: pointer;
+  color: #aaa;
+  padding-bottom: 10px;
+  border-bottom: 2px solid transparent;
+  transition: 0.3s;
+}
+
+.gender-nav button.active {
+  color: black;
+  border-bottom: 2px solid black;
+  font-weight: bold;
+}
+
+/* --- 3. LUXURY GRID (Corretto per dimensioni immagini) --- */
+.luxury-categories-section {
+  background-color: var(--bg-main);
+  padding-bottom: 50px;
+}
+
+.luxury-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; /* Le tiene tutte sulla stessa riga */
+  width: 100%;
+  gap: 10px; /* Un po' di respiro tra le foto */
+  padding: 0 10px;
+  align-items: flex-start; /* Evita che si allunghino in modo strano */
+}
+
+.luxury-card {
+  flex: 1; /* Ognuna prende esattamente lo stesso spazio */
+  min-width: 0; /* Impedisce alle card di "esplodere" se il testo è lungo */
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.luxury-card img {
+  width: 100%;
+  height: auto; /* L'altezza si adatta alla larghezza */
+  display: block;
+  
+  /* LA MAGIA: Imposta il rapporto della foto (es. 2:3 come i poster) */
+  /* Questo impedisce ogni tipo di taglio perché l'immagine mantiene la sua forma originale */
+  aspect-ratio: 2 / 3; 
+  
+  object-fit: contain; /* Mostra l'intera foto nell'area assegnata */
+  background-color: var(--bg-main); /* Sfondo neutro se la foto ha proporzioni diverse */
+  
+  transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.luxury-card:hover img {
+  transform: scale(1.08);
+  filter: brightness(1.05);
+}
+
+/* Overlay sfumato per rendere leggibile il testo bianco */
+.luxury-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 30%, transparent 60%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* --- 4. TESTO SULLE FOTO --- */
+.product-details {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  text-align: center;
+  transition: transform 0.5s ease;
+}
+
+.product-title {
+  font-family: 'Playfair Display', serif; 
+  color: var(--white);
+  font-size: 22px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.luxury-card:hover .product-details {
+  transform: translateY(-10px); /* Il testo sale leggermente al passaggio del mouse */
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .luxury-grid {
+    height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .luxury-grid {
+    flex-wrap: wrap; /* Va a capo su schermi piccoli */
+    height: auto;
+  }
+  .luxury-card {
+    flex: 1 0 50%; /* 2 card per riga */
+    height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .luxury-card {
+    flex: 1 0 100%; /* 1 card per riga su mobile */
+    height: 450px;
+  }
+  .banner-box {
+    min-width: 90%;
+    padding: 30px 20px;
+  }
+}

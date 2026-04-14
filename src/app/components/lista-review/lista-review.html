@@ -1,0 +1,47 @@
+<div class="container">
+  <h2 class="headline">Recensioni Utenti</h2>
+  <table class="review-table">
+    <thead>
+      <tr>
+        <th>Utente</th>
+        <th>Descrizione</th>
+        <th>Voto</th>
+        <th>Data creazione</th>
+        <th>Azioni</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (r of listaReview(); track r.id) {
+        <tr class="user_row">
+          <td class="user-id">#{{ r.id }}</td>
+          <td class="review-text">{{ r.review }}</td>
+          <td class="rating">
+            <span class="stars">
+              @for (star of [1, 2, 3, 4, 5]; track $index) {
+                <span [class.filled]="$index < r.rating">★</span>
+              }
+            </span>
+          </td>
+          <td class="date">{{ r.date | date: 'dd/MM/yyyy' }}</td>
+          <td>
+            <button class="btn-delete" (click)="deleteReview(r.id)">
+              <span class="material-symbols-outlined">delete</span>
+            </button>
+          </td>
+        </tr>
+        @if (messageOk() != null) {
+          <tr>
+            <td><p class="messageOk">Review eliminata con successo</p></td>
+          </tr>
+        }
+
+        @if (messageError() != null) {
+          <tr>
+            <td><p class="messageError">Errore durante l'eliminazione</p></td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>

@@ -33,4 +33,8 @@ export class CartItemsService {
     return this.http.delete(this.url + "delete/" + id,{withCredentials: true})
   }
 
+    deleteCartItemById(id:number){
+    return this.http.delete(this.url + "deleteAllByCartId/" + id,{withCredentials: true})
+  }
+
 }

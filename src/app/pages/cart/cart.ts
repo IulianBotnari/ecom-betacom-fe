@@ -131,5 +131,17 @@ export class Cart implements OnInit {
           console.error(err);
         },
       });
+
+      this.cartitemservices.deleteCartItemById(this.cart().id).subscribe({
+        next:(res:any) => {
+          console.log(res);
+          this.loadCart(this.userId);
+          
+        },
+        error: (err: any) => {
+          console.log(err);
+          
+        }
+      })
   }
 }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication-service';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,12 @@ export class Header {
   @Output() menuClick = new EventEmitter<void>();
 
   private authService = inject(AuthenticationService);
+  private userService = inject(UserService);
   private router = inject(Router);
+
+  get userData() {
+    return this.authService.getUserData();
+  }
 
   goToUserProfile() {
     const userData = this.authService.getUserData();
@@ -26,16 +32,30 @@ export class Header {
   }
 
   goToWishlist() {
-      this.router.navigate(['/wishlist']);
-  }  goToCart(){
-    this.router.navigate(['/cart'])
+    this.router.navigate(['/wishlist']);
+  }
+  goToCart() {
+    this.router.navigate(['/cart']);
   }
 
-    goToAdmin(){
-    this.router.navigate(['/admin'])
+  goToAdmin() {
+    this.router.navigate(['/admin']);
   }
 
-      goToLogin(){
-    this.router.navigate(['/login'])
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  logout() {
+    this.userService.logout().subscribe({
+      next: (res: any) => {
+        this.authService.resetAll();
+        this.router.navigate(['']);
+        console.log(this.authService.getUserData());
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+    });
   }
 }

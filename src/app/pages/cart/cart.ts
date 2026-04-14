@@ -21,8 +21,6 @@ export class Cart implements OnInit {
   private orderItemServices = inject(OrderItemServices);
 
   cart = signal<any | null>(null);
-  isInitialLoad: boolean = true;
-
   cartTotal = computed(() => {
     const currentCart = this.cart();
     if (!currentCart || !currentCart.cartItems) return 0;
@@ -31,7 +29,6 @@ export class Cart implements OnInit {
       return acc + (item.product?.price || 0) * item.quantity;
     }, 0);
   });
-
   userId = Number(localStorage.getItem('userId'));
   user = signal<any | null>(null);
   addressUser = computed(() => {
@@ -110,30 +107,29 @@ export class Cart implements OnInit {
 
     this.orderServices.create(orderBody).pipe(
         switchMap((newOrder: any) => {
+          const itemsRequests = itemsToProcess.map((item: any) => {
+            const detailPayload = {
+              orderId: newOrder.id,
+              productId: item.product.id,
+              sizeId: item.size.id,
+              quantity: item.quantity,
+              totalPrice: item.quantity * (item.product.discount ?? item.product.price),
+            };
 
-      const itemsRequests = itemsToProcess.map((item: any) => {
-        const detailPayload = {
-          orderId: newOrder.id, 
-          productId: item.product.id,
-          sizeId: item.size.id,
-          quantity: item.quantity,
-          totalPrice: item.quantity * (item.product.discount ?? item.product.price)
-        };
+            return this.orderItemServices.create(detailPayload);
+          });
 
-        return this.orderItemServices.create(detailPayload);
+          return forkJoin(itemsRequests);
+        }),
+      )
+      .subscribe({
+        next: (results) => {
+          this.loadCart(this.userId);
+          alert('Ordine effettuato con successo!');
+        },
+        error: (err) => {
+          console.error(err);
+        },
       });
-
-      return forkJoin(itemsRequests);
-    })
-  ).subscribe({
-    next: (results) => {
-      this.loadCart(this.userId);
-      alert('Ordine effettuato con successo!');
-    },
-    error: (err) => {
-      console.error(err);
-  
-    }
-  });
-}
+  }
 }

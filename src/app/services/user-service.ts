@@ -11,7 +11,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   create(body: {}) {
-    return this.http.post(this.url + 'create', body, {responseType:'text'});
+    return this.http.post(this.url + 'create', body, { responseType: 'text' });
   }
 
   update(body: {}) {
@@ -44,11 +44,14 @@ export class UserService {
     return this.http.post(this.url + 'login', body, { withCredentials: true });
   }
 
-
   multiFilter(filters: any) {
     return this.http.get<any[]>(this.url + 'multiFilter', {
       params: filters,
-      withCredentials: true 
+      withCredentials: true,
     });
+  }
+
+  logout() {
+    return this.http.post('http://localhost:9090/rest/user/logout', {}, { withCredentials: true });
   }
 }

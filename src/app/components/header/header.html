@@ -10,11 +10,13 @@
         <span class="menu-label">PROFILO</span>
       </div>
     </button>
-    <button class="search-btn-inline" title="admin">
-      <div class="nav-logo" (click)="goToAdmin()">
-        <span class="menu-label">admin</span>
-      </div>
-    </button>
+    @if (userData?.role === 'ADMIN') {
+      <button class="search-btn-inline" title="admin">
+        <div class="nav-logo" (click)="goToAdmin()">
+          <span class="menu-label">admin</span>
+        </div>
+      </button>
+    }
   </div>
 
   <div class="nav-logo">
@@ -26,7 +28,13 @@
       <mat-icon>person_outline</mat-icon>
     </button>
 
-    <button mat-icon-button title="Preferiti" (click)="goToWishlist()"><mat-icon>favorite_border</mat-icon></button>
+    <button mat-icon-button title="Esci" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+
+    <button mat-icon-button title="Preferiti" (click)="goToWishlist()">
+      <mat-icon>favorite_border</mat-icon>
+    </button>
 
     <button mat-icon-button title="Carrello" (click)="goToCart()">
       <mat-icon>shopping_bag</mat-icon>

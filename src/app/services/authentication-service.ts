@@ -9,9 +9,10 @@ export class AuthenticationService {
   user = 'USER';
   admin = 'ADMIN';
 
-  setLogin(id: string, role: string) {
+  setLogin(id: string, role: string, userName: string) {
     localStorage.setItem('userId', id);
     localStorage.setItem('role', role);
+    localStorage.setItem('userName', userName);
   }
 
   isAdmin(): boolean {
@@ -43,11 +44,13 @@ export class AuthenticationService {
     if (isPlatformBrowser(this.platformId)) {
       const userId = localStorage.getItem('userId');
       const role = localStorage.getItem('role');
+      const name = localStorage.getItem('userName');
 
       if (userId) {
         return {
           id: userId,
           role: role,
+          name: name
         };
       }
     }

@@ -86,8 +86,6 @@ export class Cart implements OnInit {
 
     this.cartitemservices.update(request).subscribe({
       next: (res: any) => {
-        // this.cart.set(res)
-        console.log('risposta update CartItem: +', res);
         this.loadCart(this.userId);
       },
       error: (err) => {
@@ -99,11 +97,6 @@ export class Cart implements OnInit {
   buy() {
     const currentAddress = this.addressUser();
     const currentCart = this.cart();
-    console.log('Indirizzo:', currentAddress);
-    console.log('Carrello:', currentCart);
-
-    console.log('UserId:', this.userId);
-
     const itemsToProcess = [...this.cart().cartItems];
 
     if (!currentAddress || !currentCart) return;
@@ -117,11 +110,6 @@ export class Cart implements OnInit {
 
     this.orderServices.create(orderBody).pipe(
         switchMap((newOrder: any) => {
-         if (!newOrder || !newOrder.id) {
-        throw new Error("Il server non ha restituito l'ID dell'ordine");
-      }
-
-      console.log('Ordine creato, ID:', newOrder.id);
 
       const itemsRequests = itemsToProcess.map((item: any) => {
         const detailPayload = {
@@ -131,8 +119,7 @@ export class Cart implements OnInit {
           quantity: item.quantity,
           totalPrice: item.quantity * (item.product.discount ?? item.product.price)
         };
-        
-        console.log('Invio dettaglio:', detailPayload);
+
         return this.orderItemServices.create(detailPayload);
       });
 
@@ -140,12 +127,11 @@ export class Cart implements OnInit {
     })
   ).subscribe({
     next: (results) => {
-      console.log('Tutto salvato con successo:', results);
       this.loadCart(this.userId);
       alert('Ordine effettuato con successo!');
     },
     error: (err) => {
-      console.error('Errore nel checkout:', err);
+      console.error(err);
   
     }
   });

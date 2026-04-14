@@ -13,7 +13,7 @@ export class OrderService {
 
 
     create (body: {}) {
-      return this.http.post(this.url + "create", body, { responseType: 'text' })
+      return this.http.post(this.url + "create", body)
     }
 
     update (body: {}) {
